@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import emailjs from '@emailjs/browser'
 import { flags } from '../config/featureFlags'
 
 /**
  * useTelemetry — fires a visit notification email to Talya once per session.
  * Uses sessionStorage to prevent duplicate sends on re-renders / navigation.
+ * Sends via /api/send-order (Resend) — no EmailJS needed.
  */
 export const useTelemetry = () => {
   useEffect(() => {
@@ -15,17 +15,9 @@ export const useTelemetry = () => {
     if (sessionStorage.getItem(key)) return
     sessionStorage.setItem(key, '1')
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
-    const templateId = import.meta.env.VITE_EMAILJS_TELEMETRY_TEMPLATE_ID
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-
-    if (!serviceId || !templateId || !publicKey) {
-      console.warn('[Telemetry] EmailJS env vars not configured — skipping.')
-      return
-    }
-
     const now = new Date()
-    const templateParams = {
+    const payload = {
+      type: 'telemetry',
       timestamp: now.toLocaleString('en-IL', { timeZone: 'Asia/Jerusalem' }),
       page: window.location.pathname || '/',
       referrer: document.referrer || 'Direct',
@@ -35,11 +27,13 @@ export const useTelemetry = () => {
       url: window.location.href,
     }
 
-    emailjs
-      .send(serviceId, templateId, templateParams, publicKey)
-      .catch((err) => {
-        // Silent fail — telemetry should never break the user experience
-        console.warn('[Telemetry] Failed to send visit notification:', err)
-      })
+    fetch('/api/send-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }).catch((err) => {
+      // Silent fail — telemetry should never break the user experience
+      console.warn('[Telemetry] Failed to send visit notification:', err)
+    })
   }, [])
 }

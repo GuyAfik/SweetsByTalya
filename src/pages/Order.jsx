@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
-import { useEmailJS } from '../hooks/useEmailJS'
 import { getWhatsAppOrderLink } from '../config/social'
 import './Order.css'
 
 export default function Order() {
   const { t } = useTranslation()
   const [searchParams] = useSearchParams()
-  const { send, loading, success, error, reset } = useEmailJS()
 
   const [form, setForm] = useState({
     name: '',
@@ -19,6 +17,9 @@ export default function Order() {
     contactMethod: 'whatsapp',
   })
 
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState('')
   const [validationError, setValidationError] = useState('')
 
   // Update product if URL param changes
@@ -31,7 +32,7 @@ export default function Order() {
     const { name, value } = e.target
     setForm((f) => ({ ...f, [name]: value }))
     setValidationError('')
-    if (success) reset()
+    setError('')
   }
 
   const validate = () => {
@@ -41,15 +42,22 @@ export default function Order() {
     return ''
   }
 
+  const resetForm = () => {
+    setSuccess(false)
+    setError('')
+    setValidationError('')
+    setForm((f) => ({ ...f, product: '', notes: '' }))
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     const err = validate()
     if (err) { setValidationError(err); return }
 
     if (form.contactMethod === 'whatsapp') {
-      // Build WhatsApp message
+      // WhatsApp: open pre-filled message (best UX, free, no API needed)
       const msg = [
-        `🍫 *New Order from Sweets by Talya website*`,
+        `🍫 *New Order — Sweets by Talya*`,
         ``,
         `*Name:* ${form.name}`,
         form.phone ? `*Phone:* ${form.phone}` : '',
@@ -60,22 +68,32 @@ export default function Order() {
         .filter(Boolean)
         .join('\n')
 
-      const url = getWhatsAppOrderLink(msg)
-      window.open(url, '_blank', 'noopener,noreferrer')
-      // Show success state
-      reset()
-      setForm((f) => ({ ...f, product: '', notes: '' }))
+      window.open(getWhatsAppOrderLink(msg), '_blank', 'noopener,noreferrer')
+      setSuccess(true)
     } else {
-      // Send via EmailJS
-      const templateId = import.meta.env.VITE_EMAILJS_ORDER_TEMPLATE_ID
-      await send(templateId, {
-        from_name: form.name,
-        phone: form.phone || 'Not provided',
-        email: form.email || 'Not provided',
-        product: form.product,
-        notes: form.notes || 'None',
-        contact_method: form.contactMethod,
-      })
+      // Email: send directly via our Vercel Edge Function → Resend
+      setLoading(true)
+      try {
+        const res = await fetch('/api/send-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'order',
+            name: form.name,
+            phone: form.phone,
+            email: form.email,
+            product: form.product,
+            notes: form.notes,
+          }),
+        })
+
+        if (!res.ok) throw new Error('Send failed')
+        setSuccess(true)
+      } catch {
+        setError(t('order.error_message'))
+      } finally {
+        setLoading(false)
+      }
     }
   }
 
@@ -98,7 +116,7 @@ export default function Order() {
                 <div className="order-success__icon">🍫</div>
                 <h2>{t('order.success_title')}</h2>
                 <p>{t('order.success_message')}</p>
-                <button className="btn btn-caramel" onClick={reset}>
+                <button className="btn btn-caramel" onClick={resetForm}>
                   {t('common.order_now')}
                 </button>
               </div>
@@ -216,7 +234,7 @@ export default function Order() {
                 {/* Errors */}
                 {(validationError || error) && (
                   <div className="order-error">
-                    ⚠️ {validationError || t('order.error_message')}
+                    ⚠️ {validationError || error}
                   </div>
                 )}
 

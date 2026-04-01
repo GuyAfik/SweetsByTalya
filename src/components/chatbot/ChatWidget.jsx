@@ -205,11 +205,6 @@ export default function ChatWidget() {
           </button>
         </div>
 
-        {/* Footer */}
-        <div className="chat-panel__footer">
-          <span>{t('chatbot.powered_by')}</span>
-          <span>✨ GPT-4o mini</span>
-        </div>
       </div>
     </>
   )

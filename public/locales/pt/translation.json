@@ -1,0 +1,200 @@
+{
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "gallery": "Galeria",
+    "menu": "Cardápio",
+    "order": "Fazer Pedido"
+  },
+  "hero": {
+    "tagline": "Feito à mão com amor.",
+    "subtitle": "Chocolate que conta uma história.",
+    "cta_order": "Fazer Pedido",
+    "cta_gallery": "Ver Nossas Criações"
+  },
+  "featured": {
+    "title": "Nossos Favoritos",
+    "subtitle": "Um gostinho do que fazemos com amor",
+    "order_this": "Pedir Este"
+  },
+  "whyus": {
+    "title": "Por que Sweets by Talya?",
+    "handmade_title": "Artesanal",
+    "handmade_desc": "Cada peça é feita à mão com cuidado e atenção aos detalhes.",
+    "premium_title": "Ingredientes Premium",
+    "premium_desc": "Usamos apenas o melhor chocolate belga e ingredientes locais frescos.",
+    "custom_title": "Pedidos Personalizados",
+    "custom_desc": "Tem uma ocasião especial? Criamos presentes de chocolate exclusivos para você."
+  },
+  "instagram": {
+    "title": "Siga Nossa Jornada",
+    "subtitle": "Veja nossas criações mais recentes no Instagram",
+    "follow": "Seguir @sweets.by.talya"
+  },
+  "cta_banner": {
+    "title": "Pronto para pedir?",
+    "subtitle": "Vamos criar algo doce juntos.",
+    "button": "Conversar no WhatsApp"
+  },
+  "about": {
+    "hero_title": "Sobre Sweets by Talya",
+    "hero_subtitle": "Uma paixão por chocolate, um amor pelas pessoas.",
+    "story_title": "Nossa História",
+    "story_p1": "Sweets by Talya nasceu de um profundo amor pelo chocolate e da alegria de fazer as pessoas sorrirem. Talya começou a fazer chocolates na sua cozinha de casa, experimentando sabores e técnicas até que cada peça ficasse perfeita.",
+    "story_p2": "O que começou como um hobby rapidamente se tornou uma vocação. Hoje, cada praline, brownie e caixa de chocolate ainda é feito à mão — com o mesmo amor e dedicação do primeiro lote.",
+    "values_title": "Nossos Valores",
+    "value1_title": "Sempre Artesanal",
+    "value1_desc": "Sem máquinas, sem atalhos. Cada peça é feita à mão.",
+    "value2_title": "Qualidade em Primeiro",
+    "value2_desc": "Chocolate belga premium e os ingredientes locais mais frescos.",
+    "value3_title": "Feito com Amor",
+    "value3_desc": "Colocamos nosso coração em cada criação.",
+    "value4_title": "Personalizado",
+    "value4_desc": "Cada pedido é único, assim como a pessoa que o recebe.",
+    "process_title": "Como Trabalhamos",
+    "process_step1": "Selecionamos",
+    "process_step1_desc": "Chocolate belga premium e ingredientes locais frescos",
+    "process_step2": "Criamos",
+    "process_step2_desc": "Cada peça feita à mão com cuidado e precisão",
+    "process_step3": "Entregamos",
+    "process_step3_desc": "Fresquinho na sua porta, embalado com carinho",
+    "testimonials_title": "O Que Nossos Clientes Dizem"
+  },
+  "gallery": {
+    "title": "Nossas Criações",
+    "subtitle": "Cada peça conta uma história",
+    "filter_all": "Todos",
+    "filter_pralines": "Pralinês",
+    "filter_brownies": "Brownies",
+    "filter_chocolate": "Chocolate",
+    "filter_custom": "Personalizado",
+    "videos_title": "Bastidores",
+    "cta_title": "Quer algo assim?",
+    "cta_button": "Fazer um Pedido"
+  },
+  "menu": {
+    "title": "Nosso Cardápio",
+    "subtitle": "Feito à mão com os melhores ingredientes",
+    "categories": {
+      "all": "Todos",
+      "pralines": "Pralinês",
+      "brownies": "Brownies",
+      "chocolate": "Chocolate",
+      "seasonal": "Sazonal"
+    },
+    "order_this": "Pedir Este",
+    "price_on_request": "Preço sob consulta",
+    "ingredients": "Ingredientes",
+    "allergens": "Alérgenos",
+    "allergen_note": "Por favor, informe-nos sobre quaisquer alergias ao fazer o pedido.",
+    "products": {
+      "hazelnut_praline": {
+        "name": "Pralinê de Avelã",
+        "description": "Casca de chocolate amargo suave recheada com ganache cremoso de avelã"
+      },
+      "raspberry_praline": {
+        "name": "Pralinê de Framboesa",
+        "description": "Casca de chocolate branco com centro de ganache de framboesa ácida"
+      },
+      "salted_caramel_praline": {
+        "name": "Pralinê de Caramelo Salgado",
+        "description": "Casca de chocolate ao leite com recheio sedoso de caramelo salgado"
+      },
+      "pistachio_praline": {
+        "name": "Pralinê de Pistache",
+        "description": "Casca de chocolate amargo com ganache aromático de pasta de pistache"
+      },
+      "passion_fruit_praline": {
+        "name": "Pralinê de Maracujá",
+        "description": "Casca de chocolate ao leite com ganache exótico de maracujá"
+      },
+      "classic_brownie": {
+        "name": "Brownie Fudge Clássico",
+        "description": "Brownie denso, rico e ultra-fudgy com topo enrugado"
+      },
+      "nutella_brownie": {
+        "name": "Brownie de Nutella",
+        "description": "Brownie fudgy com generosos redemoinhos de Nutella por toda parte"
+      },
+      "cheesecake_brownie": {
+        "name": "Brownie de Cheesecake",
+        "description": "Base de brownie fudgy com redemoinho de cheesecake cremoso por cima"
+      },
+      "chocolate_box": {
+        "name": "Caixa de Chocolates Sortidos",
+        "description": "Uma seleção curada de 12 pralinês artesanais — perfeita como presente"
+      },
+      "chocolate_bark": {
+        "name": "Casca de Chocolate",
+        "description": "Finas lâminas de chocolate premium cobertas com nozes, frutas secas e sal marinho"
+      },
+      "purim_mishloach": {
+        "name": "Caixa Mishloach Manot de Purim",
+        "description": "Caixa de presente festiva de Purim com chocolates e brownies sortidos"
+      },
+      "custom_order": {
+        "name": "Pedido Personalizado",
+        "description": "Crie sua própria caixa de chocolate — escolha sabores, quantidades e embalagem"
+      }
+    }
+  },
+  "order": {
+    "title": "Fazer um Pedido",
+    "subtitle": "Preencha seus dados e entraremos em contato em breve.",
+    "name_label": "Nome Completo",
+    "name_placeholder": "Seu nome",
+    "phone_label": "Número de Telefone",
+    "phone_placeholder": "+55 11 00000-0000",
+    "email_label": "Endereço de E-mail",
+    "email_placeholder": "voce@exemplo.com",
+    "product_label": "O que você gostaria de pedir?",
+    "product_placeholder": "Ex: 6 pralinês de avelã, 2 caixas de brownie...",
+    "notes_label": "Observações Adicionais",
+    "notes_placeholder": "Alergias, pedidos especiais, detalhes de entrega...",
+    "contact_method_label": "Método de contato preferido",
+    "whatsapp": "WhatsApp",
+    "email_method": "E-mail",
+    "submit_whatsapp": "Enviar pelo WhatsApp",
+    "submit_email": "Enviar por E-mail",
+    "success_title": "Pedido enviado! 🍫",
+    "success_message": "Obrigado! Talya entrará em contato com você em breve.",
+    "error_message": "Algo deu errado. Por favor, tente novamente ou entre em contato diretamente.",
+    "required_contact": "Por favor, forneça pelo menos um número de telefone ou endereço de e-mail.",
+    "validation_name": "Por favor, insira seu nome.",
+    "validation_product": "Por favor, nos diga o que você gostaria de pedir."
+  },
+  "chatbot": {
+    "greeting": "Olá! 🍫 Sou a assistente de chocolate da Talya. Posso ajudá-lo com nosso cardápio, preços, ingredientes e fazer um pedido. Como posso ajudá-lo hoje?",
+    "placeholder": "Pergunte-me qualquer coisa...",
+    "send": "Enviar",
+    "powered_by": "Desenvolvido por IA",
+    "title": "Assistente Sweets by Talya",
+    "close": "Fechar chat",
+    "open": "Converse conosco",
+    "typing": "Digitando...",
+    "error": "Desculpe, não consegui conectar. Por favor, tente novamente."
+  },
+  "footer": {
+    "tagline": "Chocolates artesanais feitos com amor.",
+    "links_title": "Links Rápidos",
+    "social_title": "Siga-nos",
+    "contact_title": "Contato",
+    "copyright": "© {{year}} Sweets by Talya. Todos os direitos reservados.",
+    "made_with": "Feito com 🍫 e amor"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "back": "Voltar",
+    "see_all": "Ver Todos",
+    "order_now": "Fazer Pedido",
+    "whatsapp_us": "WhatsApp",
+    "per_piece": "por unidade",
+    "unavailable": "Indisponível no momento"
+  },
+  "allergens": {
+    "dairy": "Laticínios",
+    "nuts": "Nozes",
+    "gluten": "Glúten",
+    "eggs": "Ovos"
+  }
+}

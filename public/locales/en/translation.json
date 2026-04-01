@@ -1,0 +1,200 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "gallery": "Gallery",
+    "menu": "Menu",
+    "order": "Order Now"
+  },
+  "hero": {
+    "tagline": "Handcrafted with love.",
+    "subtitle": "Chocolate that tells a story.",
+    "cta_order": "Order Now",
+    "cta_gallery": "See Our Creations"
+  },
+  "featured": {
+    "title": "Our Favourites",
+    "subtitle": "A taste of what we make with love",
+    "order_this": "Order This"
+  },
+  "whyus": {
+    "title": "Why Sweets by Talya?",
+    "handmade_title": "Handmade",
+    "handmade_desc": "Every piece is crafted by hand with care and attention to detail.",
+    "premium_title": "Premium Ingredients",
+    "premium_desc": "We use only the finest Belgian chocolate and fresh local ingredients.",
+    "custom_title": "Custom Orders",
+    "custom_desc": "Have a special occasion? We create bespoke chocolate gifts just for you."
+  },
+  "instagram": {
+    "title": "Follow Our Journey",
+    "subtitle": "See our latest creations on Instagram",
+    "follow": "Follow @sweets.by.talya"
+  },
+  "cta_banner": {
+    "title": "Ready to order?",
+    "subtitle": "Let's create something sweet together.",
+    "button": "Chat on WhatsApp"
+  },
+  "about": {
+    "hero_title": "About Sweets by Talya",
+    "hero_subtitle": "A passion for chocolate, a love for people.",
+    "story_title": "Our Story",
+    "story_p1": "Sweets by Talya was born from a deep love of chocolate and the joy of making people smile. Talya started crafting chocolates in her home kitchen, experimenting with flavors and techniques until every piece was perfect.",
+    "story_p2": "What began as a hobby quickly became a calling. Today, every praline, brownie, and chocolate box is still made by hand — with the same love and dedication as the very first batch.",
+    "values_title": "Our Values",
+    "value1_title": "Handmade Always",
+    "value1_desc": "No machines, no shortcuts. Every piece is made by hand.",
+    "value2_title": "Quality First",
+    "value2_desc": "Premium Belgian chocolate and the freshest local ingredients.",
+    "value3_title": "Made with Love",
+    "value3_desc": "We pour our heart into every creation.",
+    "value4_title": "Custom & Personal",
+    "value4_desc": "Every order is unique, just like the person receiving it.",
+    "process_title": "How We Work",
+    "process_step1": "We Source",
+    "process_step1_desc": "Premium Belgian chocolate and fresh local ingredients",
+    "process_step2": "We Craft",
+    "process_step2_desc": "Every piece handmade with care and precision",
+    "process_step3": "We Deliver",
+    "process_step3_desc": "Fresh to your door, beautifully packaged",
+    "testimonials_title": "What Our Customers Say"
+  },
+  "gallery": {
+    "title": "Our Creations",
+    "subtitle": "Every piece tells a story",
+    "filter_all": "All",
+    "filter_pralines": "Pralines",
+    "filter_brownies": "Brownies",
+    "filter_chocolate": "Chocolate",
+    "filter_custom": "Custom",
+    "videos_title": "Behind the Scenes",
+    "cta_title": "Want something like this?",
+    "cta_button": "Place an Order"
+  },
+  "menu": {
+    "title": "Our Menu",
+    "subtitle": "Handcrafted with the finest ingredients",
+    "categories": {
+      "all": "All",
+      "pralines": "Pralines",
+      "brownies": "Brownies",
+      "chocolate": "Chocolate",
+      "seasonal": "Seasonal"
+    },
+    "order_this": "Order This",
+    "price_on_request": "Price on request",
+    "ingredients": "Ingredients",
+    "allergens": "Allergens",
+    "allergen_note": "Please inform us of any allergies when ordering.",
+    "products": {
+      "hazelnut_praline": {
+        "name": "Hazelnut Praline",
+        "description": "Smooth dark chocolate shell filled with creamy hazelnut ganache"
+      },
+      "raspberry_praline": {
+        "name": "Raspberry Praline",
+        "description": "White chocolate shell with tangy raspberry ganache center"
+      },
+      "salted_caramel_praline": {
+        "name": "Salted Caramel Praline",
+        "description": "Milk chocolate shell with silky salted caramel filling"
+      },
+      "pistachio_praline": {
+        "name": "Pistachio Praline",
+        "description": "Dark chocolate shell with aromatic pistachio paste ganache"
+      },
+      "passion_fruit_praline": {
+        "name": "Passion Fruit Praline",
+        "description": "Milk chocolate shell with exotic passion fruit ganache"
+      },
+      "classic_brownie": {
+        "name": "Classic Fudge Brownie",
+        "description": "Dense, rich, ultra-fudgy brownie with a crinkly top"
+      },
+      "nutella_brownie": {
+        "name": "Nutella Swirl Brownie",
+        "description": "Fudgy brownie with generous Nutella swirls throughout"
+      },
+      "cheesecake_brownie": {
+        "name": "Cheesecake Brownie",
+        "description": "Fudgy brownie base with creamy cheesecake swirl on top"
+      },
+      "chocolate_box": {
+        "name": "Assorted Chocolate Box",
+        "description": "A curated selection of 12 handcrafted pralines — perfect as a gift"
+      },
+      "chocolate_bark": {
+        "name": "Chocolate Bark",
+        "description": "Thin sheets of premium chocolate topped with nuts, dried fruits, and sea salt"
+      },
+      "purim_mishloach": {
+        "name": "Purim Mishloach Manot Box",
+        "description": "Festive Purim gift box with assorted chocolates and brownies"
+      },
+      "custom_order": {
+        "name": "Custom Order",
+        "description": "Design your own chocolate box — choose flavors, quantities, and packaging"
+      }
+    }
+  },
+  "order": {
+    "title": "Place an Order",
+    "subtitle": "Fill in your details and we'll get back to you shortly.",
+    "name_label": "Full Name",
+    "name_placeholder": "Your name",
+    "phone_label": "Phone Number",
+    "phone_placeholder": "+972 50 000 0000",
+    "email_label": "Email Address",
+    "email_placeholder": "you@example.com",
+    "product_label": "What would you like to order?",
+    "product_placeholder": "e.g. 6 hazelnut pralines, 2 brownie boxes...",
+    "notes_label": "Additional Notes",
+    "notes_placeholder": "Allergies, special requests, delivery details...",
+    "contact_method_label": "Preferred contact method",
+    "whatsapp": "WhatsApp",
+    "email_method": "Email",
+    "submit_whatsapp": "Send via WhatsApp",
+    "submit_email": "Send via Email",
+    "success_title": "Order sent! 🍫",
+    "success_message": "Thank you! Talya will be in touch with you shortly.",
+    "error_message": "Something went wrong. Please try again or contact us directly.",
+    "required_contact": "Please provide at least a phone number or email address.",
+    "validation_name": "Please enter your name.",
+    "validation_product": "Please tell us what you'd like to order."
+  },
+  "chatbot": {
+    "greeting": "Hi! 🍫 I'm Talya's chocolate assistant. I can help you with our menu, prices, ingredients, and placing an order. How can I help you today?",
+    "placeholder": "Ask me anything...",
+    "send": "Send",
+    "powered_by": "Powered by AI",
+    "title": "Sweets by Talya Assistant",
+    "close": "Close chat",
+    "open": "Chat with us",
+    "typing": "Typing...",
+    "error": "Sorry, I couldn't connect. Please try again."
+  },
+  "footer": {
+    "tagline": "Handcrafted chocolates made with love.",
+    "links_title": "Quick Links",
+    "social_title": "Follow Us",
+    "contact_title": "Contact",
+    "copyright": "© {{year}} Sweets by Talya. All rights reserved.",
+    "made_with": "Made with 🍫 and love"
+  },
+  "common": {
+    "loading": "Loading...",
+    "back": "Back",
+    "see_all": "See All",
+    "order_now": "Order Now",
+    "whatsapp_us": "WhatsApp Us",
+    "per_piece": "per piece",
+    "unavailable": "Currently unavailable"
+  },
+  "allergens": {
+    "dairy": "Dairy",
+    "nuts": "Nuts",
+    "gluten": "Gluten",
+    "eggs": "Eggs"
+  }
+}

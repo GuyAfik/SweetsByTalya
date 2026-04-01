@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
-import { getWhatsAppOrderLink } from '../config/social'
 import './Order.css'
 
 export default function Order() {
@@ -14,7 +13,6 @@ export default function Order() {
     email: '',
     product: searchParams.get('product') || '',
     notes: '',
-    contactMethod: 'whatsapp',
   })
 
   const [loading, setLoading] = useState(false)
@@ -22,7 +20,6 @@ export default function Order() {
   const [error, setError] = useState('')
   const [validationError, setValidationError] = useState('')
 
-  // Update product if URL param changes
   useEffect(() => {
     const p = searchParams.get('product')
     if (p) setForm((f) => ({ ...f, product: p }))
@@ -46,7 +43,7 @@ export default function Order() {
     setSuccess(false)
     setError('')
     setValidationError('')
-    setForm((f) => ({ ...f, product: '', notes: '' }))
+    setForm({ name: '', phone: '', email: '', product: '', notes: '' })
   }
 
   const handleSubmit = async (e) => {
@@ -54,52 +51,32 @@ export default function Order() {
     const err = validate()
     if (err) { setValidationError(err); return }
 
-    if (form.contactMethod === 'whatsapp') {
-      // WhatsApp: open pre-filled message (best UX, free, no API needed)
-      const msg = [
-        `🍫 *New Order — Sweets by Talya*`,
-        ``,
-        `*Name:* ${form.name}`,
-        form.phone ? `*Phone:* ${form.phone}` : '',
-        form.email ? `*Email:* ${form.email}` : '',
-        `*Order:* ${form.product}`,
-        form.notes ? `*Notes:* ${form.notes}` : '',
-      ]
-        .filter(Boolean)
-        .join('\n')
+    setLoading(true)
+    try {
+      const res = await fetch('/api/send-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'order',
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          product: form.product,
+          notes: form.notes,
+        }),
+      })
 
-      window.open(getWhatsAppOrderLink(msg), '_blank', 'noopener,noreferrer')
+      if (!res.ok) throw new Error('Send failed')
       setSuccess(true)
-    } else {
-      // Email: send directly via our Vercel Edge Function → Resend
-      setLoading(true)
-      try {
-        const res = await fetch('/api/send-order', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            type: 'order',
-            name: form.name,
-            phone: form.phone,
-            email: form.email,
-            product: form.product,
-            notes: form.notes,
-          }),
-        })
-
-        if (!res.ok) throw new Error('Send failed')
-        setSuccess(true)
-      } catch {
-        setError(t('order.error_message'))
-      } finally {
-        setLoading(false)
-      }
+    } catch {
+      setError(t('order.error_message'))
+    } finally {
+      setLoading(false)
     }
   }
 
   return (
     <div className="order-page">
-      {/* Header */}
       <section className="order-header">
         <div className="container">
           <h1>{t('order.title')}</h1>
@@ -109,7 +86,6 @@ export default function Order() {
 
       <section className="section">
         <div className="container order-layout">
-          {/* Form */}
           <div className="order-form-wrap">
             {success ? (
               <div className="order-success">
@@ -122,139 +98,73 @@ export default function Order() {
               </div>
             ) : (
               <form className="order-form" onSubmit={handleSubmit} noValidate>
-                {/* Name */}
                 <div className="form-group">
-                  <label className="form-label" htmlFor="name">
-                    {t('order.name_label')} *
-                  </label>
+                  <label className="form-label" htmlFor="name">{t('order.name_label')} *</label>
                   <input
-                    id="name"
-                    name="name"
-                    type="text"
+                    id="name" name="name" type="text"
                     className="form-input"
                     placeholder={t('order.name_placeholder')}
-                    value={form.name}
-                    onChange={handleChange}
-                    required
+                    value={form.name} onChange={handleChange} required
                   />
                 </div>
 
-                {/* Phone */}
                 <div className="form-group">
-                  <label className="form-label" htmlFor="phone">
-                    {t('order.phone_label')}
-                  </label>
+                  <label className="form-label" htmlFor="phone">{t('order.phone_label')}</label>
                   <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
+                    id="phone" name="phone" type="tel"
                     className="form-input"
                     placeholder={t('order.phone_placeholder')}
-                    value={form.phone}
-                    onChange={handleChange}
+                    value={form.phone} onChange={handleChange}
                   />
                 </div>
 
-                {/* Email */}
                 <div className="form-group">
-                  <label className="form-label" htmlFor="email">
-                    {t('order.email_label')}
-                  </label>
+                  <label className="form-label" htmlFor="email">{t('order.email_label')}</label>
                   <input
-                    id="email"
-                    name="email"
-                    type="email"
+                    id="email" name="email" type="email"
                     className="form-input"
                     placeholder={t('order.email_placeholder')}
-                    value={form.email}
-                    onChange={handleChange}
+                    value={form.email} onChange={handleChange}
                   />
                 </div>
 
-                {/* Product */}
                 <div className="form-group">
-                  <label className="form-label" htmlFor="product">
-                    {t('order.product_label')} *
-                  </label>
+                  <label className="form-label" htmlFor="product">{t('order.product_label')} *</label>
                   <textarea
-                    id="product"
-                    name="product"
+                    id="product" name="product"
                     className="form-textarea"
                     placeholder={t('order.product_placeholder')}
-                    value={form.product}
-                    onChange={handleChange}
-                    rows={3}
-                    required
+                    value={form.product} onChange={handleChange}
+                    rows={3} required
                   />
                 </div>
 
-                {/* Notes */}
                 <div className="form-group">
-                  <label className="form-label" htmlFor="notes">
-                    {t('order.notes_label')}
-                  </label>
+                  <label className="form-label" htmlFor="notes">{t('order.notes_label')}</label>
                   <textarea
-                    id="notes"
-                    name="notes"
+                    id="notes" name="notes"
                     className="form-textarea"
                     placeholder={t('order.notes_placeholder')}
-                    value={form.notes}
-                    onChange={handleChange}
+                    value={form.notes} onChange={handleChange}
                     rows={3}
                   />
                 </div>
 
-                {/* Contact method */}
-                <div className="form-group">
-                  <label className="form-label">{t('order.contact_method_label')}</label>
-                  <div className="order-contact-methods">
-                    <label className={`order-method${form.contactMethod === 'whatsapp' ? ' order-method--active' : ''}`}>
-                      <input
-                        type="radio"
-                        name="contactMethod"
-                        value="whatsapp"
-                        checked={form.contactMethod === 'whatsapp'}
-                        onChange={handleChange}
-                      />
-                      <span>💬 {t('order.whatsapp')}</span>
-                    </label>
-                    <label className={`order-method${form.contactMethod === 'email' ? ' order-method--active' : ''}`}>
-                      <input
-                        type="radio"
-                        name="contactMethod"
-                        value="email"
-                        checked={form.contactMethod === 'email'}
-                        onChange={handleChange}
-                      />
-                      <span>📧 {t('order.email_method')}</span>
-                    </label>
-                  </div>
-                </div>
-
-                {/* Errors */}
                 {(validationError || error) && (
-                  <div className="order-error">
-                    ⚠️ {validationError || error}
-                  </div>
+                  <div className="order-error">⚠️ {validationError || error}</div>
                 )}
 
-                {/* Submit */}
                 <button
                   type="submit"
-                  className={`btn btn-lg order-submit${form.contactMethod === 'whatsapp' ? ' btn-whatsapp' : ' btn-caramel'}`}
+                  className="btn btn-caramel btn-lg order-submit"
                   disabled={loading}
                 >
-                  {loading ? t('common.loading') : (
-                    form.contactMethod === 'whatsapp'
-                      ? `💬 ${t('order.submit_whatsapp')}`
-                      : `📧 ${t('order.submit_email')}`
-                  )}
+                  {loading ? t('common.loading') : `🍫 ${t('order.submit')}`}
                 </button>
               </form>
             )}
           </div>
 
-          {/* Info sidebar */}
           <aside className="order-info">
             <div className="order-info__card">
               <h3>🍫 Sweets by Talya</h3>

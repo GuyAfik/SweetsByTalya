@@ -1,57 +1,39 @@
-// Vercel Edge Function — OpenAI Chat Proxy
-// This keeps the OpenAI API key server-side only.
-// Locally: run `vercel dev` or the Vite proxy will forward to localhost:3001
-// In production: deployed automatically by Vercel
+// Vercel Serverless Function — OpenAI Chat Proxy
+// Shared logic lives in api/_chatCore.js (single source of truth).
+// Locally: scripts/dev-api.mjs imports the same _chatCore.js.
 
-export const config = { runtime: 'edge' }
+import { buildSystemPrompt, orderInviteTool } from './_chatCore.js'
 
 const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions'
 const MODEL = 'gpt-4o-mini'
 
-export default async function handler(req) {
+export default async function handler(req, res) {
   // Handle CORS preflight
   if (req.method === 'OPTIONS') {
-    return new Response(null, {
-      status: 204,
-      headers: corsHeaders(),
-    })
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+    return res.status(204).end()
   }
 
+  res.setHeader('Access-Control-Allow-Origin', '*')
+
   if (req.method !== 'POST') {
-    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
-      status: 405,
-      headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
-    })
+    return res.status(405).json({ error: 'Method not allowed' })
   }
 
   const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey) {
-    return new Response(JSON.stringify({ error: 'OpenAI API key not configured' }), {
-      status: 500,
-      headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
-    })
+    return res.status(500).json({ error: 'OpenAI API key not configured' })
   }
 
-  let body
-  try {
-    body = await req.json()
-  } catch {
-    return new Response(JSON.stringify({ error: 'Invalid JSON body' }), {
-      status: 400,
-      headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
-    })
-  }
-
-  const { messages, language = 'en', menuSummary = '' } = body
+  const { messages, language = 'en', menuSummary = '', pralinePricing = '' } = req.body
 
   if (!messages || !Array.isArray(messages)) {
-    return new Response(JSON.stringify({ error: 'messages array required' }), {
-      status: 400,
-      headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
-    })
+    return res.status(400).json({ error: 'messages array required' })
   }
 
-  const systemPrompt = buildSystemPrompt(language, menuSummary)
+  const systemPrompt = buildSystemPrompt(language, menuSummary, pralinePricing)
 
   try {
     const openaiRes = await fetch(OPENAI_API_URL, {
@@ -73,10 +55,7 @@ export default async function handler(req) {
     if (!openaiRes.ok) {
       const errText = await openaiRes.text()
       console.error('[ChatProxy] OpenAI error:', errText)
-      return new Response(JSON.stringify({ error: 'OpenAI request failed' }), {
-        status: 502,
-        headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
-      })
+      return res.status(502).json({ error: 'OpenAI request failed' })
     }
 
     const data = await openaiRes.json()
@@ -88,85 +67,17 @@ export default async function handler(req) {
       if (toolCall?.function?.name === 'send_order_invite') {
         let args = {}
         try { args = JSON.parse(toolCall.function.arguments) } catch {}
-        return new Response(
-          JSON.stringify({
-            type: 'order_invite',
-            orderData: args,
-            message: choice.message,
-          }),
-          {
-            status: 200,
-            headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
-          }
-        )
+        return res.status(200).json({
+          type: 'order_invite',
+          orderData: args,
+          message: choice.message,
+        })
       }
     }
 
-    return new Response(JSON.stringify({ message: choice?.message }), {
-      status: 200,
-      headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
-    })
+    return res.status(200).json({ message: choice?.message })
   } catch (err) {
     console.error('[ChatProxy] Unexpected error:', err)
-    return new Response(JSON.stringify({ error: 'Internal server error' }), {
-      status: 500,
-      headers: { ...corsHeaders(), 'Content-Type': 'application/json' },
-    })
-  }
-}
-
-function corsHeaders() {
-  return {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
-  }
-}
-
-function buildSystemPrompt(language, menuSummary) {
-  const langInstruction =
-    language === 'he'
-      ? 'Always respond in Hebrew (עברית). Use a warm, friendly tone.'
-      : language === 'pt'
-      ? 'Always respond in Portuguese (Português). Use a warm, friendly tone.'
-      : 'Always respond in English. Use a warm, friendly tone.'
-
-  return `You are the AI assistant for "Sweets by Talya", a boutique handmade chocolate business owned by Talya.
-
-${langInstruction}
-
-IMPORTANT: Never use markdown formatting. No asterisks, no bold, no bullet points with *, no headers with #. Write in plain conversational text only. Use simple line breaks if needed.
-
-You help customers with information about products (pralines, brownies, chocolate boxes), prices, ingredients, allergens, and ordering. When a customer wants to place an order, collect their name, what they want to order, quantity, and contact info (phone or email), then use the send_order_invite tool.
-
-Always be warm, enthusiastic about the chocolates, and helpful. If you don't know something, say so honestly and suggest they contact Talya directly via WhatsApp.
-
-Do NOT discuss topics unrelated to Sweets by Talya.
-
-Current menu:
-${menuSummary || 'Pralines (various flavors), Brownies, Chocolate Boxes, Custom Orders. Prices range from 8₪ per praline to 120₪ for gift boxes.'}
-
-Contact: WhatsApp and email available on the website.`
-}
-
-function orderInviteTool() {
-  return {
-    type: 'function',
-    function: {
-      name: 'send_order_invite',
-      description:
-        'Collect order details from the customer and prepare an order summary to send via WhatsApp or email.',
-      parameters: {
-        type: 'object',
-        properties: {
-          customer_name: { type: 'string', description: 'Customer full name' },
-          product: { type: 'string', description: 'Product(s) they want to order' },
-          quantity: { type: 'string', description: 'Quantity or amount' },
-          contact: { type: 'string', description: 'Phone number or email' },
-          notes: { type: 'string', description: 'Any special requests or notes' },
-        },
-        required: ['customer_name', 'product'],
-      },
-    },
+    return res.status(500).json({ error: 'Internal server error' })
   }
 }

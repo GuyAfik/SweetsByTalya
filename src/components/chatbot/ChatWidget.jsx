@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getMenuSummaryForAI } from '../../data/menu'
+import { getPralinePricingForAI } from '../../data/pralines'
 import './ChatWidget.css'
 
 const MAX_HISTORY = 20 // keep last 20 messages in context
@@ -74,6 +75,7 @@ export default function ChatWidget() {
           messages: updatedMessages,
           language: currentLang,
           menuSummary: getMenuSummaryForAI(),
+          pralinePricing: getPralinePricingForAI(),
         }),
       })
 

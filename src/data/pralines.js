@@ -127,3 +127,46 @@ export function pralinePrice(slot) {
 export function boxTotal(slots) {
   return slots.filter(Boolean).reduce((sum, slot) => sum + pralinePrice(slot), 0)
 }
+
+/**
+ * Builds a human-readable pricing summary for the AI system prompt.
+ * Called by ChatWidget and sent to /api/chat so the backend never needs
+ * to duplicate or hardcode pricing data.
+ * @returns {string}
+ */
+export function getPralinePricingForAI() {
+  const baseLines = chocolateBases
+    .map((b) => `  - ${b.id.replace('_', ' ').replace(/\b\w/g, (c) => c.toUpperCase())}: ₪${b.price}`)
+    .join('\n')
+
+  const fillingLines = fillings
+    .map((f) => `  - ${f.id.charAt(0).toUpperCase() + f.id.slice(1)}: ₪${f.price}`)
+    .join('\n')
+
+  // Build a few examples dynamically
+  const examples = [
+    [chocolateBases[0], fillings[0]],
+    [chocolateBases[3], fillings[5]],
+    [chocolateBases[2], fillings[1]],
+  ].map(([b, f]) => {
+    const baseName = b.id.replace('_', ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+    const fillingName = f.id.charAt(0).toUpperCase() + f.id.slice(1)
+    return `  - ${baseName} + ${fillingName} = ₪${b.price + f.price} per praline`
+  }).join('\n')
+
+  return `PRALINE BUILDER — "Build Your Own Box" pricing:
+Box sizes available: 8-piece or 16-piece.
+Each praline price = chocolate base price + filling price.
+
+Chocolate bases (price per praline):
+${baseLines}
+
+Fillings (price per praline, added to base):
+${fillingLines}
+
+Examples:
+${examples}
+
+Customers can mix and match any base with any filling.
+Direct them to the "Build Your Box" page on the website to configure their box interactively.`
+}

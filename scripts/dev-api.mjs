@@ -18,6 +18,7 @@ import nodemailer from 'nodemailer'
 import { readFileSync } from 'fs'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { buildSystemPrompt, orderInviteTool } from '../api/_chatCore.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PORT = parseInt(process.env.PORT || '3001', 10)
@@ -140,7 +141,7 @@ function buildTelemetryEmail(data) {
 </body></html>`
 }
 
-// ── OpenAI Chat proxy ─────────────────────────────────────────────────────────
+// ── OpenAI Chat proxy — logic shared via api/_chatCore.js ────────────────────
 async function handleChat(data, res) {
   const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey) {
@@ -149,25 +150,8 @@ async function handleChat(data, res) {
     return
   }
 
-  const { messages, language = 'en', menuSummary = '' } = data
-
-  const langInstruction =
-    language === 'he' ? 'Always respond in Hebrew (עברית). Use a warm, friendly tone.' :
-    language === 'pt' ? 'Always respond in Portuguese (Português). Use a warm, friendly tone.' :
-    'Always respond in English. Use a warm, friendly tone.'
-
-  const systemPrompt = `You are the AI assistant for "Sweets by Talya", a boutique handmade chocolate business owned by Talya.
-
-${langInstruction}
-
-IMPORTANT: Never use markdown formatting. No asterisks, no bold, no bullet points with *, no headers with #. Write in plain conversational text only. Use simple line breaks if needed.
-
-You help customers with products (pralines, brownies, chocolate boxes), prices, ingredients, allergens, and ordering. When a customer wants to order, use the send_order_invite tool.
-
-Do NOT discuss topics unrelated to Sweets by Talya.
-
-Current menu:
-${menuSummary || 'Pralines (various flavors), Brownies, Chocolate Boxes, Custom Orders. Prices from 8₪ per praline to 120₪ for gift boxes.'}`
+  const { messages, language = 'en', menuSummary = '', pralinePricing = '' } = data
+  const systemPrompt = buildSystemPrompt(language, menuSummary, pralinePricing)
 
   try {
     const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -178,24 +162,7 @@ ${menuSummary || 'Pralines (various flavors), Brownies, Chocolate Boxes, Custom 
         messages: [{ role: 'system', content: systemPrompt }, ...messages],
         max_tokens: 600,
         temperature: 0.7,
-        tools: [{
-          type: 'function',
-          function: {
-            name: 'send_order_invite',
-            description: 'Collect order details from the customer.',
-            parameters: {
-              type: 'object',
-              properties: {
-                customer_name: { type: 'string' },
-                product: { type: 'string' },
-                quantity: { type: 'string' },
-                contact: { type: 'string' },
-                notes: { type: 'string' },
-              },
-              required: ['customer_name', 'product'],
-            },
-          },
-        }],
+        tools: [orderInviteTool()],
         tool_choice: 'auto',
       }),
     })
@@ -215,10 +182,8 @@ ${menuSummary || 'Pralines (various flavors), Brownies, Chocolate Boxes, Custom 
       const toolCall = choice.message.tool_calls?.[0]
       let args = {}
       try { args = JSON.parse(toolCall.function.arguments) } catch {}
-      const waPhone = process.env.WHATSAPP_PHONE
-      const waUrl = waPhone ? `https://wa.me/${waPhone}` : null
       res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ type: 'order_invite', orderData: args, message: choice.message, orderLink: waUrl }))
+      res.end(JSON.stringify({ type: 'order_invite', orderData: args, message: choice.message }))
     } else {
       res.writeHead(200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ message: choice?.message }))

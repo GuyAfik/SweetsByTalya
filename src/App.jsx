@@ -15,6 +15,7 @@ const About = lazy(() => import('./pages/About'))
 const Gallery = lazy(() => import('./pages/Gallery'))
 const Menu = lazy(() => import('./pages/Menu'))
 const Order = lazy(() => import('./pages/Order'))
+const PralineBuilder = lazy(() => import('./pages/PralineBuilder'))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -48,6 +49,9 @@ export default function App() {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/order" element={<Order />} />
+            {flags.pralineBuilder && (
+              <Route path="/build-your-box" element={<PralineBuilder />} />
+            )}
             {/* Catch-all → Home */}
             <Route path="*" element={<Home />} />
           </Routes>

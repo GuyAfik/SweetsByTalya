@@ -1,0 +1,71 @@
+/* ── Page header ──────────────────────────────────────────────────────────── */
+.praline-builder-page__header {
+  background: linear-gradient(135deg, var(--color-chocolate-dark, #3B1F0E) 0%, var(--color-chocolate-mid, #5C3317) 100%);
+  color: var(--color-cream, #FFF5DC);
+  padding: 3rem 0 2.5rem;
+  text-align: center;
+}
+
+.praline-builder-page__header h1 {
+  color: var(--color-cream, #FFF5DC);
+  margin-bottom: 0.5rem;
+}
+
+.praline-builder-page__header .accent-text {
+  color: var(--color-caramel-light, #e8c99a);
+  font-size: 1.05rem;
+}
+
+/* ── Builder layout ───────────────────────────────────────────────────────── */
+.praline-builder-page__builder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* ── Action buttons row ───────────────────────────────────────────────────── */
+.praline-builder-page__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 480px;
+}
+
+.praline-builder-page__reset {
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  color: var(--color-text-muted, #888);
+  border-color: var(--color-caramel-light, #e8c99a);
+}
+
+.praline-builder-page__reset:hover {
+  color: var(--color-chocolate-dark);
+  border-color: var(--color-chocolate-mid);
+}
+
+/* ── Outline button variant (if not already in global CSS) ────────────────── */
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid currentColor;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-outline:hover {
+  background: rgba(0,0,0,0.04);
+}
+
+/* ── btn-link (used in BoxSummary edit button) ────────────────────────────── */
+.btn-link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}

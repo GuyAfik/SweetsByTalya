@@ -4,6 +4,7 @@
     "about": "Sobre",
     "gallery": "Galeria",
     "menu": "Cardápio",
+    "build_box": "Monte sua Caixa",
     "order": "Fazer Pedido"
   },
   "hero": {
@@ -195,5 +196,51 @@
     "nuts": "Nozes",
     "gluten": "Glúten",
     "eggs": "Ovos"
+  },
+  "praline_builder": {
+    "title": "Monte sua Própria Caixa",
+    "subtitle": "Crie sua caixa de pralinês perfeita, um chocolate de cada vez.",
+    "choose_size": "Escolha o Tamanho da Caixa",
+    "size_8": "Caixa de 8 Peças",
+    "size_16": "Caixa de 16 Peças",
+    "size_8_desc": "Perfeito para um mimo pessoal ou presente pequeno",
+    "size_16_desc": "Ideal para compartilhar ou um presente luxuoso",
+    "progress_label": "{{filled}} de {{total}} pralinês preenchidos",
+    "progress_complete": "Caixa completa! 🎉",
+    "slot_empty": "Clique para preencher",
+    "slot_label": "Pralinê {{n}}",
+    "configure_title": "Configurar Pralinê {{n}}",
+    "step_base": "Escolha a Base de Chocolate",
+    "step_filling": "Escolha o Recheio",
+    "back": "Voltar",
+    "confirm_slot": "Confirmar",
+    "order_box": "Pedir Minha Caixa",
+    "summary_title": "Resumo da Sua Caixa",
+    "box_total": "Total da Caixa",
+    "edit_box": "Editar Caixa",
+    "your_details": "Seus Dados",
+    "notes_placeholder": "Alergias ou pedidos especiais?",
+    "submit": "Fazer Meu Pedido 🍫",
+    "success_title": "Pedido enviado! 🍫",
+    "success_message": "Obrigado! Talya entrará em contato em breve."
+  },
+  "praline": {
+    "bases": {
+      "dark_70": "Chocolate Amargo 70%",
+      "dark_50": "Chocolate Amargo 50%",
+      "milk": "Chocolate ao Leite",
+      "white": "Chocolate Branco"
+    },
+    "fillings": {
+      "pistachio": "Pistache",
+      "vanilla": "Baunilha",
+      "caramel": "Caramelo",
+      "mango": "Manga",
+      "cherry": "Cereja",
+      "dubai": "Dubai (Kunafa e Pistache)",
+      "halva": "Halva",
+      "pecan": "Noz-pecã",
+      "coconut": "Coco"
+    }
   }
 }

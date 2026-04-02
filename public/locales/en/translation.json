@@ -4,6 +4,7 @@
     "about": "About",
     "gallery": "Gallery",
     "menu": "Menu",
+    "build_box": "Build Your Box",
     "order": "Order Now"
   },
   "hero": {
@@ -195,5 +196,51 @@
     "nuts": "Nuts",
     "gluten": "Gluten",
     "eggs": "Eggs"
+  },
+  "praline_builder": {
+    "title": "Build Your Own Box",
+    "subtitle": "Craft your perfect praline box, one chocolate at a time.",
+    "choose_size": "Choose Your Box Size",
+    "size_8": "8-Piece Box",
+    "size_16": "16-Piece Box",
+    "size_8_desc": "Perfect for a personal treat or small gift",
+    "size_16_desc": "Ideal for sharing or a luxurious gift",
+    "progress_label": "{{filled}} of {{total}} pralines filled",
+    "progress_complete": "Box complete! 🎉",
+    "slot_empty": "Click to fill",
+    "slot_label": "Praline {{n}}",
+    "configure_title": "Configure Praline {{n}}",
+    "step_base": "Choose Chocolate Base",
+    "step_filling": "Choose Filling",
+    "back": "Back",
+    "confirm_slot": "Confirm",
+    "order_box": "Order My Box",
+    "summary_title": "Your Box Summary",
+    "box_total": "Box Total",
+    "edit_box": "Edit Box",
+    "your_details": "Your Details",
+    "notes_placeholder": "Any allergies or special requests?",
+    "submit": "Place My Order 🍫",
+    "success_title": "Order sent! 🍫",
+    "success_message": "Thank you! Talya will be in touch with you shortly."
+  },
+  "praline": {
+    "bases": {
+      "dark_70": "Dark 70%",
+      "dark_50": "Dark 50%",
+      "milk": "Milk Chocolate",
+      "white": "White Chocolate"
+    },
+    "fillings": {
+      "pistachio": "Pistachio",
+      "vanilla": "Vanilla",
+      "caramel": "Caramel",
+      "mango": "Mango",
+      "cherry": "Cherry",
+      "dubai": "Dubai (Kunafa & Pistachio)",
+      "halva": "Halva",
+      "pecan": "Pecan",
+      "coconut": "Coconut"
+    }
   }
 }

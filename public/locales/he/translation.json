@@ -4,6 +4,7 @@
     "about": "אודות",
     "gallery": "גלריה",
     "menu": "תפריט",
+    "build_box": "בנה את הקופסה שלך",
     "order": "הזמן עכשיו"
   },
   "hero": {
@@ -195,5 +196,51 @@
     "nuts": "אגוזים",
     "gluten": "גלוטן",
     "eggs": "ביצים"
+  },
+  "praline_builder": {
+    "title": "בנה את הקופסה שלך",
+    "subtitle": "הרכב את קופסת הפרלינים המושלמת שלך, שוקולד אחד בכל פעם.",
+    "choose_size": "בחר את גודל הקופסה",
+    "size_8": "קופסה של 8",
+    "size_16": "קופסה של 16",
+    "size_8_desc": "מושלם לפינוק אישי או מתנה קטנה",
+    "size_16_desc": "אידיאלי לשיתוף או מתנה מפנקת",
+    "progress_label": "{{filled}} מתוך {{total}} פרלינים מולאו",
+    "progress_complete": "הקופסה מוכנה! 🎉",
+    "slot_empty": "לחץ למילוי",
+    "slot_label": "פרלין {{n}}",
+    "configure_title": "הגדר פרלין {{n}}",
+    "step_base": "בחר בסיס שוקולד",
+    "step_filling": "בחר מילוי",
+    "back": "חזרה",
+    "confirm_slot": "אישור",
+    "order_box": "הזמן את הקופסה שלי",
+    "summary_title": "סיכום הקופסה שלך",
+    "box_total": "סה\"כ לקופסה",
+    "edit_box": "ערוך קופסה",
+    "your_details": "הפרטים שלך",
+    "notes_placeholder": "אלרגיות או בקשות מיוחדות?",
+    "submit": "שלח הזמנה 🍫",
+    "success_title": "ההזמנה נשלחה! 🍫",
+    "success_message": "תודה! טליה תיצור איתך קשר בקרוב."
+  },
+  "praline": {
+    "bases": {
+      "dark_70": "שוקולד מריר 70%",
+      "dark_50": "שוקולד מריר 50%",
+      "milk": "שוקולד חלב",
+      "white": "שוקולד לבן"
+    },
+    "fillings": {
+      "pistachio": "פיסטוק",
+      "vanilla": "וניל",
+      "caramel": "קרמל",
+      "mango": "מנגו",
+      "cherry": "דובדבן",
+      "dubai": "דובאי (קנאפה ופיסטוק)",
+      "halva": "חלווה",
+      "pecan": "פקאן",
+      "coconut": "קוקוס"
+    }
   }
 }

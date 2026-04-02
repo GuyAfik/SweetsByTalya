@@ -10,6 +10,9 @@ export const flags = {
   /** Show AI chatbot widget */
   chatbot: import.meta.env.VITE_CHATBOT_ENABLED !== 'false',
 
+  /** Build Your Own Box praline builder */
+  pralineBuilder: import.meta.env.VITE_FEATURE_PRALINE_BUILDER !== 'false',
+
   /** Enable Stripe payment flow (future) */
   payments: import.meta.env.VITE_PAYMENTS_ENABLED === 'true',
 }

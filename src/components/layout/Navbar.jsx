@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from '../shared/LanguageSwitcher'
 import { social } from '../../config/social'
+import { flags } from '../../config/featureFlags'
 import './Navbar.css'
 
 export default function Navbar() {
@@ -24,6 +25,9 @@ export default function Navbar() {
     { to: '/about', label: t('nav.about') },
     { to: '/gallery', label: t('nav.gallery') },
     { to: '/menu', label: t('nav.menu') },
+    ...(flags.pralineBuilder
+      ? [{ to: '/build-your-box', label: t('nav.build_box') }]
+      : []),
   ]
 
   return (

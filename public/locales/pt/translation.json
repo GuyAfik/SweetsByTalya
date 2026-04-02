@@ -67,11 +67,15 @@
     "filter_all": "Todos",
     "filter_pralines": "Pralinês",
     "filter_brownies": "Brownies",
-    "filter_chocolate": "Chocolate",
-    "filter_custom": "Personalizado",
-    "videos_title": "Bastidores",
     "cta_title": "Quer algo assim?",
-    "cta_button": "Fazer um Pedido"
+    "cta_button": "Fazer um Pedido",
+    "alt_pralines_1": "Pralinês artesanais",
+    "alt_pralines_2": "Pralinês sortidos",
+    "alt_pralines_3": "Pralinês de chocolate",
+    "alt_brownies_1": "Brownies fudgy",
+    "alt_brownies_2": "Brownies de chocolate",
+    "alt_brownies_3": "Brownies caseiros",
+    "alt_talya": "Talya com suas caixas de chocolate"
   },
   "menu": {
     "title": "Nosso Cardápio",

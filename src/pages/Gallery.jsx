@@ -3,24 +3,16 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import './Gallery.css'
 
-// Placeholder gallery items — replace src with real photos
+// Real gallery photos — add new images to public/images/gallery/ and list them here
 const galleryItems = [
-  { id: 1, category: 'pralines', src: '/images/gallery/praline-1.jpg', alt: 'Hazelnut Pralines' },
-  { id: 2, category: 'pralines', src: '/images/gallery/praline-2.jpg', alt: 'Raspberry Pralines' },
-  { id: 3, category: 'brownies', src: '/images/gallery/brownie-1.jpg', alt: 'Classic Brownies' },
-  { id: 4, category: 'chocolate', src: '/images/gallery/box-1.jpg', alt: 'Chocolate Gift Box' },
-  { id: 5, category: 'pralines', src: '/images/gallery/praline-3.jpg', alt: 'Salted Caramel Pralines' },
-  { id: 6, category: 'brownies', src: '/images/gallery/brownie-2.jpg', alt: 'Nutella Brownies' },
-  { id: 7, category: 'chocolate', src: '/images/gallery/bark-1.jpg', alt: 'Chocolate Bark' },
-  { id: 8, category: 'custom', src: '/images/gallery/custom-1.jpg', alt: 'Custom Order Box' },
-  { id: 9, category: 'pralines', src: '/images/gallery/praline-4.jpg', alt: 'Pistachio Pralines' },
-  { id: 10, category: 'brownies', src: '/images/gallery/brownie-3.jpg', alt: 'Cheesecake Brownies' },
-  { id: 11, category: 'chocolate', src: '/images/gallery/box-2.jpg', alt: 'Assorted Box' },
-  { id: 12, category: 'custom', src: '/images/gallery/custom-2.jpg', alt: 'Wedding Chocolates' },
+  { id: 1,  category: 'pralines', src: '/images/gallery/pralines-1.jpg', altKey: 'gallery.alt_pralines_1' },
+  { id: 2,  category: 'pralines', src: '/images/gallery/pralines-2.jpg', altKey: 'gallery.alt_pralines_2' },
+  { id: 3,  category: 'pralines', src: '/images/gallery/pralines-3.jpg', altKey: 'gallery.alt_pralines_3' },
+  { id: 4,  category: 'brownies', src: '/images/gallery/brownies-1.jpg', altKey: 'gallery.alt_brownies_1' },
+  { id: 5,  category: 'brownies', src: '/images/gallery/brownies-2.jpg', altKey: 'gallery.alt_brownies_2' },
+  { id: 6,  category: 'brownies', src: '/images/gallery/brownies-3.jpg', altKey: 'gallery.alt_brownies_3' },
+  { id: 7,  category: 'all',      src: '/images/gallery/talya-with-boxes.jpg', altKey: 'gallery.alt_talya' },
 ]
-
-const PLACEHOLDER = (alt) =>
-  `https://placehold.co/600x600/F2C4CE/3B1F0E?text=${encodeURIComponent(alt)}`
 
 export default function Gallery() {
   const { t } = useTranslation()
@@ -28,17 +20,15 @@ export default function Gallery() {
   const [lightbox, setLightbox] = useState(null) // index into filtered array
 
   const filters = [
-    { id: 'all', label: t('gallery.filter_all') },
+    { id: 'all',      label: t('gallery.filter_all') },
     { id: 'pralines', label: t('gallery.filter_pralines') },
     { id: 'brownies', label: t('gallery.filter_brownies') },
-    { id: 'chocolate', label: t('gallery.filter_chocolate') },
-    { id: 'custom', label: t('gallery.filter_custom') },
   ]
 
   const filtered =
     activeFilter === 'all'
       ? galleryItems
-      : galleryItems.filter((item) => item.category === activeFilter)
+      : galleryItems.filter((item) => item.category === activeFilter || item.category === 'all')
 
   const openLightbox = (idx) => setLightbox(idx)
   const closeLightbox = () => setLightbox(null)
@@ -77,13 +67,12 @@ export default function Gallery() {
                 key={item.id}
                 className="gallery-item"
                 onClick={() => openLightbox(idx)}
-                aria-label={`View ${item.alt}`}
+                aria-label={`View ${t(item.altKey)}`}
               >
                 <img
                   src={item.src}
-                  alt={item.alt}
+                  alt={t(item.altKey)}
                   loading="lazy"
-                  onError={(e) => { e.target.src = PLACEHOLDER(item.alt) }}
                 />
                 <div className="gallery-item__overlay">
                   <span className="gallery-item__zoom">🔍</span>
@@ -120,10 +109,9 @@ export default function Gallery() {
           <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
             <img
               src={filtered[lightbox].src}
-              alt={filtered[lightbox].alt}
-              onError={(e) => { e.target.src = PLACEHOLDER(filtered[lightbox].alt) }}
+              alt={t(filtered[lightbox].altKey)}
             />
-            <p className="lightbox__caption">{filtered[lightbox].alt}</p>
+            <p className="lightbox__caption">{t(filtered[lightbox].altKey)}</p>
           </div>
           <button
             className="lightbox__nav lightbox__nav--next"

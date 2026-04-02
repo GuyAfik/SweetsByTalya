@@ -67,11 +67,15 @@
     "filter_all": "הכל",
     "filter_pralines": "פרלינים",
     "filter_brownies": "בראוניז",
-    "filter_chocolate": "שוקולד",
-    "filter_custom": "מותאם אישית",
-    "videos_title": "מאחורי הקלעים",
     "cta_title": "רוצה משהו כזה?",
-    "cta_button": "בצע הזמנה"
+    "cta_button": "בצע הזמנה",
+    "alt_pralines_1": "פרלינים עשויים ביד",
+    "alt_pralines_2": "מגוון פרלינים",
+    "alt_pralines_3": "פרלינים שוקולד",
+    "alt_brownies_1": "בראוניז עשירים",
+    "alt_brownies_2": "בראוניז שוקולד",
+    "alt_brownies_3": "בראוניז ביתיים",
+    "alt_talya": "טליה עם קופסאות השוקולד שלה"
   },
   "menu": {
     "title": "התפריט שלנו",

@@ -55,8 +55,8 @@ export default function About() {
         <div className="container about-story">
           <div className="about-story__image">
             <img
-              src="/images/talya-workspace.jpg"
-              alt="Talya in her chocolate workshop"
+              src="/images/talya-about.jpg"
+              alt="Talya"
               onError={(e) => {
                 e.target.src = 'https://placehold.co/500x600/F2C4CE/3B1F0E?text=🍫+Talya'
               }}

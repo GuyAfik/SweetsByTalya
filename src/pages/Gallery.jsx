@@ -3,15 +3,17 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import './Gallery.css'
 
-// Real gallery photos — add new images to public/images/gallery/ and list them here
+// Real gallery photos — add new images to public/images/gallery/ and list them here.
+// caption: shown in the lightbox below the image. Leave as '' to show nothing.
+// alt: used for screen readers only (not displayed).
 const galleryItems = [
-  { id: 1,  category: 'pralines', src: '/images/gallery/pralines-1.jpg', altKey: 'gallery.alt_pralines_1' },
-  { id: 2,  category: 'pralines', src: '/images/gallery/pralines-2.jpg', altKey: 'gallery.alt_pralines_2' },
-  { id: 3,  category: 'pralines', src: '/images/gallery/pralines-3.jpg', altKey: 'gallery.alt_pralines_3' },
-  { id: 4,  category: 'brownies', src: '/images/gallery/brownies-1.jpg', altKey: 'gallery.alt_brownies_1' },
-  { id: 5,  category: 'brownies', src: '/images/gallery/brownies-2.jpg', altKey: 'gallery.alt_brownies_2' },
-  { id: 6,  category: 'brownies', src: '/images/gallery/brownies-3.jpg', altKey: 'gallery.alt_brownies_3' },
-  { id: 7,  category: 'all',      src: '/images/gallery/talya-with-boxes.jpg', altKey: 'gallery.alt_talya' },
+  { id: 1, category: 'pralines', src: '/images/gallery/pralines-1.jpg', alt: 'Pralines', caption: '' },
+  { id: 2, category: 'pralines', src: '/images/gallery/pralines-2.jpg', alt: 'Pralines', caption: '' },
+  { id: 3, category: 'pralines', src: '/images/gallery/pralines-3.jpg', alt: 'Pralines', caption: '' },
+  { id: 4, category: 'brownies', src: '/images/gallery/brownies-1.jpg', alt: 'Brownies', caption: '' },
+  { id: 5, category: 'brownies', src: '/images/gallery/brownies-2.jpg', alt: 'Brownies', caption: '' },
+  { id: 6, category: 'brownies', src: '/images/gallery/brownies-3.jpg', alt: 'Brownies', caption: '' },
+  { id: 7, category: 'all',      src: '/images/gallery/talya-with-boxes.jpg', alt: 'Talya with chocolate boxes', caption: '' },
 ]
 
 export default function Gallery() {
@@ -67,11 +69,11 @@ export default function Gallery() {
                 key={item.id}
                 className="gallery-item"
                 onClick={() => openLightbox(idx)}
-                aria-label={`View ${t(item.altKey)}`}
+                aria-label={`View ${item.alt}`}
               >
                 <img
                   src={item.src}
-                  alt={t(item.altKey)}
+                  alt={item.alt}
                   loading="lazy"
                 />
                 <div className="gallery-item__overlay">
@@ -109,9 +111,11 @@ export default function Gallery() {
           <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
             <img
               src={filtered[lightbox].src}
-              alt={t(filtered[lightbox].altKey)}
+              alt={filtered[lightbox].alt}
             />
-            <p className="lightbox__caption">{t(filtered[lightbox].altKey)}</p>
+            {filtered[lightbox].caption && (
+              <p className="lightbox__caption">{filtered[lightbox].caption}</p>
+            )}
           </div>
           <button
             className="lightbox__nav lightbox__nav--next"

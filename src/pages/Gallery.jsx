@@ -13,7 +13,6 @@ const galleryItems = [
   { id: 4, category: 'brownies', src: '/images/gallery/brownies-1.jpg', alt: 'Brownies', caption: '' },
   { id: 5, category: 'brownies', src: '/images/gallery/brownies-2.jpg', alt: 'Brownies', caption: '' },
   { id: 6, category: 'brownies', src: '/images/gallery/brownies-3.jpg', alt: 'Brownies', caption: '' },
-  { id: 7, category: 'all',      src: '/images/gallery/talya-with-boxes.jpg', alt: 'Talya with chocolate boxes', caption: '' },
 ]
 
 export default function Gallery() {

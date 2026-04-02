@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { getFeaturedProducts } from '../data/menu'
 import { social } from '../config/social'
 import './Home.css'
 
@@ -9,9 +8,9 @@ function Hero() {
   const { t } = useTranslation()
   return (
     <section className="hero">
-      <div className="hero__overlay" />
-      <div className="hero__content container">
-        <p className="hero__accent accent-text">Sweets by Talya</p>
+      {/* Left: text content */}
+      <div className="hero__content">
+        <p className="hero__brand-name">Sweets by Talya</p>
         <h1 className="hero__title">{t('hero.tagline')}</h1>
         <p className="hero__subtitle">{t('hero.subtitle')}</p>
         <div className="hero__ctas">
@@ -23,61 +22,24 @@ function Hero() {
           </Link>
         </div>
       </div>
-      <div className="hero__scroll-hint">
-        <span />
-      </div>
-    </section>
-  )
-}
 
-// ── Featured Products ─────────────────────────────────────────────────────────
-function FeaturedProducts() {
-  const { t } = useTranslation()
-  const featured = getFeaturedProducts()
-
-  return (
-    <section className="featured section">
-      <div className="container">
-        <p className="accent-text featured__accent">{t('featured.title')}</p>
-        <div className="divider" />
-        <p className="section-subtitle">{t('featured.subtitle')}</p>
-
-        <div className="featured__grid">
-          {featured.map((product) => (
-            <div key={product.id} className="featured__card card">
-              <div className="featured__card-img">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  onError={(e) => {
-                    e.target.src = `https://placehold.co/400x300/F2C4CE/3B1F0E?text=${encodeURIComponent(product.name)}`
-                  }}
-                />
-                {product.price && (
-                  <span className="featured__card-price">
-                    {product.price}{product.currency}
-                  </span>
-                )}
-              </div>
-              <div className="featured__card-body">
-                <h3 className="featured__card-name">{product.name}</h3>
-                <p className="featured__card-desc">{product.description}</p>
-                <Link
-                  to={`/order?product=${encodeURIComponent(product.name)}`}
-                  className="btn btn-primary btn-sm"
-                >
-                  {t('featured.order_this')}
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="featured__see-all">
-          <Link to="/menu" className="btn btn-secondary">
-            {t('common.see_all')} →
-          </Link>
-        </div>
+      {/* Right: photos in a horizontal row */}
+      <div className="hero__photo">
+        <img
+          src="/images/gallery/talya-with-boxes.jpg"
+          alt="Talya with her handcrafted chocolate boxes"
+          className="hero__photo-img"
+        />
+        <img
+          src="/images/hero-pralines.jpg"
+          alt="Assorted handcrafted pralines"
+          className="hero__photo-img"
+        />
+        <img
+          src="/images/gallery/pralines-6.png"
+          alt="Handcrafted pralines collection"
+          className="hero__photo-img"
+        />
       </div>
     </section>
   )
@@ -125,11 +87,21 @@ function WhyUs() {
 }
 
 // ── Instagram Preview ─────────────────────────────────────────────────────────
+// Shows real gallery photos that link to Instagram.
+// Instagram's Basic Display API was deprecated Dec 2024 — live feed requires
+// a paid third-party service. Replace `galleryPhotos` with API data if/when
+// that is set up.
+const galleryPhotos = [
+  '/images/gallery/pralines-1.jpg',
+  '/images/gallery/pralines-2.jpg',
+  '/images/gallery/pralines-3.jpg',
+  '/images/gallery/brownies-1.jpg',
+  '/images/gallery/brownies-2.jpg',
+  '/images/gallery/brownies-3.jpg',
+]
+
 function InstagramPreview() {
   const { t } = useTranslation()
-
-  // Placeholder images — replace with real Instagram embeds or photos
-  const placeholders = [1, 2, 3, 4, 5, 6]
 
   return (
     <section className="instagram section-sm">
@@ -138,9 +110,9 @@ function InstagramPreview() {
         <p className="section-subtitle">{t('instagram.subtitle')}</p>
 
         <div className="instagram__grid">
-          {placeholders.map((i) => (
+          {galleryPhotos.map((src, i) => (
             <a
-              key={i}
+              key={src}
               href={social.instagram}
               target="_blank"
               rel="noopener noreferrer"
@@ -148,8 +120,8 @@ function InstagramPreview() {
               aria-label="View on Instagram"
             >
               <img
-                src={`https://placehold.co/300x300/F2C4CE/3B1F0E?text=🍫`}
-                alt={`Instagram post ${i}`}
+                src={src}
+                alt={`Sweets by Talya — photo ${i + 1}`}
                 loading="lazy"
               />
               <div className="instagram__overlay">
@@ -205,7 +177,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <FeaturedProducts />
       <WhyUs />
       <InstagramPreview />
       <CTABanner />

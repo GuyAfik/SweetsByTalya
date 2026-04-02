@@ -1,14 +1,20 @@
 /**
- * Local API dev server — simulates Vercel Edge Functions for local development
- * without needing `vercel login`.
+ * Sweets by Talya — Local API Dev Server
  *
- * Usage: node scripts/dev-api.mjs
- * Then run: npm run dev:vite (in another terminal)
+ * Sends emails via Gmail SMTP using nodemailer + Gmail App Password.
+ * No external service needed — just Gmail credentials.
  *
- * Or just use: vercel dev (recommended — runs everything together)
+ * Setup:
+ *   1. Enable 2-Step Verification on sweetsbytalya@gmail.com
+ *   2. Go to myaccount.google.com/apppasswords → Create → copy the 16-char password
+ *   3. Add to .env.local:
+ *        GMAIL_USER=sweetsbytalya@gmail.com
+ *        GMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx
+ *        CONTACT_EMAIL=sweetsbytalya@gmail.com
  */
 
 import http from 'http'
+import nodemailer from 'nodemailer'
 import { readFileSync } from 'fs'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -16,7 +22,7 @@ import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PORT = parseInt(process.env.PORT || '3001', 10)
 
-// Load .env.local manually
+// ── Load .env.local ───────────────────────────────────────────────────────────
 function loadEnv() {
   try {
     const envPath = resolve(__dirname, '../.env.local')
@@ -24,10 +30,11 @@ function loadEnv() {
     for (const line of content.split('\n')) {
       const trimmed = line.trim()
       if (!trimmed || trimmed.startsWith('#')) continue
-      const [key, ...rest] = trimmed.split('=')
-      if (key && rest.length) {
-        process.env[key.trim()] = rest.join('=').trim()
-      }
+      const eqIdx = trimmed.indexOf('=')
+      if (eqIdx === -1) continue
+      const key = trimmed.slice(0, eqIdx).trim()
+      const val = trimmed.slice(eqIdx + 1).trim()
+      if (key) process.env[key] = val
     }
     console.log('✅ Loaded .env.local')
   } catch {
@@ -37,99 +44,119 @@ function loadEnv() {
 
 loadEnv()
 
-const RESEND_API_URL = 'https://api.resend.com/emails'
+// ── Gmail transporter ─────────────────────────────────────────────────────────
+function createTransporter() {
+  const user = process.env.GMAIL_USER
+  const pass = process.env.GMAIL_APP_PASSWORD
 
+  if (!user || !pass) return null
+
+  // Debug: print credentials to confirm what was loaded from .env.local
+  console.log(`[dev-api] Gmail user:     "${user}"`)
+  console.log(`[dev-api] Gmail password: "${pass}" (length: ${pass.length})`)
+
+  return nodemailer.createTransport({
+    service: 'gmail',
+    auth: { user, pass },
+  })
+}
+
+// ── Send email ────────────────────────────────────────────────────────────────
+async function sendEmail({ to, from, replyTo, subject, html }) {
+  const transporter = createTransporter()
+
+  if (!transporter) {
+    console.warn('[dev-api] GMAIL_USER / GMAIL_APP_PASSWORD not set — mock success')
+    return { success: true, warning: 'Email not configured' }
+  }
+
+  const info = await transporter.sendMail({
+    from,
+    to,
+    replyTo: replyTo || undefined,
+    subject,
+    html,
+  })
+
+  console.log(`[dev-api] ✉️  Email sent: ${info.messageId}`)
+  return { success: true, messageId: info.messageId }
+}
+
+// ── HTML builders ─────────────────────────────────────────────────────────────
 function escapeHtml(str) {
   return String(str || '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#039;')
 }
 
 function buildOrderEmail({ name, phone, email, product, notes, whatsappReplyUrl }) {
   const waButton = whatsappReplyUrl
     ? `<div style="text-align:center;margin:28px 0;">
-        <a href="${whatsappReplyUrl}" style="display:inline-block;background:#25D366;color:#fff;text-decoration:none;padding:14px 32px;border-radius:50px;font-size:16px;font-weight:700;">
+        <a href="${whatsappReplyUrl}" style="display:inline-block;background:#25D366;color:#fff;text-decoration:none;padding:14px 32px;border-radius:50px;font-size:16px;font-weight:700;font-family:Arial,sans-serif;">
           💬 Reply via WhatsApp
         </a>
+        <p style="font-size:12px;color:#9B7B6A;margin-top:8px;font-family:Arial,sans-serif;">Click to open WhatsApp with a pre-filled reply to this customer</p>
        </div>`
     : ''
 
-  return `<!DOCTYPE html><html><body style="font-family:Georgia,serif;background:#FDF6EC;padding:20px;">
-  <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;">
+  return `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="font-family:Georgia,serif;background:#FDF6EC;margin:0;padding:20px;">
+  <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(59,31,14,0.12);">
     <div style="background:linear-gradient(135deg,#3B1F0E,#6B3A2A);padding:36px;text-align:center;">
       <div style="font-size:48px;">🍫</div>
-      <h1 style="color:#FDF6EC;margin:12px 0 6px;">New Order!</h1>
-      <p style="color:#C8813A;margin:0;font-style:italic;">Someone placed an order on SweetsByTalya.com</p>
+      <h1 style="color:#FDF6EC;margin:12px 0 6px;font-family:Georgia,serif;">New Order!</h1>
+      <p style="color:#C8813A;margin:0;font-style:italic;font-family:Arial,sans-serif;">Someone placed an order on SweetsByTalya.com</p>
     </div>
     <div style="padding:32px;">
-      <p><strong style="color:#C8813A;">Name:</strong> ${escapeHtml(name)}</p>
-      <p><strong style="color:#C8813A;">Phone:</strong> ${escapeHtml(phone || 'Not provided')}</p>
-      <p><strong style="color:#C8813A;">Email:</strong> ${escapeHtml(email || 'Not provided')}</p>
-      <p><strong style="color:#C8813A;">Order:</strong> ${escapeHtml(product)}</p>
-      ${notes ? `<p><strong style="color:#C8813A;">Notes:</strong> ${escapeHtml(notes)}</p>` : ''}
+      <table style="width:100%;border-collapse:collapse;">
+        <tr><td style="padding:12px 0;border-bottom:1px solid #F5E6D0;color:#C8813A;font-weight:700;font-family:Arial,sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;width:140px;">Name</td>
+            <td style="padding:12px 0;border-bottom:1px solid #F5E6D0;color:#3B1F0E;font-size:16px;">${escapeHtml(name || '—')}</td></tr>
+        <tr><td style="padding:12px 0;border-bottom:1px solid #F5E6D0;color:#C8813A;font-weight:700;font-family:Arial,sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;">Phone</td>
+            <td style="padding:12px 0;border-bottom:1px solid #F5E6D0;color:#3B1F0E;font-size:16px;">${escapeHtml(phone || 'Not provided')}</td></tr>
+        <tr><td style="padding:12px 0;border-bottom:1px solid #F5E6D0;color:#C8813A;font-weight:700;font-family:Arial,sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;">Email</td>
+            <td style="padding:12px 0;border-bottom:1px solid #F5E6D0;color:#3B1F0E;font-size:16px;">${email ? `<a href="mailto:${escapeHtml(email)}" style="color:#C8813A;">${escapeHtml(email)}</a>` : 'Not provided'}</td></tr>
+        <tr><td style="padding:12px 0;border-bottom:1px solid #F5E6D0;color:#C8813A;font-weight:700;font-family:Arial,sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;">Order</td>
+            <td style="padding:12px 0;border-bottom:1px solid #F5E6D0;color:#3B1F0E;font-size:16px;">${escapeHtml(product || '—')}</td></tr>
+        ${notes ? `<tr><td style="padding:12px 0;color:#C8813A;font-weight:700;font-family:Arial,sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;">Notes</td>
+            <td style="padding:12px 0;color:#3B1F0E;font-size:16px;">${escapeHtml(notes)}</td></tr>` : ''}
+      </table>
       ${waButton}
     </div>
-    <div style="background:#F5E6D0;padding:16px;text-align:center;font-size:13px;color:#9B7B6A;">
-      Sent from sweetsbytalya.com · ${new Date().toLocaleString('en-IL', { timeZone: 'Asia/Jerusalem' })}
+    <div style="background:#F5E6D0;padding:16px 32px;text-align:center;font-size:13px;color:#9B7B6A;font-family:Arial,sans-serif;">
+      Sent from <strong>sweetsbytalya.com</strong> &nbsp;·&nbsp; ${new Date().toLocaleString('en-IL', { timeZone: 'Asia/Jerusalem' })}
     </div>
   </div>
 </body></html>`
 }
 
 function buildTelemetryEmail(data) {
-  return `<!DOCTYPE html><html><body style="font-family:Arial,sans-serif;background:#FDF6EC;padding:20px;">
-  <div style="max-width:480px;margin:0 auto;background:#fff;border-radius:12px;padding:28px;">
-    <h2 style="color:#3B1F0E;">🍫 New visitor on SweetsByTalya.com!</h2>
-    <table style="width:100%;border-collapse:collapse;">
-      ${Object.entries(data).filter(([k]) => k !== 'type').map(([k, v]) =>
-        `<tr><td style="color:#C8813A;font-weight:700;padding:6px 0;width:110px;">${k}</td><td style="color:#3B1F0E;">${escapeHtml(String(v))}</td></tr>`
-      ).join('')}
-    </table>
+  const rows = Object.entries(data)
+    .filter(([k]) => k !== 'type')
+    .map(([k, v]) => `<tr><td style="color:#C8813A;font-weight:700;padding:6px 12px 6px 0;font-family:Arial,sans-serif;font-size:13px;width:110px;">${escapeHtml(k)}</td><td style="color:#3B1F0E;font-size:14px;">${escapeHtml(String(v))}</td></tr>`)
+    .join('')
+
+  return `<!DOCTYPE html><html><head><meta charset="utf-8"></head>
+<body style="font-family:Arial,sans-serif;background:#FDF6EC;padding:20px;">
+  <div style="max-width:480px;margin:0 auto;background:#fff;border-radius:12px;padding:28px;box-shadow:0 2px 12px rgba(59,31,14,0.08);">
+    <h2 style="color:#3B1F0E;font-family:Georgia,serif;margin:0 0 20px;">🍫 New visitor on SweetsByTalya.com!</h2>
+    <table style="width:100%;border-collapse:collapse;">${rows}</table>
   </div>
 </body></html>`
 }
 
-async function sendEmail({ to, from, replyTo, subject, html }) {
-  const apiKey = process.env.RESEND_API_KEY
-  if (!apiKey) {
-    console.warn('[dev-api] RESEND_API_KEY not set — email not sent (returning mock success)')
-    return { success: true, warning: 'Email not configured' }
-  }
-
-  const res = await fetch(RESEND_API_URL, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from, to: [to], reply_to: replyTo, subject, html }),
-  })
-
-  if (!res.ok) {
-    const err = await res.text()
-    throw new Error(`Resend error: ${err}`)
-  }
-  return res.json()
-}
-
+// ── HTTP Server ───────────────────────────────────────────────────────────────
 const server = http.createServer(async (req, res) => {
-  // CORS
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
 
-  if (req.method === 'OPTIONS') {
-    res.writeHead(204)
-    res.end()
-    return
-  }
-
+  if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return }
   if (req.method !== 'POST') {
     res.writeHead(405, { 'Content-Type': 'application/json' })
     res.end(JSON.stringify({ error: 'Method not allowed' }))
     return
   }
 
-  // Read body
   let body = ''
   for await (const chunk of req) body += chunk
   let data
@@ -139,8 +166,8 @@ const server = http.createServer(async (req, res) => {
     return
   }
 
-  const toEmail = process.env.CONTACT_EMAIL || 'talya@sweetsbytalya.com'
-  const fromEmail = process.env.FROM_EMAIL || 'onboarding@resend.dev'
+  const toEmail = process.env.CONTACT_EMAIL || 'sweetsbytalya@gmail.com'
+  const fromEmail = process.env.GMAIL_USER || 'sweetsbytalya@gmail.com'
   const whatsappPhone = process.env.WHATSAPP_PHONE
 
   try {
@@ -148,9 +175,17 @@ const server = http.createServer(async (req, res) => {
       const { name, phone, email, product, notes } = data
       let whatsappReplyUrl = null
       if (whatsappPhone) {
-        const msg = `Hi ${name || 'there'}! 🍫 I received your order from SweetsByTalya.com.\n\n*Order:* ${product}\n${notes ? `*Notes:* ${notes}\n` : ''}\nLet me confirm the details!`
+        const msg = [
+          `Hi ${name || 'there'}! 🍫 I received your order from SweetsByTalya.com.`,
+          ``,
+          `*Order:* ${product}`,
+          notes ? `*Notes:* ${notes}` : '',
+          ``,
+          `Let me confirm the details and get back to you shortly!`,
+        ].filter(l => l !== undefined).join('\n')
         whatsappReplyUrl = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(msg)}`
       }
+
       const result = await sendEmail({
         to: toEmail,
         from: `Sweets by Talya <${fromEmail}>`,
@@ -158,9 +193,10 @@ const server = http.createServer(async (req, res) => {
         subject: `🍫 New Order from ${name || 'Website visitor'}`,
         html: buildOrderEmail({ name, phone, email, product, notes, whatsappReplyUrl }),
       })
-      console.log(`[dev-api] Order email sent for ${name}`)
+      console.log(`[dev-api] Order processed for: ${name}`)
       res.writeHead(200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: true, ...result }))
+
     } else if (data.type === 'telemetry') {
       const result = await sendEmail({
         to: toEmail,
@@ -168,9 +204,9 @@ const server = http.createServer(async (req, res) => {
         subject: '🍫 New Visit — SweetsByTalya.com',
         html: buildTelemetryEmail(data),
       })
-      console.log('[dev-api] Telemetry email sent')
       res.writeHead(200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: true, ...result }))
+
     } else {
       res.writeHead(400, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ error: 'Unknown type' }))
@@ -183,7 +219,12 @@ const server = http.createServer(async (req, res) => {
 })
 
 server.listen(PORT, () => {
-  console.log(`\n🍫 Local API server running at http://localhost:${PORT}`)
-  console.log('   Handles: POST /api/send-order, POST /api/chat')
-  console.log('   Now run: npm run dev:vite (in another terminal)\n')
+  const gmailUser = process.env.GMAIL_USER
+  console.log(`\n🍫 Local API server → http://localhost:${PORT}`)
+  if (gmailUser) {
+    console.log(`   📧 Gmail: ${gmailUser}`)
+  } else {
+    console.log(`   ⚠️  No Gmail configured — set GMAIL_USER + GMAIL_APP_PASSWORD in .env.local`)
+  }
+  console.log()
 })

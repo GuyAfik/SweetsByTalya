@@ -8,6 +8,7 @@ node_modules/
 /dist
 
 # Environment variables - NEVER commit these
+# .env.local is the ONLY env file used — edit it directly, never commit it
 .env
 .env.local
 .env.development.local

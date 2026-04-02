@@ -51,10 +51,6 @@ function createTransporter() {
 
   if (!user || !pass) return null
 
-  // Debug: print credentials to confirm what was loaded from .env.local
-  console.log(`[dev-api] Gmail user:     "${user}"`)
-  console.log(`[dev-api] Gmail password: "${pass}" (length: ${pass.length})`)
-
   return nodemailer.createTransport({
     service: 'gmail',
     auth: { user, pass },
@@ -173,17 +169,13 @@ const server = http.createServer(async (req, res) => {
   try {
     if (data.type === 'order') {
       const { name, phone, email, product, notes } = data
+
+      // Build WhatsApp link to the CUSTOMER's phone (so Talya can reply to them)
+      // Use simple wa.me/{phone} without ?text= to avoid URL corruption in email clients
       let whatsappReplyUrl = null
-      if (whatsappPhone) {
-        const msg = [
-          `Hi ${name || 'there'}! 🍫 I received your order from SweetsByTalya.com.`,
-          ``,
-          `*Order:* ${product}`,
-          notes ? `*Notes:* ${notes}` : '',
-          ``,
-          `Let me confirm the details and get back to you shortly!`,
-        ].filter(l => l !== undefined).join('\n')
-        whatsappReplyUrl = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(msg)}`
+      const customerPhone = phone ? phone.replace(/[\s\-().+]/g, '') : null
+      if (customerPhone) {
+        whatsappReplyUrl = `https://wa.me/${customerPhone}`
       }
 
       const result = await sendEmail({

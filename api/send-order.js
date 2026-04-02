@@ -30,18 +30,14 @@ export default async function handler(req, res) {
   const gmailPass = process.env.GMAIL_APP_PASSWORD
   const whatsappPhone = process.env.WHATSAPP_PHONE
 
-  // Build WhatsApp reply link
+  // Build WhatsApp link to the CUSTOMER's phone (so Talya can reply to them)
+  // Use simple wa.me/{phone} without ?text= to avoid URL corruption in email clients
   let whatsappReplyUrl = null
-  if (type === 'order' && whatsappPhone) {
-    const msg = [
-      `Hi ${name || 'there'}! 🍫 I received your order from SweetsByTalya.com.`,
-      ``,
-      `*Order:* ${product}`,
-      notes ? `*Notes:* ${notes}` : '',
-      ``,
-      `Let me confirm the details and get back to you shortly!`,
-    ].filter(l => l !== undefined).join('\n')
-    whatsappReplyUrl = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(msg)}`
+  if (type === 'order' && phone) {
+    const customerPhone = phone.replace(/[\s\-().+]/g, '')
+    if (customerPhone) {
+      whatsappReplyUrl = `https://wa.me/${customerPhone}`
+    }
   }
 
   const subject = type === 'order'

@@ -5,6 +5,8 @@ import { getWhatsAppOrderLink } from '../../config/social'
 import './ChatWidget.css'
 
 const MAX_HISTORY = 20 // keep last 20 messages in context
+const AUTO_OPEN_DELAY = 3000 // ms before chat auto-opens on first visit
+const AUTO_OPEN_KEY = 'sbt_chat_opened' // sessionStorage key
 
 export default function ChatWidget() {
   const { t, i18n } = useTranslation()
@@ -17,6 +19,16 @@ export default function ChatWidget() {
   const [error, setError] = useState(null)
   const messagesEndRef = useRef(null)
   const inputRef = useRef(null)
+
+  // Auto-open on first visit (once per session)
+  useEffect(() => {
+    if (sessionStorage.getItem(AUTO_OPEN_KEY)) return
+    const timer = setTimeout(() => {
+      setOpen(true)
+      sessionStorage.setItem(AUTO_OPEN_KEY, '1')
+    }, AUTO_OPEN_DELAY)
+    return () => clearTimeout(timer)
+  }, [])
 
   // Auto-scroll to bottom
   useEffect(() => {

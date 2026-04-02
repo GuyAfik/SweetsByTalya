@@ -140,6 +140,94 @@ function buildTelemetryEmail(data) {
 </body></html>`
 }
 
+// ── OpenAI Chat proxy ─────────────────────────────────────────────────────────
+async function handleChat(data, res) {
+  const apiKey = process.env.OPENAI_API_KEY
+  if (!apiKey) {
+    res.writeHead(500, { 'Content-Type': 'application/json' })
+    res.end(JSON.stringify({ error: 'OPENAI_API_KEY not configured' }))
+    return
+  }
+
+  const { messages, language = 'en', menuSummary = '' } = data
+
+  const langInstruction =
+    language === 'he' ? 'Always respond in Hebrew (עברית). Use a warm, friendly tone.' :
+    language === 'pt' ? 'Always respond in Portuguese (Português). Use a warm, friendly tone.' :
+    'Always respond in English. Use a warm, friendly tone.'
+
+  const systemPrompt = `You are the AI assistant for "Sweets by Talya", a boutique handmade chocolate business owned by Talya.
+
+${langInstruction}
+
+You help customers with products (pralines, brownies, chocolate boxes), prices, ingredients, allergens, and ordering. When a customer wants to order, use the send_order_invite tool.
+
+Do NOT discuss topics unrelated to Sweets by Talya.
+
+Current menu:
+${menuSummary || 'Pralines (various flavors), Brownies, Chocolate Boxes, Custom Orders. Prices from 8₪ per praline to 120₪ for gift boxes.'}`
+
+  try {
+    const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'gpt-4o-mini',
+        messages: [{ role: 'system', content: systemPrompt }, ...messages],
+        max_tokens: 600,
+        temperature: 0.7,
+        tools: [{
+          type: 'function',
+          function: {
+            name: 'send_order_invite',
+            description: 'Collect order details from the customer.',
+            parameters: {
+              type: 'object',
+              properties: {
+                customer_name: { type: 'string' },
+                product: { type: 'string' },
+                quantity: { type: 'string' },
+                contact: { type: 'string' },
+                notes: { type: 'string' },
+              },
+              required: ['customer_name', 'product'],
+            },
+          },
+        }],
+        tool_choice: 'auto',
+      }),
+    })
+
+    if (!openaiRes.ok) {
+      const err = await openaiRes.text()
+      console.error('[dev-api] OpenAI error:', err)
+      res.writeHead(502, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ error: 'OpenAI request failed' }))
+      return
+    }
+
+    const result = await openaiRes.json()
+    const choice = result.choices?.[0]
+
+    if (choice?.finish_reason === 'tool_calls') {
+      const toolCall = choice.message.tool_calls?.[0]
+      let args = {}
+      try { args = JSON.parse(toolCall.function.arguments) } catch {}
+      const waPhone = process.env.WHATSAPP_PHONE
+      const waUrl = waPhone ? `https://wa.me/${waPhone}` : null
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ type: 'order_invite', orderData: args, message: choice.message, orderLink: waUrl }))
+    } else {
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ message: choice?.message }))
+    }
+  } catch (err) {
+    console.error('[dev-api] Chat error:', err.message)
+    res.writeHead(502, { 'Content-Type': 'application/json' })
+    res.end(JSON.stringify({ error: err.message }))
+  }
+}
+
 // ── HTTP Server ───────────────────────────────────────────────────────────────
 const server = http.createServer(async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -159,6 +247,12 @@ const server = http.createServer(async (req, res) => {
   try { data = JSON.parse(body) } catch {
     res.writeHead(400, { 'Content-Type': 'application/json' })
     res.end(JSON.stringify({ error: 'Invalid JSON' }))
+    return
+  }
+
+  // Route: /api/chat
+  if (req.url === '/api/chat') {
+    await handleChat(data, res)
     return
   }
 

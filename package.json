@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vercel dev",
+    "dev": "node scripts/dev.mjs",
+    "dev:vercel": "vercel dev",
     "dev:vite": "vite",
     "dev:api": "node scripts/dev-api.mjs",
     "build": "vite build",

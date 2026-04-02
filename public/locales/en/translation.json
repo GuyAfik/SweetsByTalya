@@ -147,17 +147,21 @@
     "phone_placeholder": "+972 50 000 0000",
     "email_label": "Email Address",
     "email_placeholder": "you@example.com",
+    "contact_hint": "at least one required",
     "product_label": "What would you like to order?",
     "product_placeholder": "e.g. 6 hazelnut pralines, 2 brownie boxes...",
     "notes_label": "Additional Notes",
     "notes_placeholder": "Allergies, special requests, delivery details...",
     "submit": "Place My Order",
+    "required_fields": "Required fields",
     "success_title": "Order sent! 🍫",
     "success_message": "Thank you! Talya will be in touch with you shortly.",
     "error_message": "Something went wrong. Please try again or contact us directly.",
     "required_contact": "Please provide at least a phone number or email address.",
     "validation_name": "Please enter your name.",
-    "validation_product": "Please tell us what you'd like to order."
+    "validation_product": "Please tell us what you'd like to order.",
+    "validation_phone": "Please enter a valid phone number.",
+    "validation_email": "Please enter a valid email address."
   },
   "chatbot": {
     "greeting": "Hi! 🍫 I'm Talya's chocolate assistant. I can help you with our menu, prices, ingredients, and placing an order. How can I help you today?",

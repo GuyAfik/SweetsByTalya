@@ -2,6 +2,45 @@
    Order Page
    ============================================================ */
 
+/* --- Validation styles (global, used by form-input--error) --- */
+.form-input--error {
+  border-color: #E74C3C !important;
+  background: #FFF8F8;
+}
+
+.form-input--error:focus {
+  border-color: #E74C3C !important;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15) !important;
+}
+
+.form-error {
+  display: block;
+  color: #E74C3C;
+  font-size: var(--text-xs);
+  margin-top: var(--space-1);
+  font-weight: 600;
+}
+
+.form-required {
+  color: #E74C3C;
+  font-weight: 700;
+}
+
+.form-hint {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.order-form__note {
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-3);
+}
+
+
 .order-header {
   background: linear-gradient(135deg, var(--color-blush-light), var(--color-cream-dark));
   padding: var(--space-20) 0 var(--space-12);

@@ -147,17 +147,21 @@
     "phone_placeholder": "050-000-0000",
     "email_label": "כתובת אימייל",
     "email_placeholder": "you@example.com",
+    "contact_hint": "לפחות אחד נדרש",
     "product_label": "מה תרצה להזמין?",
     "product_placeholder": "לדוגמה: 6 פרלינים אגוזי לוז, 2 קופסות בראוני...",
     "notes_label": "הערות נוספות",
     "notes_placeholder": "אלרגיות, בקשות מיוחדות, פרטי משלוח...",
     "submit": "שלח הזמנה",
+    "required_fields": "שדות חובה",
     "success_title": "ההזמנה נשלחה! 🍫",
     "success_message": "תודה! טליה תיצור איתך קשר בקרוב.",
     "error_message": "משהו השתבש. אנא נסה שוב או צור קשר ישירות.",
     "required_contact": "אנא ספק לפחות מספר טלפון או כתובת אימייל.",
     "validation_name": "אנא הזן את שמך.",
-    "validation_product": "אנא ספר לנו מה תרצה להזמין."
+    "validation_product": "אנא ספר לנו מה תרצה להזמין.",
+    "validation_phone": "אנא הזן מספר טלפון תקין.",
+    "validation_email": "אנא הזן כתובת אימייל תקינה."
   },
   "chatbot": {
     "greeting": "שלום! 🍫 אני העוזר השוקולדי של טליה. אני יכול לעזור לך עם התפריט, המחירים, המרכיבים ובצוע הזמנה. איך אוכל לעזור לך היום?",

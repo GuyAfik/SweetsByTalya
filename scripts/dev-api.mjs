@@ -14,7 +14,7 @@ import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const PORT = 3001
+const PORT = parseInt(process.env.PORT || '3001', 10)
 
 // Load .env.local manually
 function loadEnv() {

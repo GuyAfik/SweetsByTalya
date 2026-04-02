@@ -147,17 +147,21 @@
     "phone_placeholder": "+55 11 00000-0000",
     "email_label": "Endereço de E-mail",
     "email_placeholder": "voce@exemplo.com",
+    "contact_hint": "pelo menos um obrigatório",
     "product_label": "O que você gostaria de pedir?",
     "product_placeholder": "Ex: 6 pralinês de avelã, 2 caixas de brownie...",
     "notes_label": "Observações Adicionais",
     "notes_placeholder": "Alergias, pedidos especiais, detalhes de entrega...",
     "submit": "Fazer Pedido",
+    "required_fields": "Campos obrigatórios",
     "success_title": "Pedido enviado! 🍫",
     "success_message": "Obrigado! Talya entrará em contato com você em breve.",
     "error_message": "Algo deu errado. Por favor, tente novamente ou entre em contato diretamente.",
     "required_contact": "Por favor, forneça pelo menos um número de telefone ou endereço de e-mail.",
     "validation_name": "Por favor, insira seu nome.",
-    "validation_product": "Por favor, nos diga o que você gostaria de pedir."
+    "validation_product": "Por favor, nos diga o que você gostaria de pedir.",
+    "validation_phone": "Por favor, insira um número de telefone válido.",
+    "validation_email": "Por favor, insira um endereço de e-mail válido."
   },
   "chatbot": {
     "greeting": "Olá! 🍫 Sou a assistente de chocolate da Talya. Posso ajudá-lo com nosso cardápio, preços, ingredientes e fazer um pedido. Como posso ajudá-lo hoje?",

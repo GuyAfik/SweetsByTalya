@@ -1,12 +1,24 @@
 import { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getMenuSummaryForAI } from '../../data/menu'
-import { getWhatsAppOrderLink } from '../../config/social'
 import './ChatWidget.css'
 
 const MAX_HISTORY = 20 // keep last 20 messages in context
 const AUTO_OPEN_DELAY = 3000 // ms before chat auto-opens on first visit
 const AUTO_OPEN_KEY = 'sbt_chat_opened' // sessionStorage key
+
+/** Strip common markdown so GPT responses render as plain text */
+function stripMarkdown(text) {
+  if (!text) return ''
+  return text
+    .replace(/\*\*(.+?)\*\*/g, '$1')   // **bold**
+    .replace(/\*(.+?)\*/g, '$1')        // *italic*
+    .replace(/^#{1,6}\s+/gm, '')        // # headings
+    .replace(/^[\s]*[-*+]\s+/gm, '• ') // bullet lists → •
+    .replace(/`(.+?)`/g, '$1')          // `code`
+    .replace(/\[(.+?)\]\(.+?\)/g, '$1') // [link](url) → link text
+    .trim()
+}
 
 export default function ChatWidget() {
   const { t, i18n } = useTranslation()
@@ -69,26 +81,38 @@ export default function ChatWidget() {
 
       const data = await res.json()
 
-      // Handle order invite tool call
+      // Handle order invite tool call — submit order via email (same as order form)
       if (data.type === 'order_invite' && data.orderData) {
         const { customer_name, product, quantity, contact, notes } = data.orderData
-        const msgParts = [
-          `🍫 *Order from ${customer_name || 'Website visitor'}*`,
-          product ? `*Product:* ${product}` : '',
-          quantity ? `*Quantity:* ${quantity}` : '',
-          contact ? `*Contact:* ${contact}` : '',
-          notes ? `*Notes:* ${notes}` : '',
-        ].filter(Boolean).join('\n')
 
-        const waUrl = getWhatsAppOrderLink(msgParts)
+        // Parse contact into phone/email
+        const isEmail = contact && contact.includes('@')
+        const orderPayload = {
+          type: 'order',
+          name: customer_name || 'Chat visitor',
+          phone: !isEmail ? (contact || '') : '',
+          email: isEmail ? contact : '',
+          product: [product, quantity].filter(Boolean).join(' — '),
+          notes: notes || '',
+        }
+
+        // Submit order silently in background
+        fetch('/api/send-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderPayload),
+        }).catch((err) => console.warn('[ChatWidget] Order submit failed:', err))
+
+        // Show confirmation message in chat
+        const confirmMsg = currentLang === 'he'
+          ? `✅ ההזמנה שלך נשלחה לטליה! היא תיצור איתך קשר בקרוב.`
+          : currentLang === 'pt'
+          ? `✅ Seu pedido foi enviado para Talya! Ela entrará em contato em breve.`
+          : `✅ Your order has been sent to Talya! She'll be in touch with you shortly.`
 
         setMessages((prev) => [
           ...prev,
-          {
-            role: 'assistant',
-            content: data.message?.content || t('chatbot.greeting'),
-            orderLink: waUrl,
-          },
+          { role: 'assistant', content: confirmMsg },
         ])
       } else if (data.message?.content) {
         setMessages((prev) => [...prev, { role: 'assistant', content: data.message.content }])
@@ -162,17 +186,7 @@ export default function ChatWidget() {
                 <span className="chat-msg__avatar">🍫</span>
               )}
               <div className="chat-msg__bubble">
-                <p>{msg.content}</p>
-                {msg.orderLink && (
-                  <a
-                    href={msg.orderLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-whatsapp btn-sm chat-msg__order-btn"
-                  >
-                    💬 Send Order via WhatsApp
-                  </a>
-                )}
+                <p style={{ whiteSpace: 'pre-wrap' }}>{stripMarkdown(msg.content)}</p>
               </div>
             </div>
           ))}

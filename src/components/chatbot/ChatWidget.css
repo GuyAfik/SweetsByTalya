@@ -198,8 +198,12 @@
 
 .chat-msg--user .chat-msg__bubble {
   background: var(--color-chocolate-mid);
-  color: white;
+  color: #FFFFFF;
   border-bottom-right-radius: 4px;
+}
+
+.chat-msg--user .chat-msg__bubble p {
+  color: #FFFFFF;
 }
 
 [dir="rtl"] .chat-msg--assistant .chat-msg__bubble {

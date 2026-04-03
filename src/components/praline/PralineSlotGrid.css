@@ -1,13 +1,14 @@
 .praline-slot-grid {
   display: grid;
-  gap: 10px;
+  gap: 14px;
   width: 100%;
-  max-width: 480px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .praline-slot-grid {
-    gap: 6px;
+    gap: 8px;
+    max-width: 100%;
   }
 }

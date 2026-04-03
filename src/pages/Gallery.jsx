@@ -7,12 +7,14 @@ import './Gallery.css'
 // caption: shown in the lightbox below the image. Leave as '' to show nothing.
 // alt: used for screen readers only (not displayed).
 const galleryItems = [
-  { id: 1, category: 'pralines', src: '/images/gallery/pralines-1.jpg', alt: 'Pralines', caption: '' },
-  { id: 2, category: 'pralines', src: '/images/gallery/pralines-2.jpg', alt: 'Pralines', caption: '' },
-  { id: 3, category: 'pralines', src: '/images/gallery/pralines-3.jpg', alt: 'Pralines', caption: '' },
-  { id: 4, category: 'brownies', src: '/images/gallery/brownies-1.jpg', alt: 'Brownies', caption: '' },
-  { id: 5, category: 'brownies', src: '/images/gallery/brownies-2.jpg', alt: 'Brownies', caption: '' },
-  { id: 6, category: 'brownies', src: '/images/gallery/brownies-3.jpg', alt: 'Brownies', caption: '' },
+  { id: 1,  category: 'pralines', src: '/images/gallery/pralines-1.jpg', alt: 'Pralines', caption: '' },
+  { id: 2,  category: 'pralines', src: '/images/gallery/pralines-2.jpg', alt: 'Pralines', caption: '' },
+  { id: 3,  category: 'pralines', src: '/images/gallery/pralines-3.jpg', alt: 'Pralines', caption: '' },
+  { id: 7,  category: 'pralines', src: '/images/gallery/pralines-7.jpg', alt: 'Pralines', caption: '' },
+  { id: 8,  category: 'pralines', src: '/images/gallery/pralines-8.jpg', alt: 'Pralines', caption: '' },
+  { id: 4,  category: 'brownies', src: '/images/gallery/brownies-1.jpg', alt: 'Brownies', caption: '' },
+  { id: 5,  category: 'brownies', src: '/images/gallery/brownies-2.jpg', alt: 'Brownies', caption: '' },
+  { id: 6,  category: 'brownies', src: '/images/gallery/brownies-3.jpg', alt: 'Brownies', caption: '' },
 ]
 
 export default function Gallery() {

@@ -67,6 +67,7 @@
     "filter_all": "All",
     "filter_pralines": "Pralines",
     "filter_brownies": "Brownies",
+    "filter_chocolate_bars": "Chocolate Bars",
     "cta_title": "Want something like this?",
     "cta_button": "Place an Order",
     "alt_pralines_1": "Handcrafted Pralines",
@@ -75,7 +76,9 @@
     "alt_brownies_1": "Fudgy Brownies",
     "alt_brownies_2": "Chocolate Brownies",
     "alt_brownies_3": "Homemade Brownies",
-    "alt_talya": "Talya with her chocolate boxes"
+    "alt_talya": "Talya with her chocolate boxes",
+    "alt_chocolate_bar_1": "Handcrafted Chocolate Bar",
+    "alt_chocolate_bar_2": "Artisan Chocolate Bar"
   },
   "menu": {
     "title": "Our Menu",

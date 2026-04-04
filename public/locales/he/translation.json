@@ -67,6 +67,7 @@
     "filter_all": "הכל",
     "filter_pralines": "פרלינים",
     "filter_brownies": "בראוניז",
+    "filter_chocolate_bars": "טבלאות שוקולד",
     "cta_title": "רוצה משהו כזה?",
     "cta_button": "בצע הזמנה",
     "alt_pralines_1": "פרלינים עשויים ביד",
@@ -75,7 +76,9 @@
     "alt_brownies_1": "בראוניז עשירים",
     "alt_brownies_2": "בראוניז שוקולד",
     "alt_brownies_3": "בראוניז ביתיים",
-    "alt_talya": "טליה עם קופסאות השוקולד שלה"
+    "alt_talya": "טליה עם קופסאות השוקולד שלה",
+    "alt_chocolate_bar_1": "טבלת שוקולד בעבודת יד",
+    "alt_chocolate_bar_2": "טבלת שוקולד ארטיזנלית"
   },
   "menu": {
     "title": "התפריט שלנו",

@@ -67,6 +67,7 @@
     "filter_all": "Todos",
     "filter_pralines": "Pralinês",
     "filter_brownies": "Brownies",
+    "filter_chocolate_bars": "Tabletes de Chocolate",
     "cta_title": "Quer algo assim?",
     "cta_button": "Fazer um Pedido",
     "alt_pralines_1": "Pralinês artesanais",
@@ -75,7 +76,9 @@
     "alt_brownies_1": "Brownies fudgy",
     "alt_brownies_2": "Brownies de chocolate",
     "alt_brownies_3": "Brownies caseiros",
-    "alt_talya": "Talya com suas caixas de chocolate"
+    "alt_talya": "Talya com suas caixas de chocolate",
+    "alt_chocolate_bar_1": "Tablete de Chocolate Artesanal",
+    "alt_chocolate_bar_2": "Tablete de Chocolate Gourmet"
   },
   "menu": {
     "title": "Nosso Cardápio",

@@ -15,6 +15,8 @@ const galleryItems = [
   { id: 4,  category: 'brownies', src: '/images/gallery/brownies-1.jpg', alt: 'Brownies', caption: '' },
   { id: 5,  category: 'brownies', src: '/images/gallery/brownies-2.jpg', alt: 'Brownies', caption: '' },
   { id: 6,  category: 'brownies', src: '/images/gallery/brownies-3.jpg', alt: 'Brownies', caption: '' },
+  { id: 9,  category: 'chocolate_bars', src: '/images/gallery/chocolate-bar-1.jpg', alt: 'Chocolate Bar', caption: '' },
+  { id: 10, category: 'chocolate_bars', src: '/images/gallery/chocolate-bar-2.jpg', alt: 'Chocolate Bar', caption: '' },
 ]
 
 export default function Gallery() {
@@ -26,6 +28,7 @@ export default function Gallery() {
     { id: 'all',      label: t('gallery.filter_all') },
     { id: 'pralines', label: t('gallery.filter_pralines') },
     { id: 'brownies', label: t('gallery.filter_brownies') },
+    { id: 'chocolate_bars', label: t('gallery.filter_chocolate_bars') },
   ]
 
   const filtered =

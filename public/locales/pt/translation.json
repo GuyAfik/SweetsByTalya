@@ -230,8 +230,10 @@
     "your_details": "Seus Dados",
     "notes_placeholder": "Alergias ou pedidos especiais?",
     "submit": "Fazer Meu Pedido 🍫",
-    "success_title": "Pedido enviado! 🍫",
-    "success_message": "Obrigado! Talya entrará em contato em breve."
+    "order_received_title": "Pedido Recebido! ✅",
+    "order_received_text": "Os detalhes do seu pedido foram enviados para a Talya. Por favor, complete o pagamento abaixo.",
+    "success_title": "Pagamento Concluído! 🍫",
+    "success_message": "Obrigado! Seu pedido está confirmado. Talya entrará em contato em breve."
   },
   "praline": {
     "bases": {
@@ -293,5 +295,15 @@
     "success_text": "Obrigado por entrar em contato. A Talya retornará em breve. O WhatsApp também foi aberto para uma resposta rápida.",
     "send_another": "Enviar Outra Mensagem",
     "error": "Algo deu errado. Por favor, tente novamente ou entre em contato diretamente pelo WhatsApp."
+  },
+  "payment": {
+    "title": "Conclua Seu Pagamento",
+    "subtitle": "Total a pagar: ₪{{amount}}",
+    "pay_with_bit": "Pagar com Bit",
+    "pay_with_paybox": "Pagar com Paybox",
+    "pay_with_gpay": "Pagar com Google Pay",
+    "pay_with_applepay": "Pagar com Apple Pay",
+    "unavailable": "Pagamento online não está disponível no momento. Entre em contato pelo WhatsApp.",
+    "note": "Clicar em uma opção de pagamento abrirá o aplicativo. Após concluir o pagamento, seu pedido será confirmado."
   }
 }

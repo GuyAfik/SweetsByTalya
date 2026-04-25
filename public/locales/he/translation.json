@@ -230,8 +230,10 @@
     "your_details": "הפרטים שלך",
     "notes_placeholder": "אלרגיות או בקשות מיוחדות?",
     "submit": "שלח הזמנה 🍫",
-    "success_title": "ההזמנה נשלחה! 🍫",
-    "success_message": "תודה! טליה תיצור איתך קשר בקרוב."
+    "order_received_title": "ההזמנה התקבלה! ✅",
+    "order_received_text": "פרטי ההזמנה נשלחו לטליה. אנא השלם את התשלום למטה.",
+    "success_title": "התשלום הושלם! 🍫",
+    "success_message": "תודה! ההזמנה שלך אושרה. טליה תיצור איתך קשר בקרוב."
   },
   "praline": {
     "bases": {
@@ -293,5 +295,15 @@
     "success_text": "תודה שפנית אלינו. טליה תחזור אליך בקרוב. WhatsApp נפתח גם כן לתגובה מהירה.",
     "send_another": "שלח הודעה נוספת",
     "error": "משהו השתבש. אנא נסו שוב או פנו אלינו ישירות דרך WhatsApp."
+  },
+  "payment": {
+    "title": "השלם את התשלום",
+    "subtitle": "סכום לתשלום: ₪{{amount}}",
+    "pay_with_bit": "שלם עם Bit",
+    "pay_with_paybox": "שלם עם Paybox",
+    "pay_with_gpay": "שלם עם Google Pay",
+    "pay_with_applepay": "שלם עם Apple Pay",
+    "unavailable": "תשלום מקוון אינו זמין כרגע. אנא צרו קשר דרך WhatsApp.",
+    "note": "לחיצה על אפשרות תשלום תפתח את האפליקציה. לאחר השלמת התשלום, ההזמנה תאושר."
   }
 }

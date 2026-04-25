@@ -230,8 +230,10 @@
     "your_details": "Your Details",
     "notes_placeholder": "Any allergies or special requests?",
     "submit": "Place My Order 🍫",
-    "success_title": "Order sent! 🍫",
-    "success_message": "Thank you! Talya will be in touch with you shortly."
+    "order_received_title": "Order Received! ✅",
+    "order_received_text": "Your order details have been sent to Talya. Please complete your payment below.",
+    "success_title": "Payment Complete! 🍫",
+    "success_message": "Thank you! Your order is confirmed. Talya will be in touch with you shortly."
   },
   "praline": {
     "bases": {
@@ -293,5 +295,15 @@
     "success_text": "Thank you for reaching out. Talya will be in touch with you soon. WhatsApp has also been opened for a quick reply.",
     "send_another": "Send Another Message",
     "error": "Something went wrong. Please try again or contact us directly via WhatsApp."
+  },
+  "payment": {
+    "title": "Complete Your Payment",
+    "subtitle": "Total to pay: ₪{{amount}}",
+    "pay_with_bit": "Pay with Bit",
+    "pay_with_paybox": "Pay with Paybox",
+    "pay_with_gpay": "Pay with Google Pay",
+    "pay_with_applepay": "Pay with Apple Pay",
+    "unavailable": "Online payment is not available at the moment. Please contact us via WhatsApp.",
+    "note": "Clicking a payment option will open the app. Once payment is complete, your order will be confirmed."
   }
 }

@@ -131,3 +131,31 @@
   color: var(--color-text-muted, #666);
   margin: 0;
 }
+
+.box-summary__payment {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.box-summary__payment-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.box-summary__payment-header h2 {
+  font-size: 1.5rem;
+  color: var(--color-chocolate-dark);
+  margin: 0;
+}
+
+.box-summary__payment-header p {
+  color: var(--color-text-muted, #666);
+  margin: 0;
+}

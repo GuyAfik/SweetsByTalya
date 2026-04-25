@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { chocolateBases, fillings, pralinePrice, boxTotal } from '../../data/pralines'
+import PaymentSelector from '../shared/PaymentSelector'
 import './BoxSummary.css'
 
 // ── Validation helpers (same as Order page) ───────────────────────────────────
@@ -41,7 +42,8 @@ export default function BoxSummary({ slots, boxSize, onEditBox }) {
   const [errors, setErrors] = useState({})
   const [touched, setTouched] = useState({})
   const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
+  const [orderSent, setOrderSent] = useState(false)
+  const [paymentDone, setPaymentDone] = useState(false)
   const [submitError, setSubmitError] = useState('')
 
   const handleChange = (e) => {
@@ -91,7 +93,7 @@ export default function BoxSummary({ slots, boxSize, onEditBox }) {
         throw new Error(data.error || 'Send failed')
       }
 
-      setSuccess(true)
+      setOrderSent(true)
     } catch (err) {
       if (
         err.message.includes('Failed to fetch') ||
@@ -101,7 +103,7 @@ export default function BoxSummary({ slots, boxSize, onEditBox }) {
         if (import.meta.env.DEV) {
           console.info('[BoxSummary] API not available — showing mock success.')
           console.info('[BoxSummary] Box:', serializeBox(slots, boxSize, t))
-          setSuccess(true)
+          setOrderSent(true)
         } else {
           setSubmitError(t('order.error_message'))
         }
@@ -116,13 +118,31 @@ export default function BoxSummary({ slots, boxSize, onEditBox }) {
   const fieldClass = (name) =>
     `form-input${errors[name] && touched[name] ? ' form-input--error' : ''}`
 
-  // ── Success screen ──────────────────────────────────────────────────────────
-  if (success) {
+  // ── Payment done screen ─────────────────────────────────────────────────────
+  if (paymentDone) {
     return (
       <div className="box-summary__success">
         <div className="box-summary__success-icon">🍫</div>
         <h2>{t('praline_builder.success_title')}</h2>
         <p>{t('praline_builder.success_message')}</p>
+      </div>
+    )
+  }
+
+  // ── Order sent → show payment selector ──────────────────────────────────────
+  if (orderSent) {
+    return (
+      <div className="box-summary__payment">
+        <div className="box-summary__payment-header">
+          <div className="box-summary__success-icon">✅</div>
+          <h2>{t('praline_builder.order_received_title')}</h2>
+          <p>{t('praline_builder.order_received_text')}</p>
+        </div>
+        <PaymentSelector
+          amount={total}
+          label={`Sweets by Talya — ${boxSize}-piece box`}
+          onPaymentChosen={() => setPaymentDone(true)}
+        />
       </div>
     )
   }

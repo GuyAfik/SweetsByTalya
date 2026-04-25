@@ -33,7 +33,7 @@ export default function App() {
 
   // Sync document dir/lang whenever language changes
   useEffect(() => {
-    const lang = i18n.language?.split('-')[0] || 'en'
+    const lang = i18n.language?.split('-')[0] || 'he'
     changeLanguage(lang)
   }, [i18n.language])
 

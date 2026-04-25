@@ -10,7 +10,7 @@ const LANGUAGES = [
 
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation()
-  const currentLang = i18n.language?.split('-')[0] || 'en'
+  const currentLang = i18n.language?.split('-')[0] || 'he'
 
   const handleChange = (code) => {
     changeLanguage(code)

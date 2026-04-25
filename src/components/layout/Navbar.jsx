@@ -24,7 +24,6 @@ export default function Navbar() {
     { to: '/', label: t('nav.home') },
     { to: '/about', label: t('nav.about') },
     { to: '/gallery', label: t('nav.gallery') },
-    { to: '/menu', label: t('nav.menu') },
     ...(flags.pralineBuilder
       ? [{ to: '/build-your-box', label: t('nav.build_box') }]
       : []),

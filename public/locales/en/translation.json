@@ -4,6 +4,7 @@
     "about": "About",
     "gallery": "Gallery",
     "menu": "Menu",
+    "workshops": "Workshops",
     "build_box": "Build Your Box",
     "order": "Order Now"
   },
@@ -249,5 +250,24 @@
       "pecan": "Pecan",
       "coconut": "Coconut"
     }
+  },
+  "workshops": {
+    "hero_title": "Chocolate Workshops",
+    "hero_subtitle": "Learn the art of handcrafted chocolate.",
+    "intro_title": "Hands-On Chocolate Experiences",
+    "intro_text": "Join Talya for an unforgettable chocolate-making experience. Whether you're a beginner or a chocolate lover, our workshops are designed to inspire creativity and delight your senses.",
+    "coming_soon": "Details coming soon",
+    "cta_text": "Interested in a workshop? Get in touch and we'll find the perfect experience for you.",
+    "cta_button": "Contact Us",
+    "workshop1_title": "Praline Making",
+    "workshop1_desc": "Learn how to craft beautiful handmade pralines from scratch using premium Belgian chocolate.",
+    "workshop2_title": "Chocolate Truffles",
+    "workshop2_desc": "Master the art of making silky smooth truffles with a variety of fillings and coatings.",
+    "workshop3_title": "Decorated Chocolate Bars",
+    "workshop3_desc": "Create stunning artisan chocolate bars with unique decorations, flavours and textures.",
+    "workshop4_title": "Gift Box Design",
+    "workshop4_desc": "Compose and package a personalised chocolate gift box — perfect for special occasions.",
+    "workshop5_title": "Family & Kids Workshop",
+    "workshop5_desc": "A fun and delicious experience for the whole family — kids and adults welcome!"
   }
 }

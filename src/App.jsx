@@ -13,6 +13,7 @@ import { changeLanguage } from './i18n'
 const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
 const Gallery = lazy(() => import('./pages/Gallery'))
+const Workshops = lazy(() => import('./pages/Workshops'))
 const Order = lazy(() => import('./pages/Order'))
 const PralineBuilder = lazy(() => import('./pages/PralineBuilder'))
 
@@ -46,6 +47,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/workshops" element={<Workshops />} />
             <Route path="/order" element={<Order />} />
             {flags.pralineBuilder && (
               <Route path="/build-your-box" element={<PralineBuilder />} />

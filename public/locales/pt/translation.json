@@ -4,6 +4,7 @@
     "about": "Sobre",
     "gallery": "Galeria",
     "menu": "Cardápio",
+    "workshops": "Workshops",
     "build_box": "Monte sua Caixa",
     "order": "Fazer Pedido"
   },
@@ -249,5 +250,24 @@
       "pecan": "Noz-pecã",
       "coconut": "Coco"
     }
+  },
+  "workshops": {
+    "hero_title": "Workshops de Chocolate",
+    "hero_subtitle": "Aprenda a arte do chocolate artesanal.",
+    "intro_title": "Experiências Práticas de Chocolate",
+    "intro_text": "Junte-se à Talya para uma experiência inesquecível de criação de chocolates. Seja iniciante ou apaixonado por chocolate, nossos workshops são projetados para inspirar a criatividade e encantar os sentidos.",
+    "coming_soon": "Detalhes em breve",
+    "cta_text": "Interessado em um workshop? Entre em contato e encontraremos a experiência perfeita para você.",
+    "cta_button": "Fale Conosco",
+    "workshop1_title": "Criação de Pralinês",
+    "workshop1_desc": "Aprenda a criar lindos pralinês artesanais do zero usando chocolate belga premium.",
+    "workshop2_title": "Trufas de Chocolate",
+    "workshop2_desc": "Domine a arte de fazer trufas sedosas e suaves com uma variedade de recheios e coberturas.",
+    "workshop3_title": "Barras de Chocolate Decoradas",
+    "workshop3_desc": "Crie deslumbrantes barras de chocolate artesanais com decorações, sabores e texturas únicos.",
+    "workshop4_title": "Design de Caixa de Presente",
+    "workshop4_desc": "Componha e embale uma caixa de chocolate personalizada — perfeita para ocasiões especiais.",
+    "workshop5_title": "Workshop Família e Crianças",
+    "workshop5_desc": "Uma experiência divertida e deliciosa para toda a família — crianças e adultos são bem-vindos!"
   }
 }

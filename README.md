@@ -11,8 +11,9 @@ A beautiful, AI-powered website for **Sweets by Talya**, a boutique handmade cho
 
 - 🌍 **Trilingual** — English, Hebrew (RTL), Portuguese with auto browser detection
 - 🤖 **AI Chatbot** — GPT-powered assistant that knows the full menu and can collect orders
-- 📧 **Order emails** — Orders sent directly to Talya's inbox via Resend (free)
+- 📧 **Order emails** — Orders sent directly to Talya's inbox via Gmail SMTP
 - 💬 **WhatsApp reply button** — Every order email includes a one-click WhatsApp reply link
+- 💳 **Payments** — Bit, Paybox, Google Pay, Apple Pay (no backend required)
 - 📊 **Visit telemetry** — Email notification on every website visit (feature-flagged)
 - 📱 **Mobile-first** — Fully responsive, works on all devices
 - 🎨 **Warm chocolate design** — Custom CSS design system with Playfair Display typography
@@ -105,45 +106,39 @@ The API functions will be available at **http://localhost:3000/api/***
 Copy `.env.example` to `.env.local` and fill in the values:
 
 ```env
-# Frontend (shown in browser)
+# Frontend (shown in browser — baked into the JS bundle at build time)
 VITE_WHATSAPP_PHONE=972XXXXXXXXX       # WhatsApp number (no + or spaces)
 VITE_CONTACT_EMAIL=talya@...           # Contact email shown in UI
 VITE_TELEMETRY_ENABLED=true            # Send visit notification emails
 VITE_CHATBOT_ENABLED=true              # Show AI chat widget
-VITE_PAYMENTS_ENABLED=false            # Future Stripe payments (keep false)
-VITE_DEFAULT_LANGUAGE=en               # Fallback language
+VITE_DEFAULT_LANGUAGE=he               # Default language (he = Hebrew)
+VITE_BIT_PHONE=972XXXXXXXXX            # Talya's phone for Bit payments
+VITE_PAYBOX_PHONE=972XXXXXXXXX         # Talya's phone for Paybox payments
+VITE_REQUIRE_PAYMENT_BEFORE_ORDER=true # Send order email only after payment (default: true)
 
-# Server-side only (Vercel env vars in production)
-RESEND_API_KEY=re_...                  # From resend.com (free)
+# Server-side only (Vercel env vars — never exposed to the browser)
+GMAIL_USER=sweetsbytalya@gmail.com     # Gmail account for sending emails
+GMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx # Gmail App Password (not your login password)
 CONTACT_EMAIL=talya@sweetsbytalya.com  # Where orders land
-FROM_EMAIL=onboarding@resend.dev       # Sender (use resend.dev for testing)
 WHATSAPP_PHONE=972XXXXXXXXX            # For WhatsApp reply button in emails
 OPENAI_API_KEY=sk-proj-...             # From platform.openai.com
 ```
 
 ---
 
-## 📧 Setting Up Email (Resend) — Free
+## 📧 Setting Up Email (Gmail SMTP)
 
-Resend sends order emails and visit notifications. **Free tier: 3,000 emails/month.**
+Order emails, contact messages, and visit notifications are sent via Gmail using an **App Password** (no third-party service needed).
 
-### Step 1 — Create a Resend account
-1. Go to [resend.com](https://resend.com) and sign up (free, no credit card)
-2. Go to **API Keys** → **Create API Key**
-3. Copy the key → add to `.env.local` as `RESEND_API_KEY`
+### Step 1 — Enable 2-Step Verification
+1. Go to [myaccount.google.com/security](https://myaccount.google.com/security)
+2. Enable **2-Step Verification** on `sweetsbytalya@gmail.com`
 
-### Step 2 — Test without domain verification
-For local testing and initial deployment, use Resend's built-in test sender:
-```env
-FROM_EMAIL=onboarding@resend.dev
-```
-This works immediately with no setup. Emails will arrive from `onboarding@resend.dev`.
-
-### Step 3 — Use your own domain (production)
-To send from `orders@sweetsbytalya.com`:
-1. In Resend dashboard → **Domains** → **Add Domain** → enter `sweetsbytalya.com`
-2. Add the 2 DNS records shown (takes ~5 minutes to verify)
-3. Update `FROM_EMAIL=orders@sweetsbytalya.com` in Vercel env vars
+### Step 2 — Create an App Password
+1. Go to [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
+2. Click **Create** → name it "SweetsByTalya Website"
+3. Copy the 16-character password
+4. Add to `.env.local` as `GMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx`
 
 ### How orders work
 When a customer submits the order form:
@@ -187,9 +182,9 @@ git push -u origin main
 
 | Variable | Value |
 |---|---|
-| `RESEND_API_KEY` | Your Resend API key |
-| `CONTACT_EMAIL` | `talya@sweetsbytalya.com` |
-| `FROM_EMAIL` | `onboarding@resend.dev` (or your domain) |
+| `GMAIL_USER` | `sweetsbytalya@gmail.com` |
+| `GMAIL_APP_PASSWORD` | Your 16-char App Password |
+| `CONTACT_EMAIL` | `sweetsbytalya@gmail.com` |
 | `WHATSAPP_PHONE` | `972XXXXXXXXX` |
 | `OPENAI_API_KEY` | Your OpenAI API key |
 
@@ -198,11 +193,13 @@ git push -u origin main
 | Variable | Value |
 |---|---|
 | `VITE_WHATSAPP_PHONE` | `972XXXXXXXXX` |
-| `VITE_CONTACT_EMAIL` | `talya@sweetsbytalya.com` |
+| `VITE_CONTACT_EMAIL` | `sweetsbytalya@gmail.com` |
 | `VITE_TELEMETRY_ENABLED` | `true` |
 | `VITE_CHATBOT_ENABLED` | `true` |
-| `VITE_PAYMENTS_ENABLED` | `false` |
-| `VITE_DEFAULT_LANGUAGE` | `en` |
+| `VITE_DEFAULT_LANGUAGE` | `he` |
+| `VITE_BIT_PHONE` | `972XXXXXXXXX` |
+| `VITE_PAYBOX_PHONE` | `972XXXXXXXXX` |
+| `VITE_REQUIRE_PAYMENT_BEFORE_ORDER` | `true` |
 
 ### Step 4 — Connect GitHub Actions (optional but recommended)
 GitHub Actions gives you more control over the CI/CD pipeline.
@@ -217,11 +214,13 @@ GitHub Actions gives you more control over the CI/CD pipeline.
 | `VERCEL_ORG_ID` | Your Vercel org ID |
 | `VERCEL_PROJECT_ID` | Your Vercel project ID |
 | `VITE_WHATSAPP_PHONE` | `972XXXXXXXXX` |
-| `VITE_CONTACT_EMAIL` | `talya@sweetsbytalya.com` |
+| `VITE_CONTACT_EMAIL` | `sweetsbytalya@gmail.com` |
 | `VITE_TELEMETRY_ENABLED` | `true` |
 | `VITE_CHATBOT_ENABLED` | `true` |
-| `VITE_PAYMENTS_ENABLED` | `false` |
-| `VITE_DEFAULT_LANGUAGE` | `en` |
+| `VITE_DEFAULT_LANGUAGE` | `he` |
+| `VITE_BIT_PHONE` | `972XXXXXXXXX` |
+| `VITE_PAYBOX_PHONE` | `972XXXXXXXXX` |
+| `VITE_REQUIRE_PAYMENT_BEFORE_ORDER` | `true` |
 
 Now every push to `main` triggers a build + deploy. Pull requests get preview URLs automatically.
 
@@ -303,13 +302,62 @@ To disable: set `VITE_TELEMETRY_ENABLED=false` in Vercel env vars.
 
 ---
 
-## 🔮 Future: Credit Card Payments (Stripe)
+## 💳 Payment Security
 
-The order form is already structured for Stripe. When ready:
-1. Set `VITE_PAYMENTS_ENABLED=true`
-2. Add `STRIPE_PUBLIC_KEY` and `STRIPE_SECRET_KEY` env vars
-3. Map products in `menu.js` to Stripe Price IDs
-4. Add a Stripe Checkout step after the order form
+### How payments work (no backend required)
+
+The payment flow uses **client-side deep links and the Web Payments API** — no payment data ever touches our servers:
+
+| Method | Mechanism | Security |
+|---|---|---|
+| **Bit** | Deep link to `bitpay.co.il` with phone + amount | Bit's own app handles auth & transfer |
+| **Paybox** | Deep link to `payboxapp.page.link` with phone + amount | Paybox's own app handles auth & transfer |
+| **Google Pay** | Browser `PaymentRequest` API | Google's servers process the payment |
+| **Apple Pay** | Browser `PaymentRequest` API | Apple's servers process the payment |
+
+### Do we need SSL?
+
+**Yes — and it's already handled automatically.**
+
+- Vercel provisions a **free TLS/SSL certificate** (via Let's Encrypt) for every deployment, including custom domains. All traffic is HTTPS by default.
+- The `PaymentRequest` API (Google Pay / Apple Pay) **requires HTTPS** — browsers will refuse to run it on plain HTTP. This is enforced by the browser itself.
+- Bit and Paybox deep links open their own apps over HTTPS — our site only passes the phone number and amount as URL parameters (no card data, no tokens).
+
+### What we do NOT handle
+
+- ❌ No card numbers, CVVs, or bank credentials ever pass through this site
+- ❌ No payment tokens are stored anywhere
+- ❌ No PCI-DSS compliance required (we never touch card data)
+
+### Order gating — payment before confirmation
+
+The flag `VITE_REQUIRE_PAYMENT_BEFORE_ORDER` (default: `true`) controls when the order email is sent to Talya:
+
+| Flag value | Behaviour |
+|---|---|
+| `true` (default) | Customer fills the form → payment selector shown → **email sent only after a payment button is clicked** |
+| `false` | Email sent immediately on form submit (old behaviour) |
+
+**How it works technically:**
+1. Customer submits the order form — data is validated and held in memory (no email yet)
+2. Payment selector is shown with the total amount
+3. Customer clicks Bit, Paybox, Google Pay, or Apple Pay
+4. The payment app opens **and simultaneously** the order email is sent to Talya
+5. Success screen is shown
+
+> **Limitation:** We cannot programmatically verify that the payment was actually completed (Bit/Paybox don't provide webhooks for personal accounts). The email is sent when the customer *initiates* payment, not when it *completes*. Talya should cross-reference her Bit/Paybox app notifications with order emails before preparing orders.
+
+To disable (send email on form submit regardless of payment):
+```env
+VITE_REQUIRE_PAYMENT_BEFORE_ORDER=false
+```
+
+### Future: server-side payment verification
+
+If stronger verification is needed in the future (e.g., webhook confirmation), options include:
+- **Stripe** — full payment processing with webhooks
+- **Tranzila** — Israeli payment gateway with ILS support
+- **PayMe** — Israeli mobile payment platform with API
 
 ---
 

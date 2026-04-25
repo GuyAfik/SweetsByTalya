@@ -13,6 +13,6 @@ export const flags = {
   /** Build Your Own Box praline builder */
   pralineBuilder: import.meta.env.VITE_FEATURE_PRALINE_BUILDER !== 'false',
 
-  /** Enable Stripe payment flow (future) */
-  payments: import.meta.env.VITE_PAYMENTS_ENABLED === 'true',
+  /** Require payment before sending the order email to Talya (on by default) */
+  requirePaymentBeforeOrder: import.meta.env.VITE_REQUIRE_PAYMENT_BEFORE_ORDER !== 'false',
 }

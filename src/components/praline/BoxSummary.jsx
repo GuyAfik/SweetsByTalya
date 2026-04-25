@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { chocolateBases, fillings, pralinePrice, boxTotal } from '../../data/pralines'
 import PaymentSelector from '../shared/PaymentSelector'
+import { flags } from '../../config/featureFlags'
 import './BoxSummary.css'
 
 // ── Validation helpers (same as Order page) ───────────────────────────────────
@@ -63,6 +64,26 @@ export default function BoxSummary({ slots, boxSize, onEditBox }) {
     setErrors((prev) => ({ ...prev, [name]: newErrors[name], contact: newErrors.contact }))
   }
 
+  const sendOrderEmail = async () => {
+    const product = serializeBox(slots, boxSize, t)
+    const res = await fetch('/api/send-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'order',
+        name: form.name.trim(),
+        phone: form.phone.trim(),
+        email: form.email.trim(),
+        product,
+        notes: form.notes.trim(),
+      }),
+    })
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}))
+      throw new Error(data.error || 'Send failed')
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setTouched({ name: true, phone: true, email: true })
@@ -70,29 +91,16 @@ export default function BoxSummary({ slots, boxSize, onEditBox }) {
     setErrors(validationErrors)
     if (Object.keys(validationErrors).length > 0) return
 
+    if (flags.requirePaymentBeforeOrder) {
+      setOrderSent(true)
+      return
+    }
+
     setLoading(true)
     setSubmitError('')
 
     try {
-      const product = serializeBox(slots, boxSize, t)
-      const res = await fetch('/api/send-order', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'order',
-          name: form.name.trim(),
-          phone: form.phone.trim(),
-          email: form.email.trim(),
-          product,
-          notes: form.notes.trim(),
-        }),
-      })
-
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}))
-        throw new Error(data.error || 'Send failed')
-      }
-
+      await sendOrderEmail()
       setOrderSent(true)
     } catch (err) {
       if (
@@ -113,6 +121,19 @@ export default function BoxSummary({ slots, boxSize, onEditBox }) {
     } finally {
       setLoading(false)
     }
+  }
+
+  const handlePaymentChosen = async () => {
+    if (flags.requirePaymentBeforeOrder) {
+      try {
+        await sendOrderEmail()
+      } catch (err) {
+        if (import.meta.env.DEV) {
+          console.info('[BoxSummary] API not available in dev — skipping email.')
+        }
+      }
+    }
+    setPaymentDone(true)
   }
 
   const fieldClass = (name) =>
@@ -141,7 +162,7 @@ export default function BoxSummary({ slots, boxSize, onEditBox }) {
         <PaymentSelector
           amount={total}
           label={`Sweets by Talya — ${boxSize}-piece box`}
-          onPaymentChosen={() => setPaymentDone(true)}
+          onPaymentChosen={handlePaymentChosen}
         />
       </div>
     )

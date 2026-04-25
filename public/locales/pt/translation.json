@@ -5,6 +5,7 @@
     "gallery": "Galeria",
     "menu": "Cardápio",
     "workshops": "Workshops",
+    "contact": "Contato",
     "build_box": "Monte sua Caixa",
     "order": "Fazer Pedido"
   },
@@ -269,5 +270,28 @@
     "workshop4_desc": "Componha e embale uma caixa de chocolate personalizada — perfeita para ocasiões especiais.",
     "workshop5_title": "Workshop Família e Crianças",
     "workshop5_desc": "Uma experiência divertida e deliciosa para toda a família — crianças e adultos são bem-vindos!"
+  },
+  "contact": {
+    "hero_title": "Entre em Contato",
+    "hero_subtitle": "Adoraríamos ouvir de você.",
+    "info_title": "Vamos Falar de Chocolate",
+    "info_text": "Tem uma pergunta, uma ideia de pedido personalizado, ou só quer dizer olá? Envie uma mensagem e a Talya retornará o mais breve possível.",
+    "whatsapp_label": "Converse conosco diretamente",
+    "form_title": "Enviar Mensagem",
+    "field_name": "Seu Nome",
+    "field_email": "Endereço de Email",
+    "field_phone": "Número de Telefone",
+    "field_message": "Sua Mensagem",
+    "placeholder_name": "ex: Sarah Cohen",
+    "placeholder_email": "ex: sarah@email.com",
+    "placeholder_phone": "ex: 050-123-4567",
+    "placeholder_message": "Conte-nos o que está pensando...",
+    "submit": "Enviar Mensagem 💬",
+    "sending": "Enviando...",
+    "whatsapp_note": "Ao enviar, o WhatsApp também será aberto para você enviar a mensagem diretamente.",
+    "success_title": "Mensagem Enviada!",
+    "success_text": "Obrigado por entrar em contato. A Talya retornará em breve. O WhatsApp também foi aberto para uma resposta rápida.",
+    "send_another": "Enviar Outra Mensagem",
+    "error": "Algo deu errado. Por favor, tente novamente ou entre em contato diretamente pelo WhatsApp."
   }
 }

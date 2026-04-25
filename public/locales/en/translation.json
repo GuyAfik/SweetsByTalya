@@ -5,6 +5,7 @@
     "gallery": "Gallery",
     "menu": "Menu",
     "workshops": "Workshops",
+    "contact": "Contact",
     "build_box": "Build Your Box",
     "order": "Order Now"
   },
@@ -269,5 +270,28 @@
     "workshop4_desc": "Compose and package a personalised chocolate gift box — perfect for special occasions.",
     "workshop5_title": "Family & Kids Workshop",
     "workshop5_desc": "A fun and delicious experience for the whole family — kids and adults welcome!"
+  },
+  "contact": {
+    "hero_title": "Get in Touch",
+    "hero_subtitle": "We'd love to hear from you.",
+    "info_title": "Let's Talk Chocolate",
+    "info_text": "Have a question, a custom order idea, or just want to say hi? Send us a message and Talya will get back to you as soon as possible.",
+    "whatsapp_label": "Chat with us directly",
+    "form_title": "Send a Message",
+    "field_name": "Your Name",
+    "field_email": "Email Address",
+    "field_phone": "Phone Number",
+    "field_message": "Your Message",
+    "placeholder_name": "e.g. Sarah Cohen",
+    "placeholder_email": "e.g. sarah@email.com",
+    "placeholder_phone": "e.g. 050-123-4567",
+    "placeholder_message": "Tell us what's on your mind...",
+    "submit": "Send Message 💬",
+    "sending": "Sending...",
+    "whatsapp_note": "Submitting will also open WhatsApp so you can send the message directly.",
+    "success_title": "Message Sent!",
+    "success_text": "Thank you for reaching out. Talya will be in touch with you soon. WhatsApp has also been opened for a quick reply.",
+    "send_another": "Send Another Message",
+    "error": "Something went wrong. Please try again or contact us directly via WhatsApp."
   }
 }

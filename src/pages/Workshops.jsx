@@ -43,7 +43,7 @@ export default function Workshops() {
 
           <div className="workshops__cta">
             <p className="workshops__cta-text">{t('workshops.cta_text')}</p>
-            <Link to="/order" className="btn btn--primary">{t('workshops.cta_button')}</Link>
+            <Link to="/build-your-box" className="btn btn--primary">{t('workshops.cta_button')}</Link>
           </div>
         </div>
       </section>

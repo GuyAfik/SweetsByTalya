@@ -14,8 +14,8 @@ function Hero() {
         <h1 className="hero__title">{t('hero.tagline')}</h1>
         <p className="hero__subtitle">{t('hero.subtitle')}</p>
         <div className="hero__ctas">
-          <Link to="/order" className="btn btn-caramel btn-lg">
-            🍫 {t('hero.cta_order')}
+          <Link to="/build-your-box" className="btn btn-caramel btn-lg">
+            🍫 {t('nav.build_box')}
           </Link>
           <Link to="/gallery" className="btn btn-secondary btn-lg hero__cta-secondary">
             {t('hero.cta_gallery')}

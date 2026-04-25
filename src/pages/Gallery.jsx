@@ -94,8 +94,8 @@ export default function Gallery() {
         <div className="container">
           <div className="gallery-cta__inner">
             <h2>{t('gallery.cta_title')}</h2>
-            <Link to="/order" className="btn btn-caramel btn-lg">
-              🍫 {t('gallery.cta_button')}
+            <Link to="/build-your-box" className="btn btn-caramel btn-lg">
+              🍫 {t('nav.build_box')}
             </Link>
           </div>
         </div>

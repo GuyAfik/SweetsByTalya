@@ -3,7 +3,6 @@ import { NavLink, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from '../shared/LanguageSwitcher'
 import { social } from '../../config/social'
-import { flags } from '../../config/featureFlags'
 import './Navbar.css'
 
 export default function Navbar() {
@@ -25,9 +24,6 @@ export default function Navbar() {
     { to: '/about', label: t('nav.about') },
     { to: '/gallery', label: t('nav.gallery') },
     { to: '/workshops', label: t('nav.workshops') },
-    ...(flags.pralineBuilder
-      ? [{ to: '/build-your-box', label: t('nav.build_box') }]
-      : []),
   ]
 
   return (
@@ -84,8 +80,8 @@ export default function Navbar() {
         {/* Right side: language switcher + CTA */}
         <div className="navbar__right">
           <LanguageSwitcher />
-          <Link to="/order" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
-            {t('nav.order')}
+          <Link to="/build-your-box" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
+            {t('nav.build_box')}
           </Link>
         </div>
 
@@ -118,8 +114,8 @@ export default function Navbar() {
               {label}
             </NavLink>
           ))}
-          <Link to="/order" className="btn btn-caramel navbar__mobile-cta" onClick={closeMenu}>
-            {t('nav.order')}
+          <Link to="/build-your-box" className="btn btn-caramel navbar__mobile-cta" onClick={closeMenu}>
+            {t('nav.build_box')}
           </Link>
           <div className="navbar__mobile-lang">
             <LanguageSwitcher />

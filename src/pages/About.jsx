@@ -67,8 +67,8 @@ export default function About() {
             <div className="divider" style={{ margin: '1rem 0' }} />
             <p>{t('about.story_p1')}</p>
             <p style={{ marginTop: '1rem' }}>{t('about.story_p2')}</p>
-            <Link to="/order" className="btn btn-caramel" style={{ marginTop: '2rem', display: 'inline-flex' }}>
-              🍫 {t('common.order_now')}
+            <Link to="/build-your-box" className="btn btn-caramel" style={{ marginTop: '2rem', display: 'inline-flex' }}>
+              🍫 {t('nav.build_box')}
             </Link>
           </div>
         </div>

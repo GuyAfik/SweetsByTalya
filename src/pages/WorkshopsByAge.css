@@ -1,0 +1,55 @@
+/* ── Back link ────────────────────────────────────────────────────────────── */
+.wba-back {
+  padding: 1rem 1.5rem 0;
+}
+
+.wba-back__link {
+  color: var(--color-chocolate-mid, #5C3317);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.15s;
+}
+
+.wba-back__link:hover {
+  color: var(--color-chocolate-dark, #3B1F0E);
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────────── */
+.wba-hero {
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+}
+
+.wba-hero__content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.wba-hero__icon {
+  font-size: 4rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.wba-hero__title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--color-chocolate-dark, #3B1F0E);
+  margin: 0;
+}
+
+/* ── Workshop cards grid ──────────────────────────────────────────────────── */
+.wba-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+/* ── Empty state ──────────────────────────────────────────────────────────── */
+.wba-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--color-text-muted, #888);
+  font-size: 1.05rem;
+}

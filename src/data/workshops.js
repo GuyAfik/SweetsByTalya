@@ -10,27 +10,44 @@ export const ageGroups = [
     id: 'ages-5-9',
     labelKey: 'workshops.age_group_5_9',
     icon: '🌟',
-    comingSoon: true,   // no workshops yet — shows placeholder card
+    color: '#f57f17',
+    bgGradient: 'linear-gradient(135deg, #fff9c4 0%, #fff176 50%, #fff9c4 100%)',
+    comingSoon: true,
   },
   {
     id: 'ages-7-family',
     labelKey: 'workshops.age_group_7_family',
     icon: '👨‍👩‍👧',
+    color: '#2e7d32',
+    bgGradient: 'linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #e8f5e9 100%)',
     comingSoon: false,
   },
   {
     id: 'ages-10-13',
     labelKey: 'workshops.age_group_10_13',
     icon: '💗',
+    color: '#c2185b',
+    bgGradient: 'linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #fce4ec 100%)',
     comingSoon: false,
   },
   {
     id: 'ages-14-plus',
     labelKey: 'workshops.age_group_14_plus',
     icon: '💜',
+    color: '#7b1fa2',
+    bgGradient: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #f3e5f5 100%)',
     comingSoon: false,
   },
 ]
+
+/**
+ * Find an age group by its id.
+ * @param {string} id
+ * @returns {object|undefined}
+ */
+export function getAgeGroupById(id) {
+  return ageGroups.find((g) => g.id === id)
+}
 
 export const workshops = [
   {

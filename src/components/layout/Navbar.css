@@ -226,12 +226,22 @@
 }
 
 /* --- RTL --- */
+[dir="rtl"] .navbar__logo {
+  order: 3;
+}
+
 [dir="rtl"] .navbar__links {
+  order: 2;
   flex-direction: row-reverse;
 }
 
 [dir="rtl"] .navbar__right {
-  flex-direction: row-reverse;
+  order: 1;
+}
+
+[dir="rtl"] .navbar__hamburger {
+  margin-left: 0;
+  margin-right: auto;
 }
 
 /* --- Responsive --- */

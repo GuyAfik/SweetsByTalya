@@ -14,6 +14,7 @@ const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
 const Gallery = lazy(() => import('./pages/Gallery'))
 const Workshops = lazy(() => import('./pages/Workshops'))
+const WorkshopDetail = lazy(() => import('./pages/WorkshopDetail'))
 const Contact = lazy(() => import('./pages/Contact'))
 const Order = lazy(() => import('./pages/Order'))
 const PralineBuilder = lazy(() => import('./pages/PralineBuilder'))
@@ -49,6 +50,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/workshops" element={<Workshops />} />
+            <Route path="/workshops/:slug" element={<WorkshopDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/order" element={<Order />} />
             {flags.pralineBuilder && (

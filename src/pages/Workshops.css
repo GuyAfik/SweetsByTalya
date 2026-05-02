@@ -1,133 +1,104 @@
-.workshops-hero {
-  position: relative;
-  min-height: 50vh;
-  display: flex;
-  align-items: center;
-  background: linear-gradient(135deg, var(--color-blush) 0%, var(--color-cream-dark) 100%);
-  overflow: hidden;
-}
-
-.workshops-hero::before {
-  content: '🍫';
-  position: absolute;
-  font-size: 20rem;
-  opacity: 0.05;
-  right: -2rem;
-  bottom: -4rem;
-  pointer-events: none;
-}
-
-.workshops-hero__overlay {
-  position: absolute;
-  inset: 0;
-  opacity: 0.12;
-}
-
-.workshops-hero__content {
-  position: relative;
-  z-index: 1;
-  padding: var(--space-20) var(--space-6);
-}
-
-.workshops-hero__title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  color: var(--color-chocolate-dark);
-  margin-bottom: var(--space-4);
-}
-
-.workshops-hero__subtitle {
-  font-size: 1.6rem;
-  display: block;
-}
-
-.workshops__intro {
+/* ── Listing hero ─────────────────────────────────────────────────────────── */
+.ws-list-hero {
+  background: linear-gradient(135deg, var(--color-blush, #F2C4CE) 0%, var(--color-cream-dark, #F5E6D0) 100%);
+  padding: 5rem 1.5rem 3.5rem;
   text-align: center;
+}
+
+.ws-list-hero__content {
   max-width: 680px;
-  margin: 0 auto var(--space-16);
+  margin: 0 auto;
 }
 
-.workshops__intro-title {
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  color: var(--color-chocolate-dark);
-  margin-bottom: var(--space-4);
+.ws-list-hero__title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--color-chocolate-dark, #3B1F0E);
+  margin-bottom: 0.75rem;
 }
 
-.workshops__intro-text {
-  color: var(--color-text-muted);
-  font-size: 1.1rem;
-  line-height: 1.7;
+.ws-list-hero__subtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--color-chocolate-mid, #5C3317);
+  line-height: 1.6;
 }
 
-.workshops__grid {
+/* ── Workshop cards grid ──────────────────────────────────────────────────── */
+.ws-list__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--space-8);
-  margin-bottom: var(--space-16);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
 }
 
-.workshop-card {
-  background: var(--color-white);
-  border-radius: var(--radius-xl);
-  padding: var(--space-10) var(--space-8);
-  box-shadow: var(--shadow-md);
+.ws-card {
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  background: var(--ws-bg, linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%));
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  gap: var(--space-4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  gap: 0.75rem;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.workshop-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+.ws-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
 }
 
-.workshop-card__icon {
-  font-size: 3rem;
+.ws-card__icon {
+  font-size: 3.5rem;
   line-height: 1;
 }
 
-.workshop-card__title {
-  font-size: 1.25rem;
-  color: var(--color-chocolate-dark);
-  font-family: var(--font-heading);
+.ws-card__title {
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  color: var(--color-chocolate-dark, #3B1F0E);
+  margin: 0;
+  line-height: 1.2;
 }
 
-.workshop-card__desc {
-  color: var(--color-text-muted);
+.ws-card__ages {
   font-size: 0.95rem;
-  line-height: 1.6;
+  font-weight: 700;
+  color: var(--ws-color, #c2185b);
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+.ws-card__subtitle {
+  font-size: 0.9rem;
+  color: var(--color-chocolate-mid, #5C3317);
+  margin: 0;
+  line-height: 1.5;
   flex: 1;
 }
 
-.workshop-card__badge {
-  display: inline-block;
-  background: var(--color-blush);
-  color: var(--color-chocolate);
-  font-size: 0.75rem;
+.ws-card__btn {
+  margin-top: 0.5rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.65rem 1.75rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 0.25rem 0.75rem;
-  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.1s;
+  display: inline-block;
 }
 
-.workshops__cta {
-  text-align: center;
-  padding: var(--space-12) var(--space-6);
-  background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-blush) 100%);
-  border-radius: var(--radius-xl);
+.ws-card__btn:hover {
+  opacity: 0.88;
+  transform: scale(1.03);
 }
 
-.workshops__cta-text {
-  font-size: 1.15rem;
-  color: var(--color-chocolate-dark);
-  margin-bottom: var(--space-6);
-}
-
-@media (max-width: 640px) {
-  .workshops__grid {
-    grid-template-columns: 1fr;
-  }
+.ws-card__coming-soon {
+  margin-top: 0.5rem;
+  display: inline-block;
+  background: rgba(0,0,0,0.08);
+  color: var(--color-chocolate-mid, #5C3317);
+  border-radius: 999px;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
 }

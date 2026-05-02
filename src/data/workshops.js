@@ -79,7 +79,7 @@ export const workshops = [
       { num: 5, icon: '💌', key: 'activity5' },
     ],
     pricingTiers: [
-      { participants: '1–6',  priceKey: 'workshop1_price_tier1' },
+      { participants: '5–6',  priceKey: 'workshop1_price_tier1' },
       { participants: '7–10', priceKey: 'workshop1_price_tier2' },
       { participants: '11–16',priceKey: 'workshop1_price_tier3' },
       { participants: '17+',  priceKey: 'workshop1_price_tier4' },
@@ -114,7 +114,7 @@ export const workshops = [
       { num: 5, icon: '💌', key: 'activity5' },
     ],
     pricingTiers: [
-      { participants: '1–6',  priceKey: 'workshop1_price_tier1' },
+      { participants: '5–6',  priceKey: 'workshop1_price_tier1' },
       { participants: '7–10', priceKey: 'workshop1_price_tier2' },
       { participants: '11–16',priceKey: 'workshop1_price_tier3' },
       { participants: '17+',  priceKey: 'workshop1_price_tier4' },

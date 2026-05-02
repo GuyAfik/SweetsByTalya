@@ -4,11 +4,40 @@
 // card on /workshops and the full detail page at /workshops/:slug
 // ============================================================
 
+// ── Age group categories (controls listing page sections) ────────────────────
+export const ageGroups = [
+  {
+    id: 'ages-5-9',
+    labelKey: 'workshops.age_group_5_9',
+    icon: '🌟',
+    comingSoon: true,   // no workshops yet — shows placeholder card
+  },
+  {
+    id: 'ages-7-family',
+    labelKey: 'workshops.age_group_7_family',
+    icon: '👨‍👩‍👧',
+    comingSoon: false,
+  },
+  {
+    id: 'ages-10-13',
+    labelKey: 'workshops.age_group_10_13',
+    icon: '💗',
+    comingSoon: false,
+  },
+  {
+    id: 'ages-14-plus',
+    labelKey: 'workshops.age_group_14_plus',
+    icon: '💜',
+    comingSoon: false,
+  },
+]
+
 export const workshops = [
   {
     slug: 'friends-at-heart',
+    ageGroupId: 'ages-10-13',
     icon: '💗',
-    color: '#c2185b',          // accent colour for this workshop
+    color: '#c2185b',
     bgGradient: 'linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #fce4ec 100%)',
     titleKey: 'workshops.w1_title',
     agesKey: 'workshops.w1_ages',
@@ -41,6 +70,7 @@ export const workshops = [
   },
   {
     slug: 'friends-at-heart-teens',
+    ageGroupId: 'ages-14-plus',
     icon: '💜',
     color: '#7b1fa2',
     bgGradient: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #f3e5f5 100%)',
@@ -75,6 +105,7 @@ export const workshops = [
   },
   {
     slug: 'family-memories',
+    ageGroupId: 'ages-7-family',
     icon: '🥚',
     color: '#2e7d32',
     bgGradient: 'linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #e8f5e9 100%)',
@@ -119,4 +150,13 @@ export const workshops = [
  */
 export function getWorkshopBySlug(slug) {
   return workshops.find((w) => w.slug === slug)
+}
+
+/**
+ * Returns workshops belonging to a given age group id.
+ * @param {string} ageGroupId
+ * @returns {object[]}
+ */
+export function getWorkshopsByAgeGroup(ageGroupId) {
+  return workshops.filter((w) => w.ageGroupId === ageGroupId)
 }

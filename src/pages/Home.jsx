@@ -3,6 +3,39 @@ import { Link } from 'react-router-dom'
 import { social } from '../config/social'
 import './Home.css'
 
+function WorkshopsPreview() {
+  const { t } = useTranslation()
+  return (
+    <section className="workshops-preview section">
+      <div className="container">
+        <h2 className="section-title">{t('workshops_preview.title')}</h2>
+        <p className="section-subtitle">{t('workshops_preview.subtitle')}</p>
+        <div className="workshops-preview__grid">
+          <div className="workshops-preview__item">
+            <img
+              src="/images/workshops/workshop-example-1.jpeg"
+              alt={t('workshops_preview.alt_friends')}
+              loading="lazy"
+            />
+          </div>
+          <div className="workshops-preview__item">
+            <img
+              src="/images/workshops/workshop-example-2.jpeg"
+              alt={t('workshops_preview.alt_family')}
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div className="workshops-preview__cta">
+          <Link to="/workshops" className="btn btn-caramel btn-lg">
+            {t('workshops_preview.cta')}
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ── Hero ──────────────────────────────────────────────────────────────────────
 function Hero() {
   const { t } = useTranslation()
@@ -176,6 +209,7 @@ function CTABanner() {
 export default function Home() {
   return (
     <>
+      <WorkshopsPreview />
       <Hero />
       <WhyUs />
       <InstagramPreview />

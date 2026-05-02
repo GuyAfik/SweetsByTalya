@@ -255,6 +255,47 @@
   text-align: center;
 }
 
+/* --- Workshops Preview --- */
+.workshops-preview {
+  background: var(--color-cream);
+  padding-top: calc(var(--navbar-height) + var(--space-10));
+}
+
+.workshops-preview__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: var(--space-10);
+  margin-bottom: var(--space-8);
+}
+
+.workshops-preview__item {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(59, 31, 14, 0.18);
+}
+
+.workshops-preview__item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.workshops-preview__item:hover img {
+  transform: scale(1.04);
+}
+
+.workshops-preview__cta {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .workshops-preview__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* --- Why Us --- */
 .whyus {
   background: var(--color-cream-dark);

@@ -39,6 +39,15 @@
     "subtitle": "Let's create something sweet together.",
     "button": "Chat on WhatsApp"
   },
+  "workshops_preview": {
+    "title": "Our Workshops",
+    "subtitle": "Hands-on chocolate experiences for all ages",
+    "alt_friends": "Friends at Heart workshop",
+    "alt_family": "Family Memories workshop",
+    "label_friends": "Friends at Heart",
+    "label_family": "Family Memories",
+    "cta": "Explore All Workshops"
+  },
   "about": {
     "hero_title": "About Sweets by Talya",
     "hero_subtitle": "A passion for chocolate, a love for people.",

@@ -39,6 +39,15 @@
     "subtitle": "בואו ניצור משהו מתוק ביחד.",
     "button": "שוחח בוואטסאפ"
   },
+  "workshops_preview": {
+    "title": "הסדנאות שלנו",
+    "subtitle": "חוויות שוקולד מעשיות לכל הגילאים",
+    "alt_friends": "סדנת חברות מהלב",
+    "alt_family": "סדנת זיכרונות משפחתיים",
+    "label_friends": "חברות מהלב",
+    "label_family": "זיכרונות משפחתיים",
+    "cta": "לכל הסדנאות"
+  },
   "about": {
     "hero_title": "אודות Sweets by Talya",
     "hero_subtitle": "תשוקה לשוקולד, אהבה לאנשים.",

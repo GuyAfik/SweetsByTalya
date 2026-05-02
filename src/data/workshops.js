@@ -76,6 +76,12 @@ export const workshops = [
       { participants: '11–16',priceKey: 'workshop1_price_tier3' },
       { participants: '17+',  priceKey: 'workshop1_price_tier4' },
     ],
+    requirements: [
+      { icon: '❄️', key: 'w3_req4' },
+      { icon: '🪑', key: 'w3_req3' },
+      { icon: '📡', key: 'w3_req2' },
+      { icon: '🧊', key: 'w3_req1' },
+    ],
   },
   {
     slug: 'surprise-egg-kids',
@@ -151,6 +157,12 @@ export const workshops = [
       { participants: '7–10', priceKey: 'workshop1_price_tier2' },
       { participants: '11–16',priceKey: 'workshop1_price_tier3' },
       { participants: '17+',  priceKey: 'workshop1_price_tier4' },
+    ],
+    requirements: [
+      { icon: '❄️', key: 'w3_req4' },
+      { icon: '🪑', key: 'w3_req3' },
+      { icon: '📡', key: 'w3_req2' },
+      { icon: '🧊', key: 'w3_req1' },
     ],
   },
   {

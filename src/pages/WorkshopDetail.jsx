@@ -179,6 +179,18 @@ export default function WorkshopDetail() {
       )}
 
       {/* ══════════════════════════════════════════════════════════════════
+          5b. DISCLAIMER — kosher & allergens (shown on every workshop)
+         ══════════════════════════════════════════════════════════════════ */}
+      <section className="wd-disclaimer">
+        <div className="container">
+          <div className="wd-disclaimer__inner">
+            <span className="wd-disclaimer__icon">⚠️</span>
+            <p className="wd-disclaimer__text">{t('workshops.disclaimer')}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
           6. REQUIREMENTS (home-visit workshops only)
              Practical info — shown only when relevant.
          ══════════════════════════════════════════════════════════════════ */}

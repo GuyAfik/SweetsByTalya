@@ -15,48 +15,100 @@
   color: var(--color-chocolate-dark, #3B1F0E);
 }
 
-/* ── Hero ─────────────────────────────────────────────────────────────────── */
+/* ── Hero — split layout: text left, photos right ────────────────────────── */
 .wd-hero {
-  padding: 4rem 1.5rem 3.5rem;
-  text-align: center;
+  padding: 3rem 1.5rem 3rem;
 }
 
-.wd-hero__content {
-  max-width: 720px;
+.wd-hero__inner {
+  max-width: 1100px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* Left: text */
+.wd-hero__text {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .wd-hero__badge {
-  font-size: 4rem;
-  margin-bottom: 1rem;
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
   display: block;
 }
 
 .wd-hero__title {
-  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
   color: var(--color-chocolate-dark, #3B1F0E);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   line-height: 1.2;
 }
 
 .wd-hero__ages {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--ws-color, #c2185b);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   letter-spacing: 0.03em;
 }
 
 .wd-hero__subtitle {
-  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
   color: var(--color-chocolate-mid, #5C3317);
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
   line-height: 1.6;
 }
 
 .wd-hero__cta {
   display: inline-block;
   border: none;
+}
+
+/* Right: photos */
+.wd-hero__photos {
+  flex: 0 0 45%;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.wd-hero__photo-item {
+  flex: 1 1 0;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+}
+
+.wd-hero__photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Mobile: stack */
+@media (max-width: 768px) {
+  .wd-hero__inner {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .wd-hero__text {
+    text-align: center;
+    width: 100%;
+  }
+
+  .wd-hero__photos {
+    width: 100%;
+    flex: none;
+  }
+
+  .wd-hero__photo-item {
+    aspect-ratio: 4/3;
+  }
 }
 
 /* ── Occasions ────────────────────────────────────────────────────────────── */

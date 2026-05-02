@@ -132,9 +132,9 @@ export const workshops = [
     available: true,
     pricingType: 'flat',   // 'tiered' (default) | 'flat' — single price per pair
     samplePhotos: [
-      '/images/workshops/family-memories/sample-1.jpeg',
-      '/images/workshops/family-memories/sample-2.jpeg',
-      '/images/workshops/family-memories/sample-3.jpeg',
+      '/images/workshops/family-memories/workshop-family-1.jpeg',
+      '/images/workshops/family-memories/workshop-family-2.jpeg',
+      '/images/workshops/family-memories/workshop-family-3.jpeg',
     ],
     occasions: [
       { icon: '👨‍👩‍👧', key: 'w3_occasion_parent_child' },

@@ -25,43 +25,52 @@ export default function WorkshopDetail() {
         </Link>
       </div>
 
-      {/* ── Hero ─────────────────────────────────────────────────────────── */}
+      {/* ══════════════════════════════════════════════════════════════════
+          1. HERO — title + subtitle + CTA + photos side by side
+             Immediate visual impact. CTA above the fold on desktop.
+         ══════════════════════════════════════════════════════════════════ */}
       <section className="wd-hero" style={{ background: bgGradient }}>
-        <div className="container wd-hero__content">
-          <div className="wd-hero__badge">{icon}</div>
-          <h1 className="wd-hero__title">{t(titleKey)}</h1>
-          <p className="wd-hero__ages">{t(agesKey)}</p>
-          <p className="wd-hero__subtitle">{t(subtitleKey)}</p>
-          <a
-            href={social.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-lg wd-hero__cta"
-            style={{ background: color, color: '#fff' }}
-          >
-            💬 {t('workshops.book_cta')}
-          </a>
-        </div>
-      </section>
+        <div className="container wd-hero__inner">
 
-      {/* ── For whom ─────────────────────────────────────────────────────── */}
-      {occasions.length > 0 && (
-        <section className="section wd-occasions">
-          <div className="container">
-            <h2 className="section-title">{t('workshops.occasions_title')}</h2>
-            <div className="wd-occasions__grid">
-              {occasions.map(({ icon: oIcon, key }) => (
-                <div key={key} className="wd-occasion-card" style={{ '--ws-color': color }}>
-                  <span className="wd-occasion-card__icon">{oIcon}</span>
-                  <p className="wd-occasion-card__label">{t(`workshops.${key}`)}</p>
+          {/* Left: text + CTA */}
+          <div className="wd-hero__text">
+            <div className="wd-hero__badge">{icon}</div>
+            <h1 className="wd-hero__title">{t(titleKey)}</h1>
+            <p className="wd-hero__ages">{t(agesKey)}</p>
+            <p className="wd-hero__subtitle">{t(subtitleKey)}</p>
+            <a
+              href={social.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-lg wd-hero__cta"
+              style={{ background: color, color: '#fff' }}
+            >
+              💬 {t('workshops.book_cta')}
+            </a>
+          </div>
+
+          {/* Right: photos (up to 2 shown in hero) */}
+          {samplePhotos.length > 0 && (
+            <div className="wd-hero__photos">
+              {samplePhotos.slice(0, 2).map((src, i) => (
+                <div key={i} className="wd-hero__photo-item">
+                  <img
+                    src={src}
+                    alt={t('workshops.photo_alt', { n: i + 1 })}
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                    onError={(e) => { e.target.parentElement.style.display = 'none' }}
+                  />
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-      )}
+          )}
+        </div>
+      </section>
 
-      {/* ── Activities ───────────────────────────────────────────────────── */}
+      {/* ══════════════════════════════════════════════════════════════════
+          2. WHAT YOU GET — activities
+             Answer "what am I paying for?" immediately after the hook.
+         ══════════════════════════════════════════════════════════════════ */}
       {activities.length > 0 && (
         <section className="section wd-activities">
           <div className="container">
@@ -83,7 +92,11 @@ export default function WorkshopDetail() {
         </section>
       )}
 
-      {/* ── Sample photos ────────────────────────────────────────────────── */}
+      {/* ══════════════════════════════════════════════════════════════════
+          3. PHOTOS — full gallery
+             Social proof. Show the real experience after describing it.
+             Show remaining photos (beyond the 2 in the hero).
+         ══════════════════════════════════════════════════════════════════ */}
       {samplePhotos.length > 0 && (
         <section className="wd-photos" style={{ background: bgGradient }}>
           <div className="container">
@@ -104,7 +117,30 @@ export default function WorkshopDetail() {
         </section>
       )}
 
-      {/* ── Pricing ──────────────────────────────────────────────────────── */}
+      {/* ══════════════════════════════════════════════════════════════════
+          4. FOR WHOM — occasions
+             Now that they're interested, confirm it's right for them.
+         ══════════════════════════════════════════════════════════════════ */}
+      {occasions.length > 0 && (
+        <section className="section wd-occasions">
+          <div className="container">
+            <h2 className="section-title">{t('workshops.occasions_title')}</h2>
+            <div className="wd-occasions__grid">
+              {occasions.map(({ icon: oIcon, key }) => (
+                <div key={key} className="wd-occasion-card" style={{ '--ws-color': color }}>
+                  <span className="wd-occasion-card__icon">{oIcon}</span>
+                  <p className="wd-occasion-card__label">{t(`workshops.${key}`)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════════════════════════════════
+          5. PRICING — clear and prominent
+             Transparent pricing builds trust. Show before the final CTA.
+         ══════════════════════════════════════════════════════════════════ */}
       {pricingTiers.length > 0 && (
         <section className="section wd-pricing">
           <div className="container">
@@ -141,7 +177,10 @@ export default function WorkshopDetail() {
         </section>
       )}
 
-      {/* ── Requirements (home-visit workshops) ──────────────────────────── */}
+      {/* ══════════════════════════════════════════════════════════════════
+          6. REQUIREMENTS (home-visit workshops only)
+             Practical info — shown only when relevant.
+         ══════════════════════════════════════════════════════════════════ */}
       {requirements.length > 0 && (
         <section className="section wd-requirements">
           <div className="container">
@@ -158,7 +197,9 @@ export default function WorkshopDetail() {
         </section>
       )}
 
-      {/* ── Why us ───────────────────────────────────────────────────────── */}
+      {/* ══════════════════════════════════════════════════════════════════
+          7. WHY US — reinforce the decision
+         ══════════════════════════════════════════════════════════════════ */}
       <section className="section wd-why">
         <div className="container">
           <h2 className="section-title">{t('workshops.why_title')}</h2>
@@ -166,7 +207,9 @@ export default function WorkshopDetail() {
         </div>
       </section>
 
-      {/* ── CTA Banner ───────────────────────────────────────────────────── */}
+      {/* ══════════════════════════════════════════════════════════════════
+          8. FINAL CTA BANNER — strong close
+         ══════════════════════════════════════════════════════════════════ */}
       <section className="wd-cta-banner" style={{ background: `linear-gradient(135deg, ${color} 0%, ${color}cc 100%)` }}>
         <div className="container wd-cta-banner__inner">
           <h2 className="wd-cta-banner__title">{t('workshops.cta_title')}</h2>

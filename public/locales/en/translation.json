@@ -344,7 +344,20 @@
     "w3_req1": "Fridge with at least one free shelf",
     "w3_req2": "Available microwave",
     "w3_req3": "Tables and chairs suitable for children to sit comfortably and do the activity",
-    "w3_req4": "Air-conditioned or temperature-controlled space to prevent the chocolate from melting"
+    "w3_req4": "Air-conditioned or temperature-controlled space to prevent the chocolate from melting",
+    "w4_title": "Chocolate Workshop: Surprise Egg 🥚✨",
+    "w4_ages": "Ages 14+",
+    "w4_subtitle": "Not just another birthday... a sweet, creative and unforgettable experience — one that kids keep talking about long after. In this workshop everyone becomes a creator: building, filling, designing and crafting a personalised chocolate surprise egg.",
+    "w4_occasion_family": "Family events",
+    "w4_activity1_title": "Build a Chocolate Egg",
+    "w4_activity1_desc": "Build a chocolate egg from two halves — learn to work with chocolate and achieve a beautiful, professional result.",
+    "w4_activity2_title": "Fill with Sweet Surprises",
+    "w4_activity2_desc": "Fill the egg with sweet surprises: marshmallows, sweets and chocolates.",
+    "w4_activity3_title": "Personal Design & Decoration",
+    "w4_activity3_desc": "Decorate with coloured chocolate according to your own imagination — a creative and personal experience.",
+    "w4_activity4_title": "2 Chocolate Lollipops",
+    "w4_activity4_desc": "Create 2 chocolate lollipops with colourful decorations.",
+    "w4_activities_closing": "At the end: each participant takes home a luxury gift box with a ribbon, the personalised surprise egg, 2 decorated lollipops, and sweet extras (marshmallows, Oreo/Lotus cookies, sweets and coloured chocolate). 🎁"
   },
   "contact": {
     "hero_title": "Get in Touch",

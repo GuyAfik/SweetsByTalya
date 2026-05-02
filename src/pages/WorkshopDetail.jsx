@@ -13,7 +13,8 @@ export default function WorkshopDetail() {
 
   const { icon, color, bgGradient, titleKey, agesKey, subtitleKey,
           occasions, activities, samplePhotos, pricingTiers,
-          pricingType = 'tiered', requirements = [] } = workshop
+          pricingType = 'tiered', requirements = [],
+          closingKey = 'workshops.activities_closing' } = workshop
 
   return (
     <div className="wd-page">
@@ -87,7 +88,7 @@ export default function WorkshopDetail() {
                 </div>
               ))}
             </div>
-            <p className="wd-activities__closing">{t('workshops.activities_closing')}</p>
+            <p className="wd-activities__closing">{t(closingKey)}</p>
           </div>
         </section>
       )}

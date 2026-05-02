@@ -344,7 +344,20 @@
     "w3_req1": "Geladeira com pelo menos uma prateleira livre",
     "w3_req2": "Micro-ondas disponível para uso",
     "w3_req3": "Mesas e cadeiras adequadas para as crianças sentarem confortavelmente e realizarem a atividade",
-    "w3_req4": "Espaço com ar-condicionado ou temperatura controlada para evitar que o chocolate derreta durante a experiência"
+    "w3_req4": "Espaço com ar-condicionado ou temperatura controlada para evitar que o chocolate derreta durante a experiência",
+    "w4_title": "Workshop de Chocolate: Ovo Surpresa 🥚✨",
+    "w4_ages": "Idades 14+",
+    "w4_subtitle": "Não é mais um aniversário comum... mas uma experiência doce, criativa e inesquecível — que as crianças não param de falar mesmo depois. Neste workshop cada pessoa se torna criadora: construindo, recheando, decorando e criando um ovo surpresa de chocolate personalizado.",
+    "w4_occasion_family": "Eventos familiares",
+    "w4_activity1_title": "Construir um Ovo de Chocolate",
+    "w4_activity1_desc": "Construa um ovo de chocolate com duas metades — aprenda a trabalhar com chocolate e obtenha um resultado bonito e profissional.",
+    "w4_activity2_title": "Rechear com Surpresas Doces",
+    "w4_activity2_desc": "Recheie o ovo com surpresas doces: marshmallows, balas e chocolates.",
+    "w4_activity3_title": "Design e Decoração Pessoal",
+    "w4_activity3_desc": "Decore com chocolate colorido de acordo com sua própria imaginação — uma experiência criativa e pessoal.",
+    "w4_activity4_title": "2 Pirulitos de Chocolate",
+    "w4_activity4_desc": "Crie 2 pirulitos de chocolate com decorações coloridas.",
+    "w4_activities_closing": "Ao final: cada participante leva para casa uma caixa decorada com fita, o ovo surpresa personalizado, 2 pirulitos decorados e extras doces (marshmallows, biscoitos Oreo/Lotus, balas e chocolate colorido). 🎁"
   },
   "contact": {
     "hero_title": "Entre em Contato",

@@ -15,14 +15,6 @@ export const ageGroups = [
     comingSoon: true,
   },
   {
-    id: 'ages-7-family',
-    labelKey: 'workshops.age_group_7_family',
-    icon: '👨‍👩‍👧',
-    color: '#2e7d32',
-    bgGradient: 'linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #e8f5e9 100%)',
-    comingSoon: false,
-  },
-  {
     id: 'ages-10-13',
     labelKey: 'workshops.age_group_10_13',
     icon: '💗',
@@ -159,44 +151,6 @@ export const workshops = [
       { icon: '🪑', key: 'w3_req3' },
       { icon: '📡', key: 'w3_req2' },
       { icon: '🧊', key: 'w3_req1' },
-    ],
-  },
-  {
-    slug: 'family-memories',
-    ageGroupId: 'ages-7-family',
-    icon: '🥚',
-    color: '#2e7d32',
-    bgGradient: 'linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #e8f5e9 100%)',
-    titleKey: 'workshops.w3_title',
-    agesKey: 'workshops.w3_ages',
-    subtitleKey: 'workshops.w3_subtitle',
-    available: true,
-    pricingType: 'flat',   // 'tiered' (default) | 'flat' — single price per pair
-    samplePhotos: [
-      '/images/workshops/family-memories/workshop-family-1.jpeg',
-      '/images/workshops/family-memories/workshop-family-2.jpeg',
-      '/images/workshops/family-memories/workshop-family-3.jpeg',
-    ],
-    occasions: [
-      { icon: '👨‍👩‍👧', key: 'w3_occasion_parent_child' },
-      { icon: '👴👵', key: 'w3_occasion_grandparents' },
-      { icon: '🎂', key: 'w3_occasion_family_birthday' },
-    ],
-    activities: [
-      { num: 1, icon: '🥚', key: 'w3_activity1' },
-      { num: 2, icon: '🍭', key: 'w3_activity2' },
-      { num: 3, icon: '💌', key: 'w3_activity3' },
-      { num: 4, icon: '🍬', key: 'w3_activity4' },
-      { num: 5, icon: '🎨', key: 'w3_activity5' },
-    ],
-    pricingTiers: [
-      { participants: null, priceKey: 'w3_price_flat' },
-    ],
-    requirements: [
-      { icon: '🧊', key: 'w3_req1' },
-      { icon: '📡', key: 'w3_req2' },
-      { icon: '🪑', key: 'w3_req3' },
-      { icon: '❄️', key: 'w3_req4' },
     ],
   },
 ]

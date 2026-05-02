@@ -6,9 +6,10 @@ import { social } from '../../config/social'
 import './Navbar.css'
 
 export default function Navbar() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const isRTL = (i18n.language?.split('-')[0] || localStorage.getItem('sbt_language') || 'he') === 'he'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -56,35 +57,61 @@ export default function Navbar() {
       </div>
 
       <div className="navbar__inner container">
-        {/* Logo */}
-        <Link to="/" className="navbar__logo" onClick={closeMenu}>
-          <span className="navbar__logo-icon">🍫</span>
-          <span className="navbar__logo-text">Sweets by Talya</span>
-        </Link>
-
-        {/* Desktop nav */}
-        <nav className="navbar__links" aria-label="Main navigation">
-          {navLinks.map(({ to, label }) => (
-            <NavLink
-              key={to}
-              to={to}
-              end={to === '/'}
-              className={({ isActive }) =>
-                `navbar__link${isActive ? ' navbar__link--active' : ''}`
-              }
-            >
-              {label}
-            </NavLink>
-          ))}
-        </nav>
-
-        {/* Right side: language switcher + CTA */}
-        <div className="navbar__right">
-          <LanguageSwitcher />
-          <Link to="/build-your-box" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
-            {t('nav.build_box')}
-          </Link>
-        </div>
+        {isRTL ? (
+          <>
+            <div className="navbar__right">
+              <LanguageSwitcher />
+              <Link to="/build-your-box" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
+                {t('nav.build_box')}
+              </Link>
+            </div>
+            <nav className="navbar__links" aria-label="Main navigation">
+              {[...navLinks].reverse().map(({ to, label }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  end={to === '/'}
+                  className={({ isActive }) =>
+                    `navbar__link${isActive ? ' navbar__link--active' : ''}`
+                  }
+                >
+                  {label}
+                </NavLink>
+              ))}
+            </nav>
+            <Link to="/" className="navbar__logo" onClick={closeMenu}>
+              <span className="navbar__logo-icon">🍫</span>
+              <span className="navbar__logo-text">Sweets by Talya</span>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="/" className="navbar__logo" onClick={closeMenu}>
+              <span className="navbar__logo-icon">🍫</span>
+              <span className="navbar__logo-text">Sweets by Talya</span>
+            </Link>
+            <nav className="navbar__links" aria-label="Main navigation">
+              {navLinks.map(({ to, label }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  end={to === '/'}
+                  className={({ isActive }) =>
+                    `navbar__link${isActive ? ' navbar__link--active' : ''}`
+                  }
+                >
+                  {label}
+                </NavLink>
+              ))}
+            </nav>
+            <div className="navbar__right">
+              <LanguageSwitcher />
+              <Link to="/build-your-box" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
+                {t('nav.build_box')}
+              </Link>
+            </div>
+          </>
+        )}
 
         {/* Hamburger (mobile) */}
         <button

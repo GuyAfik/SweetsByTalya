@@ -142,9 +142,9 @@ const galleryPhotos = [
   '/images/gallery/pralines-1.jpg',
   '/images/gallery/pralines-2.jpg',
   '/images/gallery/pralines-3.jpg',
-  '/images/gallery/brownies-1.jpg',
-  '/images/gallery/brownies-2.jpg',
-  '/images/gallery/brownies-3.jpg',
+  '/images/gallery/pralines-4.jpg',
+  '/images/gallery/pralines-5.jpg',
+  '/images/gallery/pralines-7.jpg',
 ]
 
 function InstagramPreview() {

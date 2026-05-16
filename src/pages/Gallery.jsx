@@ -15,17 +15,10 @@ const categories = [
       { src: '/images/gallery/pralines-1.jpg', caption: '' },
       { src: '/images/gallery/pralines-2.jpg', caption: '' },
       { src: '/images/gallery/pralines-3.jpg', caption: '' },
+      { src: '/images/gallery/pralines-4.jpg', caption: '' },
+      { src: '/images/gallery/pralines-5.jpg', caption: '' },
       { src: '/images/gallery/pralines-7.jpg', caption: '' },
       { src: '/images/gallery/pralines-8.jpg', caption: '' },
-    ],
-  },
-  {
-    id: 'chocolate_bars',
-    labelKey: 'gallery.filter_chocolate_bars',
-    cover: '/images/gallery/chocolate-bar-1.jpg',
-    photos: [
-      { src: '/images/gallery/chocolate-bar-1.jpg', caption: '' },
-      { src: '/images/gallery/chocolate-bar-2.jpg', caption: '' },
     ],
   },
 ]

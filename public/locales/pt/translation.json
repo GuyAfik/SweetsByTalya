@@ -1,4 +1,22 @@
 {
+  "home": {
+    "offer_title": "O Que Oferecemos",
+    "offer_subtitle": "Experiências de chocolate artesanal para cada ocasião",
+    "pralines_title": "Pralinês para Eventos",
+    "pralines_desc": "Mínimo de 100 pralinês artesanais — perfeitos para presentear em qualquer ocasião especial. Escolha os seus sabores e chocolates.",
+    "pralines_occasion_1": "Festas de aniversário e celebrações",
+    "pralines_occasion_2": "Casamentos e noivados",
+    "pralines_occasion_3": "Eventos corporativos e presentes",
+    "pralines_occasion_4": "Qualquer ocasião especial",
+    "pralines_cta": "Encomendar Pralinês",
+    "workshops_title": "Workshops de Chocolate",
+    "workshops_desc": "Experiências práticas de chocolate — uma atividade única que cria memórias duradouras para qualquer grupo.",
+    "workshops_occasion_1": "Festas de aniversário para crianças e adolescentes",
+    "workshops_occasion_2": "Eventos femininos e bat mitzvahs",
+    "workshops_occasion_3": "Experiências familiares em casa",
+    "workshops_occasion_4": "Team building e eventos em grupo",
+    "workshops_cta": "Ver Workshops"
+  },
   "nav": {
     "home": "Início",
     "about": "Sobre",

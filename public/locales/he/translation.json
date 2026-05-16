@@ -1,4 +1,22 @@
 {
+  "home": {
+    "offer_title": "מה אנחנו מציעים",
+    "offer_subtitle": "חוויות שוקולד עשויות ביד לכל אירוע",
+    "pralines_title": "פרלינים לאירועים",
+    "pralines_desc": "מינימום 100 פרלינים עשויים ביד — מושלמים למתנה בכל אירוע מיוחד. בחרו את הטעמים והשוקולדים שלכם.",
+    "pralines_occasion_1": "מסיבות יום הולדת וחגיגות",
+    "pralines_occasion_2": "חתונות ואירוסין",
+    "pralines_occasion_3": "אירועים עסקיים ומתנות",
+    "pralines_occasion_4": "כל אירוע מיוחד",
+    "pralines_cta": "הזמינו פרלינים",
+    "workshops_title": "סדנאות שוקולד",
+    "workshops_desc": "חוויות שוקולד מעשיות — פעילות ייחודית שיוצרת זיכרונות לכל קבוצה.",
+    "workshops_occasion_1": "מסיבות יום הולדת לילדים ונוער",
+    "workshops_occasion_2": "אירועי בנות ובת מצווה",
+    "workshops_occasion_3": "חוויות משפחתיות בבית",
+    "workshops_occasion_4": "גיבוש צוות ואירועי קבוצה",
+    "workshops_cta": "לכל הסדנאות"
+  },
   "nav": {
     "home": "בית",
     "about": "אודות",

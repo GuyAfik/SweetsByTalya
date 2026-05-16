@@ -1,4 +1,22 @@
 {
+  "home": {
+    "offer_title": "What We Offer",
+    "offer_subtitle": "Handcrafted chocolate experiences for every occasion",
+    "pralines_title": "Pralines for Events",
+    "pralines_desc": "Minimum 100 handcrafted pralines — perfect for gifting at any special occasion. Choose your flavors and chocolates.",
+    "pralines_occasion_1": "Birthday parties & celebrations",
+    "pralines_occasion_2": "Weddings & engagements",
+    "pralines_occasion_3": "Corporate events & gifts",
+    "pralines_occasion_4": "Any special occasion",
+    "pralines_cta": "Order Pralines",
+    "workshops_title": "Chocolate Workshops",
+    "workshops_desc": "Hands-on chocolate-making experiences — a unique activity that creates lasting memories for any group.",
+    "workshops_occasion_1": "Birthday parties for kids & teens",
+    "workshops_occasion_2": "Girls' events & bat mitzvahs",
+    "workshops_occasion_3": "Family experiences at home",
+    "workshops_occasion_4": "Team building & group events",
+    "workshops_cta": "Explore Workshops"
+  },
   "nav": {
     "home": "Home",
     "about": "About",

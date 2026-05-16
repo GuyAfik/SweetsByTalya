@@ -74,7 +74,8 @@ export default function About() {
         </div>
       </section>
 
-      {/* Values */}
+      {/* Values — hidden for now */}
+      {false && (
       <section className="section about-values">
         <div className="container">
           <h2 className="section-title">{t('about.values_title')}</h2>
@@ -90,8 +91,10 @@ export default function About() {
           </div>
         </div>
       </section>
+      )}
 
-      {/* Process */}
+      {/* Process (How We Work) — hidden for now */}
+      {false && (
       <section className="section about-process">
         <div className="container">
           <h2 className="section-title">{t('about.process_title')}</h2>
@@ -109,8 +112,10 @@ export default function About() {
           </div>
         </div>
       </section>
+      )}
 
-      {/* Testimonials */}
+      {/* Testimonials — hidden for now */}
+      {false && (
       <section className="section about-testimonials">
         <div className="container">
           <h2 className="section-title">{t('about.testimonials_title')}</h2>
@@ -128,6 +133,7 @@ export default function About() {
           </div>
         </div>
       </section>
+      )}
     </div>
   )
 }

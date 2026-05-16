@@ -16,7 +16,101 @@
   font-size: 1.4rem;
 }
 
-/* Filters */
+/* ── Category cards ───────────────────────────────────────────────────────── */
+.gallery-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.gallery-cat-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.gallery-cat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(59, 31, 14, 0.2);
+}
+
+.gallery-cat-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.gallery-cat-card:hover .gallery-cat-card__img {
+  transform: scale(1.05);
+}
+
+.gallery-cat-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30,10,0,0.75) 0%, rgba(30,10,0,0.1) 60%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  gap: 0.25rem;
+}
+
+.gallery-cat-card__label {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family: Georgia, serif;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.gallery-cat-card__count {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.85rem;
+}
+
+/* ── Expanded category view ───────────────────────────────────────────────── */
+.gallery-expanded__header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.gallery-expanded__back {
+  background: none;
+  border: 1.5px solid var(--color-caramel-light, #e8c99a);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-chocolate-mid, #5C3317);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.gallery-expanded__back:hover {
+  background: var(--color-caramel-light, #f5e6cc);
+  border-color: var(--color-chocolate-mid);
+}
+
+.gallery-expanded__title {
+  font-size: 1.5rem;
+  color: var(--color-chocolate-dark, #3B1F0E);
+  margin: 0;
+}
+
+/* Filters (kept for reference, no longer used) */
 .gallery-filters {
   display: flex;
   gap: var(--space-2);

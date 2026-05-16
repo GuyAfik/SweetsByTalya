@@ -11,14 +11,14 @@ const testimonials = [
   },
   {
     id: 2,
-    name: 'David K.',
-    text: 'Best brownies I\'ve ever tasted. Fudgy, rich, and made with so much love. Will definitely order again!',
+    name: 'Miriam L.',
+    text: 'Ordered a custom chocolate box for our wedding. Talya was so professional and the result was breathtaking.',
     stars: 5,
   },
   {
     id: 3,
-    name: 'Miriam L.',
-    text: 'Ordered a custom chocolate box for our wedding. Talya was so professional and the result was breathtaking.',
+    name: 'Yael R.',
+    text: 'The chocolate workshop for my daughter\'s birthday was incredible. The kids had so much fun and went home with beautiful creations!',
     stars: 5,
   },
 ]
@@ -67,9 +67,14 @@ export default function About() {
             <div className="divider" style={{ margin: '1rem 0' }} />
             <p>{t('about.story_p1')}</p>
             <p style={{ marginTop: '1rem' }}>{t('about.story_p2')}</p>
-            <Link to="/build-your-box" className="btn btn-caramel" style={{ marginTop: '2rem', display: 'inline-flex' }}>
-              🍫 {t('nav.build_box')}
-            </Link>
+            <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <Link to="/bulk-order" className="btn btn-caramel">
+                🍫 {t('nav.bulk_order')}
+              </Link>
+              <Link to="/workshops" className="btn btn-secondary">
+                🎨 {t('nav.workshops')}
+              </Link>
+            </div>
           </div>
         </div>
       </section>

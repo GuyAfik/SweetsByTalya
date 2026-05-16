@@ -21,6 +21,26 @@ const categories = [
       { src: '/images/gallery/pralines-8.jpg', caption: '' },
     ],
   },
+  {
+    id: 'workshops',
+    labelKey: 'gallery.filter_workshops',
+    cover: '/images/workshops/workshop-example-1.jpeg',
+    photos: [
+      { src: '/images/workshops/workshop-example-1.jpeg', caption: '' },
+      { src: '/images/workshops/workshop-example-2.jpeg', caption: '' },
+      { src: '/images/workshops/friends-at-heart/workshop-12-1.jpeg', caption: '' },
+      { src: '/images/workshops/friends-at-heart/workshop-12-2.jpeg', caption: '' },
+      { src: '/images/workshops/friends-at-heart/workshop-12-3.jpeg', caption: '' },
+      { src: '/images/workshops/friends-at-heart-teens/workshop-14-1.jpeg', caption: '' },
+      { src: '/images/workshops/friends-at-heart-teens/workshop-14-2.jpeg', caption: '' },
+      { src: '/images/workshops/friends-at-heart-teens/workshop-14-3.jpeg', caption: '' },
+      { src: '/images/workshops/family-memories/workshop-family-1.jpeg', caption: '' },
+      { src: '/images/workshops/family-memories/workshop-family-2.jpeg', caption: '' },
+      { src: '/images/workshops/family-memories/workshop-family-3.jpeg', caption: '' },
+      { src: '/images/workshops/surprise-egg-teens/sample-1.jpeg', caption: '' },
+      { src: '/images/workshops/surprise-egg-teens/sample-2.jpeg', caption: '' },
+    ],
+  },
 ]
 
 export default function Gallery() {

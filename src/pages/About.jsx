@@ -41,15 +41,6 @@ export default function About() {
 
   return (
     <div className="about">
-      {/* Hero */}
-      <section className="about-hero">
-        <div className="about-hero__overlay" />
-        <div className="container about-hero__content">
-          <h1 className="about-hero__title">{t('about.hero_title')}</h1>
-          <p className="about-hero__subtitle accent-text">{t('about.hero_subtitle')}</p>
-        </div>
-      </section>
-
       {/* Story */}
       <section className="section">
         <div className="container about-story">

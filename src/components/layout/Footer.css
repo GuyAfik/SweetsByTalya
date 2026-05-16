@@ -42,8 +42,6 @@
 
 .footer__made {
   color: var(--color-caramel-light);
-  font-size: var(--text-sm);
-  font-family: var(--font-accent);
   font-size: 1rem;
 }
 

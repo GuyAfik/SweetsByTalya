@@ -38,7 +38,7 @@
 }
 
 .bulk-order-page__header .accent-text {
-  font-family: var(--font-accent);
+  font-family: var(--font-heading);
   font-size: var(--text-xl);
   color: var(--color-caramel-light);
   opacity: 0.9;

@@ -150,7 +150,7 @@ p {
 }
 
 .accent-text {
-  font-family: var(--font-accent);
+  font-family: var(--font-heading);
   color: var(--color-caramel);
 }
 

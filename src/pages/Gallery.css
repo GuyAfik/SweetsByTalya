@@ -208,6 +208,13 @@
   font-size: var(--text-3xl);
 }
 
+.gallery-cta__buttons {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 /* Lightbox */
 .lightbox {
   position: fixed;

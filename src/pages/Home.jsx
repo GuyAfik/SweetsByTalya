@@ -1,8 +1,56 @@
+import { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { social } from '../config/social'
 import { flags } from '../config/featureFlags'
 import './Home.css'
+
+const heroSlides = [
+  { src: '/images/workshops/friends-at-heart/workshop-12-1.jpeg', alt: 'Kids chocolate workshop' },
+  { src: '/images/workshops/friends-at-heart/workshop-12-2.jpeg', alt: 'Workshop activity' },
+  { src: '/images/gallery/pralines-5.jpg',                        alt: 'Handcrafted pralines gift box' },
+  { src: '/images/workshops/family-memories/workshop-family-1.jpeg', alt: 'Family chocolate workshop' },
+  { src: '/images/gallery/pralines-1.jpg',                        alt: 'Assorted handcrafted pralines' },
+  { src: '/images/workshops/surprise-egg-teens/sample-1.jpeg',    alt: 'Surprise egg workshop' },
+]
+
+function HeroSlideshow() {
+  const [active, setActive] = useState(0)
+
+  const next = useCallback(() => {
+    setActive(i => (i + 1) % heroSlides.length)
+  }, [])
+
+  useEffect(() => {
+    const timer = setInterval(next, 4000)
+    return () => clearInterval(timer)
+  }, [next])
+
+  return (
+    <div className="hero__slideshow">
+      {heroSlides.map((slide, i) => (
+        <img
+          key={slide.src}
+          src={slide.src}
+          alt={slide.alt}
+          className={['hero__slide', i === active ? 'hero__slide--active' : ''].filter(Boolean).join(' ')}
+          loading={i === 0 ? 'eager' : 'lazy'}
+        />
+      ))}
+      <div className="hero__dots">
+        {heroSlides.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            className={['hero__dot', i === active ? 'hero__dot--active' : ''].filter(Boolean).join(' ')}
+            onClick={() => setActive(i)}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 function Hero() {
   const { t } = useTranslation()
@@ -18,28 +66,12 @@ function Hero() {
               🍫 {t('nav.bulk_order')}
             </Link>
           )}
-          <Link to="/workshops" className="btn btn-secondary btn-lg hero__cta-secondary">
+          <Link to="/workshops" className="btn btn-secondary btn-lg">
             🎨 {t('nav.workshops')}
           </Link>
         </div>
       </div>
-      <div className="hero__photo">
-        <img
-          src="/images/gallery/talya-with-boxes.jpg"
-          alt="Talya with her handcrafted chocolate boxes"
-          className="hero__photo-img"
-        />
-        <img
-          src="/images/hero-pralines.jpg"
-          alt="Assorted handcrafted pralines"
-          className="hero__photo-img"
-        />
-        <img
-          src="/images/gallery/pralines-6.png"
-          alt="Handcrafted pralines collection"
-          className="hero__photo-img"
-        />
-      </div>
+      <HeroSlideshow />
     </section>
   )
 }
@@ -53,11 +85,10 @@ function WhatWeOffer() {
         <p className="section-subtitle">{t('home.offer_subtitle')}</p>
 
         <div className="offer-cards">
-
           <div className="offer-card offer-card--pralines">
             <div className="offer-card__image-wrap">
               <img
-                src="/images/gallery/pralines-4.jpg"
+                src="/images/gallery/pralines-8.jpg"
                 alt="Handcrafted pralines for events"
                 className="offer-card__image"
                 loading="lazy"
@@ -105,78 +136,6 @@ function WhatWeOffer() {
               </Link>
             </div>
           </div>
-
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function WhyUs() {
-  const { t } = useTranslation()
-  const reasons = [
-    { icon: '🤲', title: t('whyus.handmade_title'), desc: t('whyus.handmade_desc') },
-    { icon: '⭐', title: t('whyus.premium_title'),  desc: t('whyus.premium_desc')  },
-    { icon: '🎁', title: t('whyus.custom_title'),   desc: t('whyus.custom_desc')   },
-  ]
-  return (
-    <section className="whyus section">
-      <div className="container">
-        <h2 className="section-title">{t('whyus.title')}</h2>
-        <div className="divider" />
-        <div className="whyus__grid">
-          {reasons.map(({ icon, title, desc }) => (
-            <div key={title} className="whyus__card">
-              <div className="whyus__icon">{icon}</div>
-              <h3 className="whyus__title">{title}</h3>
-              <p className="whyus__desc">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-const galleryPhotos = [
-  '/images/gallery/pralines-1.jpg',
-  '/images/gallery/pralines-2.jpg',
-  '/images/gallery/pralines-3.jpg',
-  '/images/gallery/pralines-4.jpg',
-  '/images/gallery/pralines-5.jpg',
-  '/images/gallery/pralines-7.jpg',
-]
-
-function InstagramPreview() {
-  const { t } = useTranslation()
-  return (
-    <section className="instagram section-sm">
-      <div className="container">
-        <h2 className="section-title">{t('instagram.title')}</h2>
-        <p className="section-subtitle">{t('instagram.subtitle')}</p>
-        <div className="instagram__grid">
-          {galleryPhotos.map((src, i) => (
-            <a
-              key={src}
-              href={social.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="instagram__item"
-              aria-label="View on Instagram"
-            >
-              <img src={src} alt={`Sweets by Talya — photo ${i + 1}`} loading="lazy" />
-              <div className="instagram__overlay">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-              </div>
-            </a>
-          ))}
-        </div>
-        <div className="instagram__follow">
-          <a href={social.instagram} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
-            📸 {t('instagram.follow')}
-          </a>
         </div>
       </div>
     </section>
@@ -205,8 +164,6 @@ export default function Home() {
     <>
       <Hero />
       <WhatWeOffer />
-      <WhyUs />
-      <InstagramPreview />
       <CTABanner />
     </>
   )

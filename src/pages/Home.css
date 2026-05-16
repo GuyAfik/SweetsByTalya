@@ -2,6 +2,142 @@
    Home Page
    ============================================================ */
 
+/* --- Hero --- */
+.hero {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 100vh;
+  background: var(--color-cream);
+  overflow: hidden;
+}
+
+.hero__content {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 7rem 4rem 4rem;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.hero__brand-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  color: var(--color-caramel);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+}
+
+.hero__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-5xl);
+  color: var(--color-chocolate-dark);
+  line-height: 1.15;
+  margin-bottom: var(--space-4);
+}
+
+.hero__subtitle {
+  font-family: var(--font-accent);
+  font-size: var(--text-2xl);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+}
+
+.hero__ctas {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* ── Slideshow ─────────────────────────────────────────────── */
+.hero__slideshow {
+  flex: 1 1 0;
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--color-cream-dark);
+}
+
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.hero__slide--active {
+  opacity: 1;
+}
+
+.hero__dots {
+  position: absolute;
+  bottom: var(--space-5);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-2);
+  z-index: 2;
+}
+
+.hero__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--transition-base), transform var(--transition-base);
+}
+
+.hero__dot--active {
+  background: var(--color-white);
+  transform: scale(1.3);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .hero__content {
+    padding: 5rem 2rem 2rem;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero__ctas {
+    justify-content: center;
+  }
+
+  .hero__slideshow {
+    min-height: 60vw;
+    max-height: 420px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: var(--text-3xl);
+  }
+
+  .hero__subtitle {
+    font-size: var(--text-xl);
+  }
+}
+
 /* --- What We Offer --- */
 .what-we-offer {
   background: var(--color-cream);
@@ -38,7 +174,7 @@
 
 .offer-card__image-wrap {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
 }
 

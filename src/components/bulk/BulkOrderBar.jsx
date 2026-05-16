@@ -1,8 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import './BulkOrderBar.css'
 
-export default function BulkOrderBar({ selectedCount, maxFlavors, estimatedTotal, isComplete, onComplete }) {
+export default function BulkOrderBar({ selectedCount, maxFlavors, estimatedTotal, totalPralines, sets, completedCount, isComplete, onComplete }) {
   const { t } = useTranslation()
+
+  const showRoundsProgress = sets > 1
 
   return (
     <div className="bulk-order-bar">
@@ -17,15 +19,21 @@ export default function BulkOrderBar({ selectedCount, maxFlavors, estimatedTotal
       </div>
 
       <div className="bulk-order-bar__info">
-        <span className={['bulk-order-bar__count', isComplete ? 'bulk-order-bar__count--complete' : ''].filter(Boolean).join(' ')}>
-          {isComplete
-            ? '✓ ' + t('bulk_order.selected_check')
-            : t('bulk_order.selected_count', { count: selectedCount, max: maxFlavors })}
-        </span>
-        {estimatedTotal > 0 && (
-          <span className="bulk-order-bar__price">
-            {t('bulk_order.summary_total', { qty: maxFlavors * 20, price: estimatedTotal })}
+        {showRoundsProgress ? (
+          <span className={['bulk-order-bar__count', isComplete ? 'bulk-order-bar__count--complete' : ''].filter(Boolean).join(' ')}>
+            {isComplete
+              ? t('bulk_order.all_rounds_complete')
+              : t('bulk_order.rounds_progress', { done: completedCount, total: sets })}
           </span>
+        ) : (
+          <span className={['bulk-order-bar__count', isComplete ? 'bulk-order-bar__count--complete' : ''].filter(Boolean).join(' ')}>
+            {isComplete
+              ? `✓ ${t('bulk_order.sets_label', { sets, total: totalPralines })}`
+              : t('bulk_order.selected_count', { count: selectedCount, max: maxFlavors })}
+          </span>
+        )}
+        {estimatedTotal > 0 && (
+          <span className="bulk-order-bar__price">₪{estimatedTotal}</span>
         )}
       </div>
 

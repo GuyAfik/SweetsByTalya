@@ -2,6 +2,27 @@
   padding-bottom: 100px;
 }
 
+.bulk-order-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: transparent;
+  border: none;
+  color: var(--color-caramel-light);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: var(--space-4);
+  opacity: 0.85;
+  transition: opacity var(--transition-base);
+}
+
+.bulk-order-page__back:hover {
+  opacity: 1;
+}
+
 .bulk-order-page__header {
   background: linear-gradient(135deg, var(--color-chocolate-dark) 0%, var(--color-chocolate-mid) 100%);
   color: var(--color-white);
@@ -43,6 +64,16 @@
   color: var(--color-text-secondary);
   text-align: center;
   margin-bottom: var(--space-6);
+}
+
+.bulk-order-page__sets-note {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  background: var(--color-cream-dark);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-5);
 }
 
 @media (max-width: 480px) {

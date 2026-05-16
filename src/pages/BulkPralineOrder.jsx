@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react'
+import { useState, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { fillings, predefinedCombinations, pralinePrice } from '../data/pralines'
 import { flags } from '../config/featureFlags'
@@ -6,80 +6,120 @@ import TabSwitcher from '../components/bulk/TabSwitcher'
 import ComboGrid from '../components/bulk/ComboGrid'
 import FlavorGrid from '../components/bulk/FlavorGrid'
 import BulkOrderBar from '../components/bulk/BulkOrderBar'
-import BulkOrderSummary from '../components/bulk/BulkOrderSummary'
+import BulkOrderModal from '../components/bulk/BulkOrderModal'
+import QuantitySelector from '../components/bulk/QuantitySelector'
+import RoundNavigator from '../components/bulk/RoundNavigator'
 import './BulkPralineOrder.css'
 
 const { qtyPerFlavor, maxFlavors } = flags.bulkOrder
 const hasCombos = predefinedCombinations.length > 0
 
-const initialSelections = Object.fromEntries(fillings.map(f => [f.id, null]))
+const emptySelections = () => Object.fromEntries(fillings.map(f => [f.id, null]))
+const makeRounds = (n) => Array.from({ length: n }, () => ({ selections: emptySelections() }))
+const makeComboRounds = (n) => Array(n).fill(null)
+
+function isRoundComplete(round) {
+  return Object.values(round.selections).filter(v => v !== null).length === maxFlavors
+}
 
 export default function BulkPralineOrder() {
   const { t } = useTranslation()
-  const summaryRef = useRef(null)
 
+  const [sets, setSets] = useState(1)
   const [activeTab, setActiveTab] = useState(hasCombos ? 'chef' : 'custom')
-  const [selectedComboId, setSelectedComboId] = useState(null)
-  const [selections, setSelections] = useState(initialSelections)
+  const [activeRound, setActiveRound] = useState(0)
+
+  const [customRounds, setCustomRounds] = useState(makeRounds(1))
+  const [comboRounds, setComboRounds] = useState(makeComboRounds(1))
+
   const [showSummary, setShowSummary] = useState(false)
 
-  const selectedFlavors = useMemo(
-    () => Object.entries(selections).filter(([, base]) => base !== null),
-    [selections]
-  )
-  const selectedCount = selectedFlavors.length
-  const isChefComplete = selectedComboId !== null
-  const isCustomComplete = selectedCount === maxFlavors
-  const isComplete = activeTab === 'chef' ? isChefComplete : isCustomComplete
+  const currentCustomRound = customRounds[activeRound] ?? { selections: emptySelections() }
+  const currentComboId = comboRounds[activeRound] ?? null
+
+  const customRoundsComplete = useMemo(() => customRounds.map(isRoundComplete), [customRounds])
+  const comboRoundsComplete = useMemo(() => comboRounds.map(id => id !== null), [comboRounds])
+
+  const roundsComplete = activeTab === 'chef' ? comboRoundsComplete : customRoundsComplete
+  const allComplete = roundsComplete.every(Boolean)
+  const completedCount = roundsComplete.filter(Boolean).length
 
   const activeSelections = useMemo(() => {
     if (activeTab === 'chef') {
-      const combo = predefinedCombinations.find(c => c.id === selectedComboId)
-      return combo ? combo.selections : []
+      return comboRounds.flatMap(id => {
+        const combo = predefinedCombinations.find(c => c.id === id)
+        return combo ? combo.selections : []
+      })
     }
-    return selectedFlavors.map(([id, base]) => ({ filling: id, base }))
-  }, [activeTab, selectedComboId, selectedFlavors])
+    return customRounds.flatMap(round =>
+      Object.entries(round.selections)
+        .filter(([, base]) => base !== null)
+        .map(([id, base]) => ({ filling: id, base }))
+    )
+  }, [activeTab, comboRounds, customRounds])
 
   const estimatedTotal = useMemo(
     () => activeSelections.reduce((sum, s) => sum + qtyPerFlavor * pralinePrice(s), 0),
     [activeSelections]
   )
 
-  const dotCount = activeTab === 'chef'
-    ? (isChefComplete ? maxFlavors : 0)
-    : selectedCount
+  const totalPralines = sets * maxFlavors * qtyPerFlavor
+
+  const handleSetsChange = (n) => {
+    setSets(n)
+    setActiveRound(0)
+    setCustomRounds(makeRounds(n))
+    setComboRounds(makeComboRounds(n))
+    setShowSummary(false)
+  }
 
   const handleTabChange = (tab) => {
     setActiveTab(tab)
+    setActiveRound(0)
     setShowSummary(false)
   }
 
   const handleComboSelect = (id) => {
-    setSelectedComboId(prev => prev === id ? null : id)
+    setComboRounds(prev => {
+      const next = [...prev]
+      next[activeRound] = next[activeRound] === id ? null : id
+      return next
+    })
     setShowSummary(false)
   }
 
   const handleFlavorSelect = (id) => {
-    if (selectedCount >= maxFlavors) return
-    setSelections(prev => ({ ...prev, [id]: 'dark_70' }))
+    const count = Object.values(currentCustomRound.selections).filter(v => v !== null).length
+    if (count >= maxFlavors) return
+    setCustomRounds(prev => {
+      const next = prev.map((r, i) => i === activeRound
+        ? { selections: { ...r.selections, [id]: 'dark_70' } }
+        : r)
+      return next
+    })
     setShowSummary(false)
   }
 
   const handleFlavorDeselect = (id) => {
-    setSelections(prev => ({ ...prev, [id]: null }))
+    setCustomRounds(prev => prev.map((r, i) => i === activeRound
+      ? { selections: { ...r.selections, [id]: null } }
+      : r))
     setShowSummary(false)
   }
 
   const handleBaseChange = (fillingId, baseId) => {
-    setSelections(prev => ({ ...prev, [fillingId]: baseId }))
+    setCustomRounds(prev => prev.map((r, i) => i === activeRound
+      ? { selections: { ...r.selections, [fillingId]: baseId } }
+      : r))
   }
 
-  const handleComplete = () => {
-    setShowSummary(true)
-    setTimeout(() => {
-      summaryRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 50)
-  }
+  const handleComplete = () => setShowSummary(true)
+  const handleCloseModal = () => setShowSummary(false)
+
+  const selectedCount = Object.values(currentCustomRound.selections).filter(v => v !== null).length
+  const dotCount = activeTab === 'chef'
+    ? (currentComboId !== null ? maxFlavors : 0)
+    : selectedCount
 
   return (
     <div className="bulk-order-page">
@@ -93,16 +133,28 @@ export default function BulkPralineOrder() {
       <section className="section bulk-order-page__body">
         <div className="container">
 
+          <QuantitySelector sets={sets} onSetsChange={handleSetsChange} />
+
           {hasCombos && (
             <div className="bulk-order-page__tabs">
               <TabSwitcher activeTab={activeTab} onTabChange={handleTabChange} />
             </div>
           )}
 
+          {sets > 1 && (
+            <RoundNavigator
+              activeRound={activeRound}
+              totalRounds={sets}
+              roundsComplete={roundsComplete}
+              onPrev={() => setActiveRound(r => Math.max(0, r - 1))}
+              onNext={() => setActiveRound(r => Math.min(sets - 1, r + 1))}
+            />
+          )}
+
           {activeTab === 'chef' && hasCombos && (
             <div className="bulk-order-page__section">
               <ComboGrid
-                selectedComboId={selectedComboId}
+                selectedComboId={currentComboId}
                 onSelect={handleComboSelect}
               />
             </div>
@@ -112,20 +164,13 @@ export default function BulkPralineOrder() {
             <div className="bulk-order-page__section">
               <p className="bulk-order-page__hint">{t('bulk_order.choose_flavors')}</p>
               <FlavorGrid
-                selections={selections}
+                selections={currentCustomRound.selections}
                 maxFlavors={maxFlavors}
                 onSelect={handleFlavorSelect}
                 onDeselect={handleFlavorDeselect}
                 onChangeBase={handleBaseChange}
               />
             </div>
-          )}
-
-          {showSummary && isComplete && (
-            <BulkOrderSummary
-              activeSelections={activeSelections}
-              summaryRef={summaryRef}
-            />
           )}
 
         </div>
@@ -135,9 +180,20 @@ export default function BulkPralineOrder() {
         selectedCount={dotCount}
         maxFlavors={maxFlavors}
         estimatedTotal={estimatedTotal}
-        isComplete={isComplete}
+        totalPralines={totalPralines}
+        sets={sets}
+        completedCount={completedCount}
+        isComplete={allComplete}
         onComplete={handleComplete}
       />
+
+      {showSummary && allComplete && (
+        <BulkOrderModal
+          activeSelections={activeSelections}
+          sets={sets}
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { fillings, chocolateBases, pralinePrice } from '../../data/pralines'
 import { flags } from '../../config/featureFlags'
@@ -8,7 +8,9 @@ import './BulkOrderSummary.css'
 const PHONE_REGEX = /^[+\d][\d\s\-().]{6,19}$/
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-function buildWhatsAppMessage(activeSelections, form, t, qtyPerFlavor) {
+function buildWhatsAppMessage(activeSelections, form, t, qtyPerFlavor, sets) {
+  const totalPralines = activeSelections.length * qtyPerFlavor
+
   const lines = activeSelections.map(s => {
     const filling = fillings.find(f => f.id === s.filling)
     const base = chocolateBases.find(b => b.id === s.base)
@@ -19,7 +21,7 @@ function buildWhatsAppMessage(activeSelections, form, t, qtyPerFlavor) {
   const total = activeSelections.reduce((sum, s) => sum + qtyPerFlavor * pralinePrice(s), 0)
 
   return [
-    `🍫 *Bulk Praline Order — ${qtyPerFlavor * activeSelections.length} pralines*`,
+    `🍫 *Bulk Praline Order — ${totalPralines} pralines (${sets} set${sets > 1 ? 's' : ''})*`,
     '',
     ...lines,
     '',
@@ -29,12 +31,13 @@ function buildWhatsAppMessage(activeSelections, form, t, qtyPerFlavor) {
     form.phone ? `📞 Phone: ${form.phone}` : '',
     form.email ? `📧 Email: ${form.email}` : '',
     form.notes ? `📝 Notes: ${form.notes}` : '',
-  ].filter(l => l !== null && l !== undefined && !(l === '' && false)).join('\n').trim()
+  ].filter(l => l !== null && l !== undefined).join('\n').trim()
 }
 
-export default function BulkOrderSummary({ activeSelections, summaryRef }) {
+export default function BulkOrderSummary({ activeSelections, sets }) {
   const { t } = useTranslation()
   const qtyPerFlavor = flags.bulkOrder.qtyPerFlavor
+  const totalPralines = activeSelections.length * qtyPerFlavor
 
   const [form, setForm] = useState({ name: '', phone: '', email: '', notes: '' })
   const [errors, setErrors] = useState({})
@@ -63,7 +66,7 @@ export default function BulkOrderSummary({ activeSelections, summaryRef }) {
   const handleWhatsApp = () => {
     const e = validate()
     if (Object.keys(e).length > 0) { setErrors(e); return }
-    const msg = buildWhatsAppMessage(activeSelections, form, t, qtyPerFlavor)
+    const msg = buildWhatsAppMessage(activeSelections, form, t, qtyPerFlavor, sets)
     window.open(getWhatsAppOrderLink(msg), '_blank')
     setSubmitted(true)
   }
@@ -71,7 +74,7 @@ export default function BulkOrderSummary({ activeSelections, summaryRef }) {
   const handleEmail = async () => {
     const e = validate()
     if (Object.keys(e).length > 0) { setErrors(e); return }
-    const msg = buildWhatsAppMessage(activeSelections, form, t, qtyPerFlavor)
+    const msg = buildWhatsAppMessage(activeSelections, form, t, qtyPerFlavor, sets)
     try {
       await fetch('/api/send-order', {
         method: 'POST',
@@ -80,7 +83,7 @@ export default function BulkOrderSummary({ activeSelections, summaryRef }) {
           name: form.name,
           phone: form.phone,
           email: form.email,
-          product: `Bulk Praline Order — ${qtyPerFlavor * activeSelections.length} pralines`,
+          product: `Bulk Praline Order — ${totalPralines} pralines (${sets} set${sets > 1 ? 's' : ''})`,
           notes: msg,
         }),
       })
@@ -90,7 +93,7 @@ export default function BulkOrderSummary({ activeSelections, summaryRef }) {
 
   if (submitted) {
     return (
-      <div className="bulk-summary bulk-summary--success" ref={summaryRef}>
+      <div className="bulk-summary bulk-summary--success">
         <div className="bulk-summary__success-icon">🍫</div>
         <h2>{t('bulk_order.success_title')}</h2>
         <p>{t('bulk_order.success_message')}</p>
@@ -99,16 +102,22 @@ export default function BulkOrderSummary({ activeSelections, summaryRef }) {
   }
 
   return (
-    <div className="bulk-summary" ref={summaryRef}>
+    <div className="bulk-summary">
       <h2 className="bulk-summary__title">{t('bulk_order.summary_title')}</h2>
 
+      {sets > 1 && (
+        <p className="bulk-summary__sets-note">
+          {t('bulk_order.sets_label_plural', { sets, total: totalPralines })}
+        </p>
+      )}
+
       <ul className="bulk-summary__lines">
-        {activeSelections.map(s => {
+        {activeSelections.map((s, idx) => {
           const filling = fillings.find(f => f.id === s.filling)
           const base = chocolateBases.find(b => b.id === s.base)
           const lineTotal = qtyPerFlavor * pralinePrice(s)
           return (
-            <li key={s.filling} className="bulk-summary__line">
+            <li key={`${s.filling}-${idx}`} className="bulk-summary__line">
               <span className="bulk-summary__line-emoji">{filling?.emoji}</span>
               <span className="bulk-summary__line-desc">
                 {qtyPerFlavor}× {t(filling?.labelKey)}
@@ -121,7 +130,7 @@ export default function BulkOrderSummary({ activeSelections, summaryRef }) {
       </ul>
 
       <div className="bulk-summary__total">
-        <span>{t('bulk_order.summary_total', { qty: qtyPerFlavor * activeSelections.length, price: totalPrice })}</span>
+        <span>{t('bulk_order.summary_total', { qty: totalPralines, price: totalPrice })}</span>
       </div>
 
       <div className="bulk-summary__form">

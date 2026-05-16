@@ -1,0 +1,91 @@
+.quantity-selector {
+  margin-bottom: var(--space-8);
+}
+
+.quantity-selector__header {
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+
+.quantity-selector__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.quantity-selector__hint {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.quantity-selector__options {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.quantity-selector__option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-white);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: border-color var(--transition-base), background var(--transition-base), box-shadow var(--transition-base);
+  min-width: 90px;
+}
+
+.quantity-selector__option:hover {
+  border-color: var(--color-caramel);
+  box-shadow: var(--shadow-sm);
+}
+
+.quantity-selector__option--active {
+  border-color: var(--color-chocolate-dark);
+  border-width: 3px;
+  background: var(--color-cream);
+  box-shadow: var(--shadow-md);
+}
+
+.quantity-selector__option-qty {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-chocolate-dark);
+  line-height: 1;
+}
+
+.quantity-selector__option-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.quantity-selector__option--active .quantity-selector__option-qty {
+  color: var(--color-chocolate-dark);
+}
+
+.quantity-selector__option--active .quantity-selector__option-label {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .quantity-selector__options {
+    gap: var(--space-2);
+  }
+
+  .quantity-selector__option {
+    min-width: 70px;
+    padding: var(--space-3) var(--space-3);
+  }
+
+  .quantity-selector__option-qty {
+    font-size: var(--text-xl);
+  }
+}

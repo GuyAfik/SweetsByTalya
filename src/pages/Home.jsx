@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { social } from '../config/social'
 import { flags } from '../config/featureFlags'
+import ChocolateFountainSection from '../components/fountain/ChocolateFountainSection'
 import './Home.css'
 
 const heroSlides = [
@@ -136,6 +137,10 @@ function WhatWeOffer() {
               </Link>
             </div>
           </div>
+
+          {flags.chocolateFountain && (
+            <ChocolateFountainSection variant="card" />
+          )}
         </div>
       </div>
     </section>

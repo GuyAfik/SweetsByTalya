@@ -22,4 +22,7 @@ export const flags = {
     qtyPerFlavor: Number(import.meta.env.VITE_BULK_ORDER_QTY_PER_FLAVOR) || 20,
     maxFlavors:   Number(import.meta.env.VITE_BULK_ORDER_MAX_FLAVORS)    || 5,
   },
+
+  /** Chocolate Fountain hospitality service */
+  chocolateFountain: import.meta.env.VITE_CHOCOLATE_FOUNTAIN_ENABLED !== 'false',
 }

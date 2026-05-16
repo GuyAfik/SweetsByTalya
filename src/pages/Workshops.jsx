@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { ageGroups } from '../data/workshops'
+import { flags } from '../config/featureFlags'
+import ChocolateFountainSection from '../components/fountain/ChocolateFountainSection'
 import './Workshops.css'
 
 export default function Workshops() {
@@ -44,6 +46,10 @@ export default function Workshops() {
           </div>
         </div>
       </section>
+
+      {flags.chocolateFountain && (
+        <ChocolateFountainSection variant="banner" />
+      )}
 
     </div>
   )

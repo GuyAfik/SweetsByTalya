@@ -179,21 +179,10 @@ export default function Gallery() {
             ‹
           </button>
           <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
-            {activeCategory.photos[lightbox].type === 'video' ? (
-              <video
-                src={activeCategory.photos[lightbox].src}
-                controls
-                autoPlay
-                muted
-                playsInline
-                className="lightbox__video"
-              />
-            ) : (
-              <img
-                src={activeCategory.photos[lightbox].src}
-                alt={t(activeCategory.labelKey)}
-              />
-            )}
+            <img
+              src={activeCategory.photos[lightbox].src}
+              alt={t(activeCategory.labelKey)}
+            />
             {activeCategory.photos[lightbox].caption && (
               <p className="lightbox__caption">{activeCategory.photos[lightbox].caption}</p>
             )}

@@ -480,5 +480,26 @@
     "pay_with_applepay": "Pay with Apple Pay",
     "unavailable": "Online payment is not available at the moment. Please contact us via WhatsApp.",
     "note": "Clicking a payment option will open the app. Once payment is complete, your order will be confirmed."
+  },
+  "fountain": {
+    "nav_label": "Chocolate Fountain",
+    "offer_title": "Chocolate Fountain Hospitality",
+    "offer_desc": "Bring the magic of a flowing chocolate fountain to your event. Talya arrives with everything — a styled sweet table, fresh dipping treats, and full service so you can enjoy every moment with your guests.",
+    "item_fruits": "Fresh seasonal fruits",
+    "item_marshmallows": "Soft marshmallows",
+    "item_brownies": "Homemade brownies",
+    "item_churros": "Mini churros",
+    "occasion_1": "Birthday parties & celebrations",
+    "occasion_2": "Gatherings & meetings",
+    "occasion_3": "Corporate events",
+    "occasion_4": "Any special occasion",
+    "cta": "Book via WhatsApp",
+    "price_label": "Price on request",
+    "full_service_note": "Talya handles everything — you just enjoy with your guests",
+    "page_title": "Chocolate Fountain Hospitality",
+    "page_subtitle": "A sweet experience that flows",
+    "includes_title": "What's Included",
+    "occasions_title": "Perfect For",
+    "whatsapp_message": "Hi Talya! I'm interested in chocolate fountain hospitality for my event.\n\n📅 Event date: \n👥 Estimated guests: \n📍 Location: \n📝 Additional details: "
   }
 }

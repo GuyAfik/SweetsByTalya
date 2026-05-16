@@ -480,5 +480,26 @@
     "pay_with_applepay": "Pagar com Apple Pay",
     "unavailable": "Pagamento online não está disponível no momento. Entre em contato pelo WhatsApp.",
     "note": "Clicar em uma opção de pagamento abrirá o aplicativo. Após concluir o pagamento, seu pedido será confirmado."
+  },
+  "fountain": {
+    "nav_label": "Fonte de Chocolate",
+    "offer_title": "Hospitalidade com Fonte de Chocolate",
+    "offer_desc": "Traga a magia de uma fonte de chocolate fluindo para o seu evento. Talya chega com tudo — uma mesa de doces decorada, guloseimas para mergulhar e serviço completo para você curtir cada momento com seus convidados.",
+    "item_fruits": "Frutas frescas da estação",
+    "item_marshmallows": "Marshmallows macios",
+    "item_brownies": "Brownies caseiros",
+    "item_churros": "Mini churros",
+    "occasion_1": "Festas de aniversário e celebrações",
+    "occasion_2": "Encontros e reuniões",
+    "occasion_3": "Eventos corporativos",
+    "occasion_4": "Qualquer ocasião especial",
+    "cta": "Reservar pelo WhatsApp",
+    "price_label": "Preço sob consulta",
+    "full_service_note": "Talya cuida de tudo — você só aproveita com seus convidados",
+    "page_title": "Hospitalidade com Fonte de Chocolate",
+    "page_subtitle": "Uma experiência doce que flui",
+    "includes_title": "O Que Está Incluído",
+    "occasions_title": "Perfeito Para",
+    "whatsapp_message": "Oi Talya! Tenho interesse na hospitalidade com fonte de chocolate para o meu evento.\n\n📅 Data do evento: \n👥 Número estimado de convidados: \n📍 Local: \n📝 Detalhes adicionais: "
   }
 }

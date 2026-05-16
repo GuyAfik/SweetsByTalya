@@ -26,6 +26,7 @@ export default function Navbar() {
     { to: '/about', label: t('nav.about') },
     { to: '/gallery', label: t('nav.gallery') },
     { to: '/workshops', label: t('nav.workshops') },
+    ...(flags.chocolateFountain ? [{ to: '/fountain', label: t('fountain.nav_label') }] : []),
     { to: '/contact', label: t('nav.contact') },
   ]
 

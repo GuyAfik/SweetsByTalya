@@ -17,7 +17,6 @@ const Workshops = lazy(() => import('./pages/Workshops'))
 const WorkshopsByAge = lazy(() => import('./pages/WorkshopsByAge'))
 const WorkshopDetail = lazy(() => import('./pages/WorkshopDetail'))
 const Contact = lazy(() => import('./pages/Contact'))
-const Order = lazy(() => import('./pages/Order'))
 const PralineBuilder = lazy(() => import('./pages/PralineBuilder'))
 const BulkPralineOrder = lazy(() => import('./pages/BulkPralineOrder'))
 
@@ -55,7 +54,6 @@ export default function App() {
             <Route path="/workshops/age/:ageGroupId" element={<WorkshopsByAge />} />
             <Route path="/workshops/:slug" element={<WorkshopDetail />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/order" element={<Order />} />
             {flags.pralineBuilder && (
               <Route path="/build-your-box" element={<PralineBuilder />} />
             )}

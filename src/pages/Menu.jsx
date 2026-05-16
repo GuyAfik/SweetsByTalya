@@ -61,7 +61,7 @@ function ProductCard({ product }) {
         )}
 
         <Link
-          to={`/order?product=${encodeURIComponent(product.name)}`}
+          to="/contact"
           className="btn btn-primary btn-sm product-card__cta"
         >
           {t('menu.order_this')}

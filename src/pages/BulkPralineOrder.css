@@ -1,0 +1,56 @@
+.bulk-order-page {
+  padding-bottom: 100px;
+}
+
+.bulk-order-page__header {
+  background: linear-gradient(135deg, var(--color-chocolate-dark) 0%, var(--color-chocolate-mid) 100%);
+  color: var(--color-white);
+  padding: var(--space-16) 0 var(--space-12);
+  text-align: center;
+}
+
+.bulk-order-page__header h1 {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  color: var(--color-white);
+  margin-bottom: var(--space-3);
+}
+
+.bulk-order-page__header .accent-text {
+  font-family: var(--font-accent);
+  font-size: var(--text-xl);
+  color: var(--color-caramel-light);
+  opacity: 0.9;
+}
+
+.bulk-order-page__body {
+  padding-top: var(--space-10);
+}
+
+.bulk-order-page__tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-8);
+}
+
+.bulk-order-page__section {
+  margin-bottom: var(--space-8);
+}
+
+.bulk-order-page__hint {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+@media (max-width: 480px) {
+  .bulk-order-page__header h1 {
+    font-size: var(--text-3xl);
+  }
+
+  .bulk-order-page__header .accent-text {
+    font-size: var(--text-base);
+  }
+}

@@ -10,9 +10,16 @@ export const flags = {
   /** Show AI chatbot widget */
   chatbot: import.meta.env.VITE_CHATBOT_ENABLED !== 'false',
 
-  /** Build Your Own Box praline builder */
-  pralineBuilder: import.meta.env.VITE_FEATURE_PRALINE_BUILDER !== 'false',
+  /** Build Your Own Box praline builder (hidden by default — set VITE_FEATURE_PRALINE_BUILDER=true to show) */
+  pralineBuilder: import.meta.env.VITE_FEATURE_PRALINE_BUILDER === 'true',
 
   /** Require payment before sending the order email to Talya (on by default) */
   requirePaymentBeforeOrder: import.meta.env.VITE_REQUIRE_PAYMENT_BEFORE_ORDER !== 'false',
+
+  /** Bulk praline order — "Pick Your 5" feature */
+  bulkOrder: {
+    enabled:      import.meta.env.VITE_BULK_ORDER_ENABLED      !== 'false',
+    qtyPerFlavor: Number(import.meta.env.VITE_BULK_ORDER_QTY_PER_FLAVOR) || 20,
+    maxFlavors:   Number(import.meta.env.VITE_BULK_ORDER_MAX_FLAVORS)    || 5,
+  },
 }

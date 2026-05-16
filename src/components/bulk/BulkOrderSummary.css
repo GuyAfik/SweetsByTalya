@@ -1,0 +1,188 @@
+.bulk-summary {
+  background: var(--color-white);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+.bulk-summary--success {
+  text-align: center;
+  padding: var(--space-12);
+}
+
+.bulk-summary__success-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-4);
+}
+
+.bulk-summary--success h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.bulk-summary--success p {
+  color: var(--color-text-secondary);
+  font-size: var(--text-lg);
+}
+
+.bulk-summary__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.bulk-summary__lines {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.bulk-summary__line {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-cream-dark);
+}
+
+.bulk-summary__line-emoji {
+  font-size: 1.25rem;
+  width: 28px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.bulk-summary__line-desc {
+  flex: 1;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.bulk-summary__line-base {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.bulk-summary__line-price {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-chocolate-dark);
+  flex-shrink: 0;
+}
+
+.bulk-summary__total {
+  text-align: right;
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-chocolate-dark);
+  padding: var(--space-4) 0;
+  border-top: 2px solid var(--color-chocolate-dark);
+  margin-bottom: var(--space-8);
+}
+
+.bulk-summary__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.bulk-summary__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.bulk-summary__field label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.bulk-summary__field input,
+.bulk-summary__field textarea {
+  padding: var(--space-3) var(--space-4);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  background: var(--color-cream);
+  transition: border-color var(--transition-base);
+  resize: vertical;
+}
+
+.bulk-summary__field input:focus,
+.bulk-summary__field textarea:focus {
+  outline: none;
+  border-color: var(--color-caramel);
+}
+
+.bulk-summary__input--error {
+  border-color: #c0392b !important;
+}
+
+.bulk-summary__error {
+  font-size: var(--text-xs);
+  color: #c0392b;
+}
+
+.bulk-summary__actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.bulk-summary__btn {
+  flex: 1;
+  min-width: 160px;
+  padding: var(--space-4) var(--space-6);
+  border: none;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity var(--transition-base), transform var(--transition-fast);
+}
+
+.bulk-summary__btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.bulk-summary__btn--whatsapp {
+  background: #25D366;
+  color: var(--color-white);
+}
+
+.bulk-summary__btn--email {
+  background: var(--color-chocolate-dark);
+  color: var(--color-white);
+}
+
+@media (max-width: 480px) {
+  .bulk-summary {
+    padding: var(--space-5);
+  }
+
+  .bulk-summary__actions {
+    flex-direction: column;
+  }
+
+  .bulk-summary__btn {
+    width: 100%;
+  }
+}

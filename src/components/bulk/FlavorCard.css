@@ -1,0 +1,159 @@
+.flavor-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--color-white);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), opacity var(--transition-base);
+  text-align: center;
+  min-height: 160px;
+  user-select: none;
+}
+
+.flavor-card:hover:not(.flavor-card--locked) {
+  border-color: var(--color-caramel);
+  box-shadow: var(--shadow-hover);
+}
+
+.flavor-card:focus-visible {
+  outline: 2px solid var(--color-caramel);
+  outline-offset: 2px;
+}
+
+.flavor-card--selected {
+  border-color: var(--flavor-color, var(--color-caramel));
+  border-width: 3px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: var(--color-cream);
+}
+
+.flavor-card--locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.flavor-card__emoji {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.flavor-card__name {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.flavor-card__price {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.flavor-card__locked-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.flavor-card__qty {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-chocolate-mid);
+  background: var(--color-cream-dark);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+}
+
+.flavor-card__bases {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+  margin-top: var(--space-1);
+}
+
+.flavor-card__base-chip {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  padding: 0;
+}
+
+.flavor-card__base-chip:hover {
+  transform: scale(1.15);
+}
+
+.flavor-card__base-chip--active {
+  box-shadow: 0 0 0 3px var(--color-white), 0 0 0 5px var(--color-chocolate-dark);
+  transform: scale(1.1);
+}
+
+.flavor-card__base-name {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.flavor-card__subtotal {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.flavor-card__select {
+  margin-top: auto;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-chocolate-dark);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-base);
+  width: 100%;
+}
+
+.flavor-card__select:hover {
+  background: var(--color-chocolate-mid);
+}
+
+.flavor-card__remove {
+  margin-top: auto;
+  padding: var(--space-1) var(--space-3);
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  cursor: pointer;
+  transition: color var(--transition-base), border-color var(--transition-base);
+}
+
+.flavor-card__remove:hover {
+  color: #c0392b;
+  border-color: #c0392b;
+}
+
+@media (max-width: 480px) {
+  .flavor-card {
+    padding: var(--space-3);
+    min-height: 140px;
+  }
+
+  .flavor-card__emoji {
+    font-size: 1.75rem;
+  }
+
+  .flavor-card__base-chip {
+    width: 32px;
+    height: 32px;
+  }
+}

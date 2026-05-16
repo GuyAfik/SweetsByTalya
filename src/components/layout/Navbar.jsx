@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from '../shared/LanguageSwitcher'
 import { social } from '../../config/social'
+import { flags } from '../../config/featureFlags'
 import './Navbar.css'
 
 export default function Navbar() {
@@ -61,9 +62,16 @@ export default function Navbar() {
           <>
             <div className="navbar__right">
               <LanguageSwitcher />
-              <Link to="/build-your-box" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
-                {t('nav.build_box')}
-              </Link>
+              {flags.bulkOrder.enabled && (
+                <Link to="/bulk-order" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
+                  {t('nav.bulk_order')}
+                </Link>
+              )}
+              {flags.pralineBuilder && (
+                <Link to="/build-your-box" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
+                  {t('nav.build_box')}
+                </Link>
+              )}
             </div>
             <nav className="navbar__links" aria-label="Main navigation">
               {[...navLinks].reverse().map(({ to, label }) => (
@@ -106,9 +114,16 @@ export default function Navbar() {
             </nav>
             <div className="navbar__right">
               <LanguageSwitcher />
-              <Link to="/build-your-box" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
-                {t('nav.build_box')}
-              </Link>
+              {flags.bulkOrder.enabled && (
+                <Link to="/bulk-order" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
+                  {t('nav.bulk_order')}
+                </Link>
+              )}
+              {flags.pralineBuilder && (
+                <Link to="/build-your-box" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
+                  {t('nav.build_box')}
+                </Link>
+              )}
             </div>
           </>
         )}
@@ -142,9 +157,16 @@ export default function Navbar() {
               {label}
             </NavLink>
           ))}
-          <Link to="/build-your-box" className="btn btn-caramel navbar__mobile-cta" onClick={closeMenu}>
-            {t('nav.build_box')}
-          </Link>
+          {flags.bulkOrder.enabled && (
+            <Link to="/bulk-order" className="btn btn-caramel navbar__mobile-cta" onClick={closeMenu}>
+              {t('nav.bulk_order')}
+            </Link>
+          )}
+          {flags.pralineBuilder && (
+            <Link to="/build-your-box" className="btn btn-caramel navbar__mobile-cta" onClick={closeMenu}>
+              {t('nav.build_box')}
+            </Link>
+          )}
           <div className="navbar__mobile-lang">
             <LanguageSwitcher />
           </div>

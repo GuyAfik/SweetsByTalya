@@ -19,6 +19,7 @@ const WorkshopDetail = lazy(() => import('./pages/WorkshopDetail'))
 const Contact = lazy(() => import('./pages/Contact'))
 const Order = lazy(() => import('./pages/Order'))
 const PralineBuilder = lazy(() => import('./pages/PralineBuilder'))
+const BulkPralineOrder = lazy(() => import('./pages/BulkPralineOrder'))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -57,6 +58,9 @@ export default function App() {
             <Route path="/order" element={<Order />} />
             {flags.pralineBuilder && (
               <Route path="/build-your-box" element={<PralineBuilder />} />
+            )}
+            {flags.bulkOrder.enabled && (
+              <Route path="/bulk-order" element={<BulkPralineOrder />} />
             )}
             {/* Catch-all → Home */}
             <Route path="*" element={<Home />} />

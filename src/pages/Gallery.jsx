@@ -10,14 +10,22 @@ const categories = [
   {
     id: 'pralines',
     labelKey: 'gallery.filter_pralines',
-    cover: '/images/gallery/pralines-1.jpg',
+    cover: '/images/gallery/pralines-new-1.jpg',
     photos: [
+      { src: '/images/gallery/pralines-new-1.jpg',  caption: '' },
+      { src: '/images/gallery/pralines-new-2.jpg',  caption: '' },
+      { src: '/images/gallery/pralines-new-3.jpg',  caption: '' },
+      { src: '/images/gallery/pralines-new-4.jpg',  caption: '' },
+      { src: '/images/gallery/pralines-new-5.jpg',  caption: '' },
+      { src: '/images/gallery/pralines-new-6.jpg',  caption: '' },
+      { src: '/images/gallery/pralines-new-7.jpg',  caption: '' },
+      { src: '/images/gallery/pralines-new-8.jpg',  caption: '' },
+      { src: '/images/gallery/pralines-new-9.jpg',  caption: '' },
+      { src: '/images/gallery/pralines-new-10.jpg', caption: '' },
       { src: '/images/gallery/pralines-1.jpg', caption: '' },
       { src: '/images/gallery/pralines-2.jpg', caption: '' },
       { src: '/images/gallery/pralines-3.jpg', caption: '' },
-      { src: '/images/gallery/pralines-4.jpg', caption: '' },
       { src: '/images/gallery/pralines-5.jpg', caption: '' },
-      { src: '/images/gallery/pralines-7.jpg', caption: '' },
       { src: '/images/gallery/pralines-8.jpg', caption: '' },
     ],
   },
@@ -123,7 +131,7 @@ export default function Gallery() {
                     key={idx}
                     className="gallery-item"
                     onClick={() => openLightbox(idx)}
-                    aria-label={`View photo ${idx + 1}`}
+                    aria-label={`View item ${idx + 1}`}
                   >
                     <img
                       src={photo.src}
@@ -171,10 +179,21 @@ export default function Gallery() {
             ‹
           </button>
           <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
-            <img
-              src={activeCategory.photos[lightbox].src}
-              alt={t(activeCategory.labelKey)}
-            />
+            {activeCategory.photos[lightbox].type === 'video' ? (
+              <video
+                src={activeCategory.photos[lightbox].src}
+                controls
+                autoPlay
+                muted
+                playsInline
+                className="lightbox__video"
+              />
+            ) : (
+              <img
+                src={activeCategory.photos[lightbox].src}
+                alt={t(activeCategory.labelKey)}
+              />
+            )}
             {activeCategory.photos[lightbox].caption && (
               <p className="lightbox__caption">{activeCategory.photos[lightbox].caption}</p>
             )}

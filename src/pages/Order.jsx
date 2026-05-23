@@ -9,7 +9,6 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function validateForm(form, t) {
   const errors = {}
-
   if (!form.name.trim()) {
     errors.name = t('order.validation_name')
   }

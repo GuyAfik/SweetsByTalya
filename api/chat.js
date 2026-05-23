@@ -27,13 +27,19 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'OpenAI API key not configured' })
   }
 
-  const { messages, language = 'en', menuSummary = '', pralinePricing = '' } = req.body
+  const {
+    messages,
+    language = 'en',
+    menuSummary = '',
+    pralinePricing = '',
+    offeringsSummary = '',
+  } = req.body
 
   if (!messages || !Array.isArray(messages)) {
     return res.status(400).json({ error: 'messages array required' })
   }
 
-  const systemPrompt = buildSystemPrompt(language, menuSummary, pralinePricing)
+  const systemPrompt = buildSystemPrompt(language, menuSummary, pralinePricing, offeringsSummary)
 
   try {
     const openaiRes = await fetch(OPENAI_API_URL, {

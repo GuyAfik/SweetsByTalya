@@ -150,8 +150,14 @@ async function handleChat(data, res) {
     return
   }
 
-  const { messages, language = 'en', menuSummary = '', pralinePricing = '' } = data
-  const systemPrompt = buildSystemPrompt(language, menuSummary, pralinePricing)
+  const {
+    messages,
+    language = 'en',
+    menuSummary = '',
+    pralinePricing = '',
+    offeringsSummary = '',
+  } = data
+  const systemPrompt = buildSystemPrompt(language, menuSummary, pralinePricing, offeringsSummary)
 
   try {
     const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {

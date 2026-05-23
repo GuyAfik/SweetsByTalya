@@ -18,7 +18,6 @@ export default function WorkshopDetail() {
 
   return (
     <div className="wd-page">
-
       {/* ── Back link ────────────────────────────────────────────────────── */}
       <div className="wd-back container">
         <Link to="/workshops" className="wd-back__link">

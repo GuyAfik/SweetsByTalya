@@ -19,12 +19,13 @@
   overflow: hidden;
   box-shadow: var(--shadow-lg, 0 8px 32px rgba(59,31,14,0.18));
   aspect-ratio: 4 / 5;
+  background: var(--color-chocolate-dark, #3B1F0E);
 }
 
 .fountain-banner__image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.4s ease;
 }
 

@@ -10,6 +10,7 @@ const heroSlides = [
   { src: '/images/workshops/friends-at-heart/workshop-12-1.jpeg', alt: 'Kids chocolate workshop' },
   { src: '/images/workshops/friends-at-heart/workshop-12-2.jpeg', alt: 'Workshop activity' },
   { src: '/images/gallery/pralines-5.jpg',                        alt: 'Handcrafted pralines gift box' },
+  { src: '/images/gallery/pralines-new-15.jpg',                   alt: 'Handcrafted pralines selection' },
   { src: '/images/workshops/family-memories/workshop-family-1.jpeg', alt: 'Family chocolate workshop' },
   { src: '/images/gallery/pralines-1.jpg',                        alt: 'Assorted handcrafted pralines' },
   { src: '/images/workshops/surprise-egg-teens/sample-1.jpeg',    alt: 'Surprise egg workshop' },

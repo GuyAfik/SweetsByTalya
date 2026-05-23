@@ -5,32 +5,15 @@
 /* ── Hero ───────────────────────────────────────────────────── */
 .fountain-hero {
   position: relative;
-  min-height: 70vh;
+  min-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-}
-
-.fountain-hero__image-wrap {
-  position: absolute;
-  inset: 0;
-}
-
-.fountain-hero__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.fountain-hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(59, 31, 14, 0.55) 0%,
-    rgba(59, 31, 14, 0.72) 100%
-  );
+  background:
+    radial-gradient(circle at 20% 20%, rgba(200, 134, 10, 0.18) 0%, transparent 55%),
+    radial-gradient(circle at 80% 80%, rgba(242, 196, 206, 0.14) 0%, transparent 55%),
+    linear-gradient(135deg, var(--color-chocolate-dark, #3B1F0E) 0%, var(--color-chocolate-mid, #5C3317) 100%);
 }
 
 .fountain-hero__content {
@@ -85,12 +68,13 @@
   overflow: hidden;
   box-shadow: var(--shadow-lg, 0 8px 32px rgba(59,31,14,0.18));
   aspect-ratio: 4 / 5;
+  background: var(--color-chocolate-dark, #3B1F0E);
 }
 
 .fountain-about__image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.4s ease;
 }
 
@@ -232,8 +216,10 @@
   }
 
   .fountain-about__image-wrap {
-    aspect-ratio: 16 / 9;
-    max-height: 320px;
+    aspect-ratio: 4 / 5;
+    max-height: 480px;
+    max-width: 380px;
+    margin: 0 auto;
   }
 
   .fountain-details__grid {

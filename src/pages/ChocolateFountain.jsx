@@ -25,18 +25,6 @@ export default function ChocolateFountain() {
     <div className="fountain-page">
 
       <section className="fountain-hero">
-        <div className="fountain-hero__image-wrap">
-          <img
-            src="/images/fountain/fountain-hero.jpg"
-            alt={t('fountain.page_title')}
-            className="fountain-hero__image"
-            loading="eager"
-            onError={(e) => {
-              e.target.src = 'https://placehold.co/1400x700/3B1F0E/F2C4CE?text=🍫'
-            }}
-          />
-          <div className="fountain-hero__overlay" />
-        </div>
         <div className="container fountain-hero__content">
           <div className="fountain-hero__emoji">🍫</div>
           <h1 className="fountain-hero__title">{t('fountain.page_title')}</h1>
@@ -56,9 +44,6 @@ export default function ChocolateFountain() {
                 alt="Chocolate fountain sweet table setup"
                 className="fountain-about__image"
                 loading="lazy"
-                onError={(e) => {
-                  e.target.src = 'https://placehold.co/600x500/F5E6D0/3B1F0E?text=🍫'
-                }}
               />
             </div>
             <div className="fountain-about__text">

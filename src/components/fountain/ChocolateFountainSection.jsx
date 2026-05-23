@@ -27,13 +27,10 @@ export default function ChocolateFountainSection({ variant = 'banner' }) {
       <div className="offer-card offer-card--fountain">
         <div className="offer-card__image-wrap">
           <img
-            src="/images/fountain/fountain-hero.jpg"
+            src="/images/fountain/fountain-table.jpg"
             alt={t('fountain.offer_title')}
             className="offer-card__image"
             loading="lazy"
-            onError={(e) => {
-              e.target.src = 'https://placehold.co/600x450/3B1F0E/F2C4CE?text=🍫'
-            }}
           />
         </div>
         <div className="offer-card__body">
@@ -59,13 +56,10 @@ export default function ChocolateFountainSection({ variant = 'banner' }) {
         <div className="fountain-banner__inner">
           <div className="fountain-banner__image-wrap">
             <img
-              src="/images/fountain/fountain-hero.jpg"
+              src="/images/fountain/fountain-table.jpg"
               alt={t('fountain.offer_title')}
               className="fountain-banner__image"
               loading="lazy"
-              onError={(e) => {
-                e.target.src = 'https://placehold.co/600x500/3B1F0E/F2C4CE?text=🍫'
-              }}
             />
           </div>
 

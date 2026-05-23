@@ -1,216 +1,199 @@
 // ============================================================
-// Sweets by Talya — Full Offerings Knowledge Base
-// Builds a comprehensive summary of EVERY offering on the site
-// for the AI chatbot, derived from the existing data files.
-// Single source of truth — never hardcode prices/flavors here.
+// Sweets by Talya — Full Offerings Knowledge Base for AI
+// Builds a comprehensive summary of EVERY offering on the site.
+// Uses the English translation JSON directly (no i18n runtime
+// dependency) so the knowledge base is always complete and
+// accurate regardless of language or initialization state.
+// The full summary is sent as `offeringsSummary` to the API.
 // ============================================================
 
-import { products } from './menu.js'
+import en from '../../public/locales/en/translation.json' with { type: 'json' }
 import {
   chocolateBases,
   fillings,
   predefinedCombinations,
   pralinePrice,
 } from './pralines.js'
-import { workshops, ageGroups, getAgeGroupById } from './workshops.js'
+import { workshops, ageGroups } from './workshops.js'
+import { products } from './menu.js'
 
-// ── Helpers ──────────────────────────────────────────────────────────────────
-function titleCase(str) {
-  return String(str || '')
-    .replace(/_/g, ' ')
-    .replace(/\b\w/g, (c) => c.toUpperCase())
+function t(key) {
+  const parts = key.split('.')
+  let obj = en
+  for (const part of parts) {
+    if (obj == null || typeof obj !== 'object') return key
+    obj = obj[part]
+  }
+  return typeof obj === 'string' ? obj : key
 }
 
-function pickLocalized(i18n, key, fallback = '') {
-  if (!i18n || typeof i18n.t !== 'function') return fallback
-  const value = i18n.t(key, { defaultValue: fallback })
-  return value || fallback
-}
-
-// ── Section: Brand & overview ────────────────────────────────────────────────
+// ── Section: Brand overview ──────────────────────────────────────────────────
 function brandSection() {
   return `BRAND OVERVIEW
-Sweets by Talya is a boutique handmade chocolate business owned by Talya, who brought her chocolate passion from Brazil. Every praline and creation is handcrafted using premium Belgian chocolate and fresh local ingredients. Based in Israel, prices are in shekels (₪).`
+Sweets by Talya is a boutique handmade chocolate business owned by Talya, who brought her chocolate passion from Brazil. Every praline and creation is handcrafted using premium Belgian chocolate and fresh local ingredients. Based in Israel — prices are in shekels (₪). Not kosher-certified.`
 }
 
-// ── Section: Pralines (the flagship offering) ────────────────────────────────
-function pralinesSection(i18n) {
+// ── Section: Pralines bulk order ─────────────────────────────────────────────
+function pralinesSection() {
   const basesList = chocolateBases
-    .map((b) => {
-      const label = pickLocalized(i18n, b.labelKey, titleCase(b.id))
-      return `  - ${label}: ₪${b.price}`
-    })
+    .map((b) => `  • ${t(b.labelKey)}: ₪${b.price} per praline`)
     .join('\n')
 
   const fillingsList = fillings
-    .map((f) => {
-      const label = pickLocalized(i18n, f.labelKey, titleCase(f.id))
-      return `  - ${label}: ₪${f.price}`
-    })
+    .map((f) => `  • ${t(f.labelKey)}: ₪${f.price} per praline`)
     .join('\n')
 
   const examples = [
-    [chocolateBases[0], fillings.find((f) => f.id === 'pistachio')],
-    [chocolateBases[2], fillings.find((f) => f.id === 'caramel')],
-    [chocolateBases[3], fillings.find((f) => f.id === 'lemon_sicilian')],
+    [chocolateBases.find((b) => b.id === 'dark_70'), fillings.find((f) => f.id === 'pistachio')],
+    [chocolateBases.find((b) => b.id === 'milk'),    fillings.find((f) => f.id === 'caramel')],
+    [chocolateBases.find((b) => b.id === 'white'),   fillings.find((f) => f.id === 'lemon_sicilian')],
   ]
     .filter(([b, f]) => b && f)
-    .map(([b, f]) => {
-      const bn = pickLocalized(i18n, b.labelKey, titleCase(b.id))
-      const fn = pickLocalized(i18n, f.labelKey, titleCase(f.id))
-      return `  - ${bn} + ${fn} = ₪${b.price + f.price} per praline`
-    })
+    .map(([b, f]) => `  • ${t(b.labelKey)} + ${t(f.labelKey)} = ₪${b.price + f.price} per praline`)
     .join('\n')
 
   const combos = predefinedCombinations
     .map((c) => {
-      const name = pickLocalized(i18n, c.nameKey, titleCase(c.id))
-      const desc = pickLocalized(i18n, c.descKey, '')
-      const total = c.selections.reduce(
-        (sum, sel) => sum + pralinePrice(sel),
-        0,
-      )
-      const perSet = total * 20 // 20 of each = full 100-praline set
+      const name = t(c.nameKey)
+      const desc = t(c.descKey)
+      const totalPerPraline = c.selections.reduce((sum, sel) => sum + pralinePrice(sel), 0)
+      const setPrice = totalPerPraline * 20
       const flavorList = c.selections
         .map((sel) => {
           const fl = fillings.find((f) => f.id === sel.filling)
           const bs = chocolateBases.find((b) => b.id === sel.base)
           if (!fl || !bs) return null
-          return `${pickLocalized(i18n, fl.labelKey, titleCase(fl.id))} on ${pickLocalized(i18n, bs.labelKey, titleCase(bs.id))}`
+          return `${t(fl.labelKey)} on ${t(bs.labelKey)}`
         })
         .filter(Boolean)
         .join(', ')
-      return `  - ${name}${desc ? ` — ${desc}` : ''}. Flavors: ${flavorList}. Approx. ₪${perSet} per set of 100.`
+      return `  • ${name} — ${desc}. Flavors: ${flavorList}. Approx. ₪${setPrice} per set of 100.`
     })
     .join('\n')
 
-  return `OFFERING 1: HANDCRAFTED PRALINES (bulk orders)
-Minimum order: 100 pralines (one "set" = 5 flavors × 20 pralines each). Customers can order multiple sets.
+  return `OFFERING 1: HANDCRAFTED PRALINES (bulk orders — minimum 100 pieces)
+How it works: customers choose 5 flavors, get 20 of each = 100 pralines per set. Multiple sets can be ordered.
 Each praline price = chocolate base price + filling price.
 
-Chocolate bases (price per praline):
+Chocolate bases (4 options):
 ${basesList}
 
-Available fillings (16 total, price per praline added to base):
+Fillings (16 options):
 ${fillingsList}
 
 Pricing examples:
 ${examples}
 
-Chef's predefined collections (great for indecisive customers):
+Chef's predefined collections (7 options — great for customers who want a recommendation):
 ${combos}
 
-Where to order: direct customers to the "Order Pralines" page (/bulk-order) on the website. They can pick a Chef's collection OR build their own from 16 fillings × 4 bases.`
+Occasions: birthday parties, weddings, engagements, corporate events, gifts, any special occasion.
+Where to order: the "Order Pralines" page (Hebrew: "הזמנת פרלינים") — customers can visually build their set or pick a Chef's collection. Never say "/bulk-order".`
 }
 
 // ── Section: Workshops ───────────────────────────────────────────────────────
-function workshopsSection(i18n) {
-  const groups = ageGroups
-    .map((g) => {
-      const label = pickLocalized(i18n, g.labelKey, g.id)
-      return `${label}${g.comingSoon ? ' (coming soon)' : ''}`
-    })
-    .join(', ')
-
-  const tiers = (w) =>
-    (w.pricingTiers || [])
-      .map((t) => `${t.participants} ppl: ${pickLocalized(i18n, `workshops.${t.priceKey}`, '?')}`)
-      .join(' | ')
+function workshopsSection() {
+  const priceTiers = {
+    workshop1_price_tier1: t('workshops.workshop1_price_tier1'),
+    workshop1_price_tier2: t('workshops.workshop1_price_tier2'),
+    workshop1_price_tier3: t('workshops.workshop1_price_tier3'),
+    workshop1_price_tier4: t('workshops.workshop1_price_tier4'),
+  }
 
   const workshopLines = workshops
     .filter((w) => w.available !== false)
     .map((w) => {
-      const title = pickLocalized(i18n, w.titleKey, w.slug)
-      const ages = pickLocalized(i18n, w.agesKey, '')
-      const subtitle = pickLocalized(i18n, w.subtitleKey, '')
-      const group = getAgeGroupById(w.ageGroupId)
-      const groupLabel = group ? pickLocalized(i18n, group.labelKey, group.id) : ''
-      return `  - ${title} [${groupLabel}${ages ? `, ${ages}` : ''}]
+      const title = t(w.titleKey)
+      const ages = t(w.agesKey)
+      const subtitle = t(w.subtitleKey)
+      const group = ageGroups.find((g) => g.id === w.ageGroupId)
+      const groupLabel = group ? t(group.labelKey) : ''
+      const tiers = (w.pricingTiers || [])
+        .map((tier) => `${tier.participants} participants: ${priceTiers[tier.priceKey] || '?'}`)
+        .join(', ')
+      return `  • ${title} [${groupLabel}${ages ? `, ${ages}` : ''}]
     ${subtitle}
-    Pricing: ${tiers(w) || 'on request'}
-    Link: /workshops/${w.slug}`
+    Pricing: ${tiers || 'on request'}
+    URL: /workshops/${w.slug}`
     })
     .join('\n')
 
-  return `OFFERING 2: CHOCOLATE WORKSHOPS
-Hands-on chocolate-making experiences hosted at the customer's location. Age groups available: ${groups}.
-Workshops include all materials, facilitation, decorations, and the gift box each participant takes home.
+  return `OFFERING 2: CHOCOLATE WORKSHOPS (hosted at the customer's location)
+Hands-on chocolate-making experiences. Talya comes to you with all materials.
+Age groups: Ages 5–9 (coming soon), Ages 10–13, Ages 14+.
 
 Available workshops:
 ${workshopLines}
 
-Important notes for customers:
-  - Kashrut is NOT guaranteed. Materials may contain allergens (nuts, peanuts, etc.). Customers with allergies must consult before booking.
-  - Hosting requirements: fridge with one free shelf, microwave, tables/chairs, climate-controlled space (chocolate melts).
-Where to book: direct customers to /workshops or have them message Talya via WhatsApp.`
+What participants take home: decorated gift box with their creations, ribbon, and a "Young Chocolatier" certificate.
+Hosting requirements: fridge with one free shelf, microwave, tables/chairs for children, climate-controlled space (chocolate melts in heat).
+Allergen note: kashrut is NOT guaranteed. Materials may contain nuts, peanuts and other allergens. Customers with allergies must consult before booking.
+Occasions: birthday parties, bat mitzvahs, girls' events, team building, family experiences.
+Where to book: the "Workshops" page (Hebrew: "סדנאות") or WhatsApp.`
 }
 
 // ── Section: Chocolate Fountain ──────────────────────────────────────────────
-function fountainSection(i18n) {
-  const desc = pickLocalized(
-    i18n,
-    'fountain.offer_desc',
-    'A flowing chocolate fountain with styled sweet table, dipping treats and full service for any event.',
-  )
+function fountainSection() {
   const includes = ['item_fruits', 'item_marshmallows', 'item_brownies', 'item_churros']
-    .map((k) => pickLocalized(i18n, `fountain.${k}`, k))
+    .map((k) => t(`fountain.${k}`))
     .join(', ')
   const occasions = ['occasion_1', 'occasion_2', 'occasion_3', 'occasion_4']
-    .map((k) => pickLocalized(i18n, `fountain.${k}`, k))
+    .map((k) => t(`fountain.${k}`))
     .join(', ')
 
   return `OFFERING 3: CHOCOLATE FOUNTAIN HOSPITALITY
-${desc}
+${t('fountain.offer_desc')}
 Includes: ${includes}.
 Perfect for: ${occasions}.
-Pricing: on request — depends on guest count and event location. Talya handles everything — setup, fresh dipping treats, full service, and cleanup.
-Where to book: /fountain page on the website, or message via WhatsApp with event date, guest count, and location.`
+Pricing: on request — depends on guest count and event location.
+Full service: Talya handles everything — setup, fresh dipping treats, service during the event, and cleanup. You just enjoy with your guests.
+Where to book: the "Chocolate Fountain" page (Hebrew: "מזרקת שוקולד") or WhatsApp with event date, guest count, and location.`
 }
 
-// ── Section: Menu (retail / single items) ────────────────────────────────────
+// ── Section: Retail menu ─────────────────────────────────────────────────────
 function menuSection() {
   const available = products.filter((p) => p.available)
   if (!available.length) return ''
   const lines = available
     .map((p) => {
-      const priceText = p.price
-        ? `${p.currency}${p.price} ${p.unit}`
-        : 'Price on request'
+      const priceText = p.price ? `₪${p.price} ${p.unit}` : 'Price on request'
       const allergens = p.allergens?.length ? p.allergens.join(', ') : 'none'
-      return `  - ${p.name}: ${p.description}. ${priceText}. Allergens: ${allergens}.`
+      return `  • ${p.name}: ${p.description}. ${priceText}. Allergens: ${allergens}.`
     })
     .join('\n')
-  return `OFFERING 4: RETAIL MENU (single-item purchases, brownies, chocolate boxes)
+  return `OFFERING 4: RETAIL MENU (individual items)
 ${lines}`
 }
 
-// ── Section: Contact & site navigation ───────────────────────────────────────
-function contactSection() {
-  return `CONTACT & LINKS
-  - Order pralines in bulk: /bulk-order
-  - Workshops: /workshops
-  - Chocolate fountain: /fountain
-  - Full menu: /menu
-  - About Talya: /about
-  - Gallery: /gallery
-  - Contact form / WhatsApp: /contact
-  - All inquiries can also go via WhatsApp directly.`
+// ── Section: Site navigation ─────────────────────────────────────────────────
+function navigationSection() {
+  return `WEBSITE PAGES — use the page NAME when directing customers, not the URL path.
+  • "הזמנת פרלינים" / "Order Pralines" → /bulk-order — interactive praline builder
+  • "סדנאות" / "Workshops" → /workshops — browse and book workshops
+  • "מזרקת שוקולד" / "Chocolate Fountain" → /fountain — fountain hospitality service
+  • "תפריט" / "Menu" → /menu — full retail menu
+  • "אודות" / "About" → /about — about Talya and the brand
+  • "גלריה" / "Gallery" → /gallery — photo gallery
+  • "צור קשר" / "Contact" → /contact — contact form and WhatsApp
+
+When directing a customer to a page, say the page name in their language (e.g. in Hebrew say "עמוד הזמנת פרלינים", in English say "Order Pralines page"). Never say the raw URL like "/bulk-order".`
 }
 
 // ── Public API ───────────────────────────────────────────────────────────────
 /**
- * Build a comprehensive offerings summary string used by the AI chatbot.
- * Pass the i18next instance to get localized labels in the user's current
- * language; otherwise English fallbacks are used.
+ * Returns a comprehensive plain-text knowledge base of all Sweets by Talya
+ * offerings. Pass this as `offeringsSummary` in the chat API request body.
+ * The i18n parameter is accepted for API compatibility but not used —
+ * English text is sourced directly from the translation JSON.
  */
-export function getOfferingsSummaryForAI(i18n) {
+export function getOfferingsSummaryForAI(_i18n) {
   return [
     brandSection(),
-    pralinesSection(i18n),
-    workshopsSection(i18n),
-    fountainSection(i18n),
+    pralinesSection(),
+    workshopsSection(),
+    fountainSection(),
     menuSection(),
-    contactSection(),
+    navigationSection(),
   ]
     .filter(Boolean)
     .join('\n\n')

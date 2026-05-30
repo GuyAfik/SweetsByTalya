@@ -7,12 +7,12 @@
 // ── Age group categories (controls listing page sections) ────────────────────
 export const ageGroups = [
   {
-    id: 'ages-5-9',
-    labelKey: 'workshops.age_group_5_9',
-    icon: '🌟',
-    color: '#f57f17',
-    bgGradient: 'linear-gradient(135deg, #fff9c4 0%, #fff176 50%, #fff9c4 100%)',
-    comingSoon: true,
+    id: 'ages-5-11',
+    labelKey: 'workshops.age_group_5_11',
+    icon: '🎨',
+    color: '#e65100',
+    bgGradient: 'linear-gradient(135deg, #fff3e0 0%, #ffe0b2 50%, #fff3e0 100%)',
+    comingSoon: false,
   },
   {
     id: 'ages-10-13',
@@ -42,6 +42,45 @@ export function getAgeGroupById(id) {
 }
 
 export const workshops = [
+  {
+    slug: 'chocolate-painting',
+    ageGroupId: 'ages-5-11',
+    icon: '🎨',
+    color: '#e65100',
+    bgGradient: 'linear-gradient(135deg, #fff3e0 0%, #ffe0b2 50%, #fff3e0 100%)',
+    titleKey: 'workshops.w5_title',
+    agesKey: 'workshops.w5_ages',
+    subtitleKey: 'workshops.w5_subtitle',
+    available: true,
+    samplePhotos: [
+      '/images/workshops/chocolate-painting/workshop-1.jpeg',
+    ],
+    occasions: [
+      { icon: '🎂', key: 'occasion_birthday' },
+      { icon: '🏫', key: 'w5_occasion_school' },
+      { icon: '👨‍👩‍👧', key: 'w4_occasion_family' },
+      { icon: '🌟', key: 'occasion_other' },
+    ],
+    activities: [
+      { num: 1, icon: '🍫', key: 'w5_activity1' },
+      { num: 2, icon: '🎨', key: 'w5_activity2' },
+      { num: 3, icon: '🖌️', key: 'w5_activity3' },
+      { num: 4, icon: '🏛️', key: 'w5_activity4' },
+    ],
+    closingKey: 'workshops.w5_activities_closing',
+    pricingTiers: [
+      { participants: '5–6',  priceKey: 'workshop1_price_tier1' },
+      { participants: '7–10', priceKey: 'workshop1_price_tier2' },
+      { participants: '11–16',priceKey: 'workshop1_price_tier3' },
+      { participants: '17+',  priceKey: 'workshop1_price_tier4' },
+    ],
+    requirements: [
+      { icon: '❄️', key: 'w3_req4' },
+      { icon: '🪑', key: 'w3_req3' },
+      { icon: '📡', key: 'w3_req2' },
+      { icon: '🧊', key: 'w3_req1' },
+    ],
+  },
   {
     slug: 'friends-at-heart',
     ageGroupId: 'ages-10-13',

@@ -52,10 +52,10 @@ function WorkshopCard({ workshop }) {
         '--ws-color': workshop.color || '#c2185b',
       }}
     >
-      {workshop.samplePhotos?.[0] && (
+      {(workshop.listingPhoto || workshop.samplePhotos?.[0]) && (
         <div className="ws-workshop-card__photo-wrap">
           <img
-            src={workshop.samplePhotos[0]}
+            src={workshop.listingPhoto || workshop.samplePhotos[0]}
             alt={t(workshop.titleKey)}
             className="ws-workshop-card__photo"
             loading="lazy"

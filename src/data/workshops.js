@@ -53,10 +53,9 @@ export const workshops = [
     subtitleKey: 'workshops.w5_subtitle',
     available: true,
     hidePhotos: true,
+    listingPhoto: '/images/workshops/chocolate-painting/workshop-1.jpeg',
     coverPhoto: '/images/workshops/chocolate-painting/workshop-1.jpeg',
-    samplePhotos: [
-      '/images/workshops/chocolate-painting/workshop-1.jpeg',
-    ],
+    samplePhotos: [],
     occasions: [
       { icon: '🎂', key: 'occasion_birthday' },
       { icon: '🏫', key: 'w5_occasion_school' },
@@ -94,10 +93,9 @@ export const workshops = [
     subtitleKey: 'workshops.w5_subtitle',
     available: true,
     hidePhotos: true,
+    listingPhoto: '/images/workshops/chocolate-painting/workshop-12plus.jpeg',
     coverPhoto: '/images/workshops/chocolate-painting/workshop-12plus.jpeg',
-    samplePhotos: [
-      '/images/workshops/chocolate-painting/workshop-12plus.jpeg',
-    ],
+    samplePhotos: [],
     occasions: [
       { icon: '🎂', key: 'occasion_birthday' },
       { icon: '🏫', key: 'w5_occasion_school' },

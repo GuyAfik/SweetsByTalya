@@ -117,42 +117,6 @@ export default function WorkshopDetail() {
       )}
 
       {/* ══════════════════════════════════════════════════════════════════
-          3. PHOTOS — full gallery
-             Social proof. Show the real experience after describing it.
-             Show remaining photos (beyond the 2 in the hero).
-         ══════════════════════════════════════════════════════════════════ */}
-      {!hidePhotos && samplePhotos.length > 0 && (
-        <section className="wd-photos" style={{ background: bgGradient }}>
-          <div className="container">
-            <h2 className="section-title">{t('workshops.photos_title')}</h2>
-            <div className="wd-photos__grid">
-              {samplePhotos.map((src, i) => (
-                <div key={i} className="wd-photos__item">
-                  <img
-                    src={src}
-                    alt={t('workshops.photo_alt', { n: i + 1 })}
-                    loading="lazy"
-                    onError={(e) => { e.target.parentElement.style.display = 'none' }}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {hidePhotos && (
-        <section className="wd-photos" style={{ background: bgGradient }}>
-          <div className="container">
-            <h2 className="section-title">{t('workshops.photos_title')}</h2>
-            <p className="wd-activities__closing" style={{ fontSize: '1.05rem', maxWidth: '680px', margin: '0 auto' }}>
-              {t(closingKey)}
-            </p>
-          </div>
-        </section>
-      )}
-
-      {/* ══════════════════════════════════════════════════════════════════
           4. FOR WHOM — occasions
              Now that they're interested, confirm it's right for them.
          ══════════════════════════════════════════════════════════════════ */}

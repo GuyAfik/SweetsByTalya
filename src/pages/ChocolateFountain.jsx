@@ -91,6 +91,29 @@ export default function ChocolateFountain() {
               </ul>
             </div>
 
+            <div className="fountain-details__card">
+              <h3 className="fountain-details__card-title">{t('fountain.chocolate_type_title')}</h3>
+              <ul className="fountain-details__list">
+                <li className="fountain-details__list-item">
+                  <span className="fountain-details__check">✅</span>
+                  {t('fountain.chocolate_dark')}
+                </li>
+                <li className="fountain-details__list-item">
+                  <span className="fountain-details__check">✅</span>
+                  {t('fountain.chocolate_milk')}
+                </li>
+                <li className="fountain-details__list-item">
+                  <span className="fountain-details__check">✅</span>
+                  {t('fountain.chocolate_white')}
+                </li>
+              </ul>
+            </div>
+
+            <div className="fountain-details__card">
+              <h3 className="fountain-details__card-title">{t('fountain.color_addon_title')}</h3>
+              <p className="fountain-details__addon-desc">{t('fountain.color_addon_desc')}</p>
+            </div>
+
           </div>
         </div>
       </section>

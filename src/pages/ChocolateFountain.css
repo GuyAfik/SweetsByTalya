@@ -180,6 +180,13 @@
   flex-shrink: 0;
 }
 
+.fountain-details__addon-desc {
+  font-size: var(--text-base, 1rem);
+  color: var(--color-caramel, #C8860A);
+  font-weight: 600;
+  margin: 0;
+}
+
 /* ── CTA Banner ─────────────────────────────────────────────── */
 .fountain-cta-banner {
   background: linear-gradient(135deg, var(--color-chocolate-dark, #3B1F0E) 0%, var(--color-chocolate-mid, #5C3317) 100%);

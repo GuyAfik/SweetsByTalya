@@ -146,8 +146,10 @@ ${t('fountain.offer_desc')}
 Includes: ${includes}.
 Perfect for: ${occasions}.
 Pricing: ₪1,000 for 20–30 guests. Price covers the full event service.
+Chocolate type: customers choose one — Dark Chocolate, Milk Chocolate, or White Chocolate.
+Color add-on: any color can be added to the fountain for an additional ₪50.
 Full service: Talya handles everything — setup, fresh dipping treats, service during the event, and cleanup. You just enjoy with your guests.
-Where to book: the "Chocolate Fountain" page (Hebrew: "מזרקת שוקולד") or WhatsApp with event date, guest count, and location.`
+Where to book: the "Chocolate Fountain" page (Hebrew: "מזרקת שוקולד") or WhatsApp with event date, guest count, chocolate type, and whether they want a color add-on.`
 }
 
 // ── Section: Retail menu ─────────────────────────────────────────────────────

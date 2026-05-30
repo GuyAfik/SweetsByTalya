@@ -127,6 +127,17 @@ export default function BulkPralineOrder() {
         <div className="container">
           <h1>{t('bulk_order.title')}</h1>
           <p className="accent-text">{t('bulk_order.subtitle')}</p>
+          <p className="bulk-order-page__service-desc">{t('bulk_order.service_desc')}</p>
+        </div>
+      </section>
+
+      <section className="bulk-order-page__ad-banner">
+        <div className="container">
+          <img
+            src="/images/bulk-order-ad.jpeg"
+            alt="Chocolate Jewelleries for Events"
+            className="bulk-order-page__ad-image"
+          />
         </div>
       </section>
 

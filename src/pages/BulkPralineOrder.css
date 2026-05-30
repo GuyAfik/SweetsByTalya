@@ -44,6 +44,33 @@
   opacity: 0.9;
 }
 
+.bulk-order-page__service-desc {
+  max-width: 680px;
+  margin: var(--space-5) auto 0;
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.bulk-order-page__ad-banner {
+  padding: var(--space-8) 0;
+  background: var(--color-cream);
+}
+
+.bulk-order-page__ad-image {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  object-fit: cover;
+}
+
 .bulk-order-page__body {
   padding-top: var(--space-10);
 }

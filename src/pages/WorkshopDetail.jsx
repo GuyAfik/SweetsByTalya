@@ -17,6 +17,7 @@ export default function WorkshopDetail() {
           occasions, activities, samplePhotos, pricingTiers,
           pricingType = 'tiered', requirements = [],
           hidePhotos = false,
+          coverPhoto = null,
           closingKey = 'workshops.activities_closing' } = workshop
 
   return (
@@ -76,19 +77,33 @@ export default function WorkshopDetail() {
         <section className="section wd-activities">
           <div className="container">
             <h2 className="section-title">{t('workshops.activities_title')}</h2>
-            <div className="wd-activities__list">
-              {activities.map(({ num, icon: aIcon, key }) => (
-                <div key={key} className="wd-activity">
-                  <div className="wd-activity__num" style={{ background: color }}>{num}</div>
-                  <div className="wd-activity__icon">{aIcon}</div>
-                  <div className="wd-activity__body">
-                    <h3 className="wd-activity__title">{t(`workshops.${key}_title`)}</h3>
-                    <p className="wd-activity__desc">{t(`workshops.${key}_desc`)}</p>
-                  </div>
+            <div className={`wd-activities__inner${coverPhoto ? ' wd-activities__inner--with-photo' : ''}`}>
+              {coverPhoto && (
+                <div className="wd-activities__cover-wrap">
+                  <img
+                    src={coverPhoto}
+                    alt={t(titleKey)}
+                    className="wd-activities__cover"
+                    loading="lazy"
+                  />
                 </div>
-              ))}
+              )}
+              <div>
+                <div className="wd-activities__list">
+                  {activities.map(({ num, icon: aIcon, key }) => (
+                    <div key={key} className="wd-activity">
+                      <div className="wd-activity__num" style={{ background: color }}>{num}</div>
+                      <div className="wd-activity__icon">{aIcon}</div>
+                      <div className="wd-activity__body">
+                        <h3 className="wd-activity__title">{t(`workshops.${key}_title`)}</h3>
+                        <p className="wd-activity__desc">{t(`workshops.${key}_desc`)}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="wd-activities__closing">{t(closingKey)}</p>
+              </div>
             </div>
-            <p className="wd-activities__closing">{t(closingKey)}</p>
           </div>
         </section>
       )}

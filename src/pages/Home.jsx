@@ -57,9 +57,7 @@ function Hero() {
   return (
     <section className="hero">
       <div className="hero__content">
-        <p className="hero__brand-name">Sweets by Talya</p>
         <h1 className="hero__title">{t('hero.tagline')}</h1>
-        <p className="hero__subtitle">{t('hero.subtitle')}</p>
         <div className="hero__ctas">
           {flags.bulkOrder.enabled && (
             <Link to="/bulk-order" className="btn btn-caramel btn-lg">

@@ -1,3 +1,5 @@
+export const PRALINE_FLAT_PRICE = 15
+
 export const chocolateBases = [
   {
     id: 'dark_70',
@@ -5,7 +7,6 @@ export const chocolateBases = [
     color: '#3B1F0E',
     textColor: '#FFF5DC',
     emoji: '🍫',
-    price: 5,
   },
   {
     id: 'dark_50',
@@ -13,7 +14,6 @@ export const chocolateBases = [
     color: '#5C3317',
     textColor: '#FFF5DC',
     emoji: '🍫',
-    price: 5,
   },
   {
     id: 'milk',
@@ -21,7 +21,6 @@ export const chocolateBases = [
     color: '#C68642',
     textColor: '#3B1F0E',
     emoji: '🍫',
-    price: 5,
   },
   {
     id: 'white',
@@ -29,7 +28,6 @@ export const chocolateBases = [
     color: '#FFF5DC',
     textColor: '#3B1F0E',
     emoji: '🤍',
-    price: 5,
   },
 ]
 
@@ -39,112 +37,96 @@ export const fillings = [
     labelKey: 'praline.fillings.strawberry',
     color: '#E8435A',
     emoji: '🍓',
-    price: 5,
   },
   {
     id: 'mango',
     labelKey: 'praline.fillings.mango',
     color: '#FFB347',
     emoji: '🥭',
-    price: 5,
   },
   {
     id: 'cherry',
     labelKey: 'praline.fillings.cherry',
     color: '#C0392B',
     emoji: '🍒',
-    price: 6,
   },
   {
     id: 'lotus',
     labelKey: 'praline.fillings.lotus',
     color: '#D4A017',
     emoji: '✨',
-    price: 6,
   },
   {
     id: 'nutella',
     labelKey: 'praline.fillings.nutella',
     color: '#6B3A2A',
     emoji: '🍫',
-    price: 6,
   },
   {
     id: 'caramel',
     labelKey: 'praline.fillings.caramel',
     color: '#C19A6B',
     emoji: '🍮',
-    price: 4,
   },
   {
     id: 'vanilla',
     labelKey: 'praline.fillings.vanilla',
     color: '#F3E5AB',
     emoji: '🌼',
-    price: 4,
   },
   {
     id: 'pistachio',
     labelKey: 'praline.fillings.pistachio',
     color: '#93C572',
     emoji: '💚',
-    price: 5,
   },
   {
     id: 'coconut',
     labelKey: 'praline.fillings.coconut',
     color: '#FAFAFA',
     emoji: '🥥',
-    price: 4,
   },
   {
     id: 'nuts',
     labelKey: 'praline.fillings.nuts',
     color: '#8B6914',
     emoji: '🌰',
-    price: 5,
   },
   {
     id: 'halva',
     labelKey: 'praline.fillings.halva',
     color: '#E8D5B7',
     emoji: '✨',
-    price: 4,
   },
   {
     id: 'cafe',
     labelKey: 'praline.fillings.cafe',
     color: '#6F4E37',
     emoji: '☕',
-    price: 5,
   },
   {
     id: 'caipirinha',
     labelKey: 'praline.fillings.caipirinha',
     color: '#A8D5A2',
     emoji: '🍋',
-    price: 6,
   },
   {
     id: 'wine_cinnamon',
     labelKey: 'praline.fillings.wine_cinnamon',
     color: '#722F37',
     emoji: '🍷',
-    price: 6,
   },
   {
     id: 'mascarpone',
     labelKey: 'praline.fillings.mascarpone',
     color: '#F5F0E8',
     emoji: '🤍',
-    price: 5,
   },
   {
     id: 'lemon_sicilian',
     labelKey: 'praline.fillings.lemon_sicilian',
     color: '#FFF44F',
     emoji: '🍋',
-    price: 5,
   },
 ]
 
@@ -242,50 +224,32 @@ export const predefinedCombinations = [
   },
 ]
 
-export function pralinePrice(slot) {
-  const base = chocolateBases.find((b) => b.id === slot.base)
-  const filling = fillings.find((f) => f.id === slot.filling)
-  if (!base || !filling) return 0
-  return base.price + filling.price
+export function pralinePrice() {
+  return PRALINE_FLAT_PRICE
 }
 
 export function boxTotal(slots) {
   return slots.filter(Boolean).reduce((sum, slot) => sum + pralinePrice(slot), 0)
 }
 
+export function getTartletBonus(totalPralines) {
+  const sets = Math.floor(totalPralines / 100)
+  return sets * 24
+}
+
 export function getPralinePricingForAI() {
-  const baseLines = chocolateBases
-    .map((b) => `  - ${b.id.replace('_', ' ').replace(/\b\w/g, (c) => c.toUpperCase())}: ₪${b.price}`)
-    .join('\n')
+  return `CHOCOLATE JEWELLERIES BULK ORDER — "Pick Your 5" pricing:
+Minimum order: 100 chocolate jewelleries (5 flavors × 20 each).
+Flat price: ₪${PRALINE_FLAT_PRICE} per piece, regardless of chocolate base or filling.
 
-  const fillingLines = fillings
-    .map((f) => `  - ${f.id.charAt(0).toUpperCase() + f.id.slice(1)}: ₪${f.price}`)
-    .join('\n')
+Bonus Tartlets included with every order:
+  - 100 pieces → 24 Tartlets
+  - 200 pieces → 48 Tartlets
+  - 300 pieces → 72 Tartlets
+  - 400 pieces → 96 Tartlets
+  - 500 pieces → 120 Tartlets
 
-  const examples = [
-    [chocolateBases[0], fillings[7]],
-    [chocolateBases[3], fillings[4]],
-    [chocolateBases[2], fillings[5]],
-  ].map(([b, f]) => {
-    const baseName = b.id.replace('_', ' ').replace(/\b\w/g, (c) => c.toUpperCase())
-    const fillingName = f.id.charAt(0).toUpperCase() + f.id.slice(1)
-    return `  - ${baseName} + ${fillingName} = ₪${b.price + f.price} per praline`
-  }).join('\n')
-
-  return `PRALINE BULK ORDER — "Pick Your 5" pricing:
-Minimum order: 100 pralines (5 flavors × 20 each).
-Each praline price = chocolate base price + filling price.
-
-Chocolate bases (price per praline):
-${baseLines}
-
-Fillings (price per praline, added to base):
-${fillingLines}
-
-Examples:
-${examples}
-
-Customers choose 5 flavors from 16 options, 20 pralines of each flavor.
-They also choose a chocolate base for each flavor.
-Direct them to the "Order Pralines" page on the website.`
+Customers choose 5 flavors from 16 options, 20 pieces of each flavor.
+They also choose a chocolate base (dark 70%, dark 50%, milk, or white) for each flavor.
+Direct them to the "Order Chocolate Jewelleries" page on the website.`
 }

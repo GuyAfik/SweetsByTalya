@@ -91,6 +91,17 @@
   flex-shrink: 0;
 }
 
+.bulk-summary__tartlets-bonus {
+  text-align: center;
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-caramel);
+  background: var(--color-cream-dark);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
 .bulk-summary__total {
   text-align: right;
   font-family: var(--font-heading);

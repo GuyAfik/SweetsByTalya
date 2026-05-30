@@ -66,6 +66,13 @@
   white-space: nowrap;
 }
 
+.quantity-selector__option-tartlets {
+  font-size: var(--text-xs);
+  color: var(--color-caramel);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 .quantity-selector__option--active .quantity-selector__option-qty {
   color: var(--color-chocolate-dark);
 }

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { chocolateBases } from '../../data/pralines'
+import { chocolateBases, PRALINE_FLAT_PRICE } from '../../data/pralines'
 import './FlavorCard.css'
 
 export default function FlavorCard({ filling, selectedBase, isLocked, onSelect, onDeselect, onChangeBase }) {
@@ -21,9 +21,7 @@ export default function FlavorCard({ filling, selectedBase, isLocked, onSelect, 
   }
 
   const selectedBaseObj = isSelected ? chocolateBases.find(b => b.id === selectedBase) : null
-  const pricePerPraline = isSelected && selectedBaseObj
-    ? selectedBaseObj.price + filling.price
-    : filling.price + chocolateBases[0].price
+  const pricePerPraline = PRALINE_FLAT_PRICE
 
   return (
     <div
@@ -74,8 +72,8 @@ export default function FlavorCard({ filling, selectedBase, isLocked, onSelect, 
 
           <div className="flavor-card__subtotal">
             {t('bulk_order.subtotal', {
-              price: selectedBaseObj ? selectedBaseObj.price + filling.price : 0,
-              subtotal: selectedBaseObj ? 20 * (selectedBaseObj.price + filling.price) : 0,
+              price: PRALINE_FLAT_PRICE,
+              subtotal: 20 * PRALINE_FLAT_PRICE,
             })}
           </div>
 

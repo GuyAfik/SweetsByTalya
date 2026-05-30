@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { fillings, chocolateBases, pralinePrice } from '../../data/pralines'
+import { fillings, chocolateBases, pralinePrice, getTartletBonus } from '../../data/pralines'
 import { flags } from '../../config/featureFlags'
 import { getWhatsAppOrderLink } from '../../config/social'
 import './BulkOrderSummary.css'
@@ -10,6 +10,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function buildWhatsAppMessage(activeSelections, form, t, qtyPerFlavor, sets) {
   const totalPralines = activeSelections.length * qtyPerFlavor
+  const tartlets = getTartletBonus(totalPralines)
 
   const lines = activeSelections.map(s => {
     const filling = fillings.find(f => f.id === s.filling)
@@ -21,25 +22,29 @@ function buildWhatsAppMessage(activeSelections, form, t, qtyPerFlavor, sets) {
   const total = activeSelections.reduce((sum, s) => sum + qtyPerFlavor * pralinePrice(s), 0)
 
   return [
-    `🍫 *Bulk Praline Order — ${totalPralines} pralines (${sets} set${sets > 1 ? 's' : ''})*`,
+    `🍫 *Chocolate Jewelleries Order — ${totalPralines} pieces (${sets} set${sets > 1 ? 's' : ''})*`,
     '',
     ...lines,
+    '',
+    `🎁 *Bonus: ${tartlets} Tartlets included!*`,
     '',
     `*Total: ₪${total}*`,
     '',
     `👤 Name: ${form.name}`,
+    form.eventDate ? `📅 Event Date: ${form.eventDate}` : '',
     form.phone ? `📞 Phone: ${form.phone}` : '',
     form.email ? `📧 Email: ${form.email}` : '',
     form.notes ? `📝 Notes: ${form.notes}` : '',
-  ].filter(l => l !== null && l !== undefined).join('\n').trim()
+  ].filter(l => l !== null && l !== undefined && l !== '').join('\n').trim()
 }
 
 export default function BulkOrderSummary({ activeSelections, sets }) {
   const { t } = useTranslation()
   const qtyPerFlavor = flags.bulkOrder.qtyPerFlavor
   const totalPralines = activeSelections.length * qtyPerFlavor
+  const tartlets = getTartletBonus(totalPralines)
 
-  const [form, setForm] = useState({ name: '', phone: '', email: '', notes: '' })
+  const [form, setForm] = useState({ name: '', eventDate: '', phone: '', email: '', notes: '' })
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
 
@@ -83,7 +88,7 @@ export default function BulkOrderSummary({ activeSelections, sets }) {
           name: form.name,
           phone: form.phone,
           email: form.email,
-          product: `Bulk Praline Order — ${totalPralines} pralines (${sets} set${sets > 1 ? 's' : ''})`,
+          product: `Chocolate Jewelleries Order — ${totalPralines} pieces (${sets} set${sets > 1 ? 's' : ''}) + ${tartlets} Tartlets`,
           notes: msg,
         }),
       })
@@ -129,6 +134,10 @@ export default function BulkOrderSummary({ activeSelections, sets }) {
         })}
       </ul>
 
+      <div className="bulk-summary__tartlets-bonus">
+        🎁 {t('bulk_order.tartlets_bonus', { count: tartlets })}
+      </div>
+
       <div className="bulk-summary__total">
         <span>{t('bulk_order.summary_total', { qty: totalPralines, price: totalPrice })}</span>
       </div>
@@ -144,6 +153,15 @@ export default function BulkOrderSummary({ activeSelections, sets }) {
             className={errors.name ? 'bulk-summary__input--error' : ''}
           />
           {errors.name && <span className="bulk-summary__error">{errors.name}</span>}
+        </div>
+
+        <div className="bulk-summary__field">
+          <label>{t('bulk_order.event_date_label')}</label>
+          <input
+            type="date"
+            value={form.eventDate}
+            onChange={e => handleChange('eventDate', e.target.value)}
+          />
         </div>
 
         <div className="bulk-summary__field">

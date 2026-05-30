@@ -37,6 +37,12 @@ export default function FountainOrderModal({ onClose }) {
 
   const lang = i18n.language?.split('-')[0] || 'he'
 
+  const minDate = (() => {
+    const d = new Date()
+    d.setDate(d.getDate() + 7)
+    return d.toISOString().split('T')[0]
+  })()
+
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => { document.body.style.overflow = '' }
@@ -246,6 +252,7 @@ export default function FountainOrderModal({ onClose }) {
                   className="fm-input"
                   type="date"
                   value={form.eventDate}
+                  min={minDate}
                   onChange={e => set('eventDate', e.target.value)}
                   dir="ltr"
                 />

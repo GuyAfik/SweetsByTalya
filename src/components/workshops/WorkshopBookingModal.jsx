@@ -30,6 +30,12 @@ export default function WorkshopBookingModal({ workshop, onClose }) {
   const workshopTitle = t(workshop.titleKey)
   const workshopAges = t(workshop.agesKey)
 
+  const minDate = (() => {
+    const d = new Date()
+    d.setDate(d.getDate() + 7)
+    return d.toISOString().split('T')[0]
+  })()
+
   const buildWhatsAppMessage = () => {
     return [
       `🎨 ${t('workshop_booking.modal_title')}`,
@@ -116,12 +122,13 @@ export default function WorkshopBookingModal({ workshop, onClose }) {
               <div className="wbm-field">
                 <label className="wbm-label">{t('workshop_booking.modal_event_date')}</label>
                 <input
-                  className="wbm-input"
-                  type="date"
-                  value={form.eventDate}
-                  onChange={e => set('eventDate', e.target.value)}
-                  dir="ltr"
-                />
+                    className="wbm-input"
+                    type="date"
+                    value={form.eventDate}
+                    min={minDate}
+                    onChange={e => set('eventDate', e.target.value)}
+                    dir="ltr"
+                  />
               </div>
               <div className="wbm-field">
                 <label className="wbm-label">{t('workshop_booking.modal_participants')}</label>

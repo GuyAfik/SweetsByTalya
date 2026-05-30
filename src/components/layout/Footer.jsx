@@ -11,29 +11,6 @@ export default function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footer__grid">
-          {/* Brand */}
-          <div className="footer__brand">
-            <div className="footer__logo">
-              <span>🍫</span>
-              <span className="footer__logo-text">Sweets by Talya</span>
-            </div>
-            <p className="footer__tagline">{t('footer.tagline')}</p>
-            <p className="footer__made">{t('footer.made_with')}</p>
-          </div>
-
-          {/* Quick Links */}
-          <div className="footer__col">
-            <h4 className="footer__col-title">{t('footer.links_title')}</h4>
-            <nav className="footer__links">
-              <Link to="/" className="footer__link">{t('nav.home')}</Link>
-              <Link to="/about" className="footer__link">{t('nav.about')}</Link>
-              <Link to="/gallery" className="footer__link">{t('nav.gallery')}</Link>
-              <Link to="/workshops" className="footer__link">{t('nav.workshops')}</Link>
-              <Link to="/contact" className="footer__link">{t('nav.contact')}</Link>
-              <Link to="/build-your-box" className="footer__link">{t('nav.build_box')}</Link>
-            </nav>
-          </div>
-
           {/* Social */}
           <div className="footer__col">
             <h4 className="footer__col-title">{t('footer.social_title')}</h4>

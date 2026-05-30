@@ -27,7 +27,7 @@ const STRUCTURE = [
         icon: '💗',
         color: '#c2185b',
         bgGradient: 'linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #fce4ec 100%)',
-        slugs: ['friends-at-heart', 'surprise-egg-kids', 'chocolate-painting'],
+        slugs: ['friends-at-heart', 'surprise-egg-kids', 'chocolate-painting-teens'],
       },
       {
         id: 'boys',
@@ -35,7 +35,7 @@ const STRUCTURE = [
         icon: '💙',
         color: '#1565c0',
         bgGradient: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #e3f2fd 100%)',
-        slugs: ['surprise-egg-kids', 'chocolate-painting'],
+        slugs: ['surprise-egg-kids', 'chocolate-painting-teens'],
       },
     ],
   },

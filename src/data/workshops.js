@@ -95,7 +95,6 @@ export const workshops = [
     hidePhotos: true,
     coverPhoto: '/images/workshops/friends-at-heart/workshop-cover.jpeg',
     samplePhotos: [
-      '/images/workshops/friends-at-heart/workshop-cover.jpeg',
       '/images/workshops/friends-at-heart/workshop-12-1.jpeg',
       '/images/workshops/friends-at-heart/workshop-12-2.jpeg',
       '/images/workshops/friends-at-heart/workshop-12-3.jpeg',

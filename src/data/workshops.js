@@ -53,6 +53,7 @@ export const workshops = [
     subtitleKey: 'workshops.w5_subtitle',
     available: true,
     hidePhotos: true,
+    coverPhoto: '/images/workshops/chocolate-painting/workshop-1.jpeg',
     samplePhotos: [
       '/images/workshops/chocolate-painting/workshop-1.jpeg',
     ],
@@ -93,6 +94,7 @@ export const workshops = [
     subtitleKey: 'workshops.w5_subtitle',
     available: true,
     hidePhotos: true,
+    coverPhoto: '/images/workshops/chocolate-painting/workshop-12plus.jpeg',
     samplePhotos: [
       '/images/workshops/chocolate-painting/workshop-12plus.jpeg',
     ],

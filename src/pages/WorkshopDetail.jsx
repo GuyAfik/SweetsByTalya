@@ -9,6 +9,7 @@ export default function WorkshopDetail() {
   const { slug } = useParams()
   const { t } = useTranslation()
   const [showModal, setShowModal] = useState(false)
+  const [lightbox, setLightbox] = useState(null)
   const workshop = getWorkshopBySlug(slug)
 
   if (!workshop) return <Navigate to="/workshops" replace />
@@ -51,18 +52,25 @@ export default function WorkshopDetail() {
             </button>
           </div>
 
-          {/* Right: photos (up to 2 shown in hero) */}
+          {/* Right: photos (up to 2 shown in hero, clickable to open lightbox) */}
           {samplePhotos.length > 0 && (
             <div className="wd-hero__photos">
               {samplePhotos.slice(0, 2).map((src, i) => (
-                <div key={i} className="wd-hero__photo-item">
+                <button
+                  key={i}
+                  type="button"
+                  className="wd-hero__photo-item wd-hero__photo-item--btn"
+                  onClick={() => setLightbox(i)}
+                  aria-label={t('workshops.photo_alt', { n: i + 1 })}
+                >
                   <img
                     src={src}
                     alt={t('workshops.photo_alt', { n: i + 1 })}
                     loading={i === 0 ? 'eager' : 'lazy'}
                     onError={(e) => { e.target.parentElement.style.display = 'none' }}
                   />
-                </div>
+                  <span className="wd-hero__photo-zoom">🔍</span>
+                </button>
               ))}
             </div>
           )}
@@ -268,6 +276,49 @@ export default function WorkshopDetail() {
           workshop={workshop}
           onClose={() => setShowModal(false)}
         />
+      )}
+
+      {lightbox !== null && (
+        <div
+          className="wd-lightbox"
+          onClick={() => setLightbox(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <button
+            className="wd-lightbox__close"
+            onClick={() => setLightbox(null)}
+            aria-label="Close"
+          >✕</button>
+          <button
+            className="wd-lightbox__nav wd-lightbox__nav--prev"
+            onClick={(e) => { e.stopPropagation(); setLightbox(i => (i - 1 + samplePhotos.length) % samplePhotos.length) }}
+            aria-label="Previous"
+          >‹</button>
+          <div className="wd-lightbox__content" onClick={e => e.stopPropagation()}>
+            <img
+              src={samplePhotos[lightbox]}
+              alt={t('workshops.photo_alt', { n: lightbox + 1 })}
+            />
+            <div className="wd-lightbox__dots">
+              {samplePhotos.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className={`wd-lightbox__dot${i === lightbox ? ' wd-lightbox__dot--active' : ''}`}
+                  onClick={e => { e.stopPropagation(); setLightbox(i) }}
+                  aria-label={`Photo ${i + 1}`}
+                  style={i === lightbox ? { background: color } : {}}
+                />
+              ))}
+            </div>
+          </div>
+          <button
+            className="wd-lightbox__nav wd-lightbox__nav--next"
+            onClick={(e) => { e.stopPropagation(); setLightbox(i => (i + 1) % samplePhotos.length) }}
+            aria-label="Next"
+          >›</button>
+        </div>
       )}
 
     </div>

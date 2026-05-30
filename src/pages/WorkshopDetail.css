@@ -74,6 +74,31 @@
   gap: 0.75rem;
 }
 
+.wd-hero__photo-item--btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.wd-hero__photo-item--btn:hover .wd-hero__photo-zoom {
+  opacity: 1;
+}
+
+.wd-hero__photo-zoom {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: rgba(0,0,0,0.25);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
 .wd-hero__photo-item {
   flex: 1 1 0;
   border-radius: 16px;
@@ -489,4 +514,101 @@
 
 [dir="rtl"] .wd-back__link {
   direction: rtl;
+}
+
+/* ── Lightbox ─────────────────────────────────────────────────────────────── */
+.wd-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wd-lightbox__close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 1;
+}
+
+.wd-lightbox__close:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+.wd-lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  font-size: 3rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  line-height: 1;
+  z-index: 1;
+}
+
+.wd-lightbox__nav:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+.wd-lightbox__nav--prev { left: 1.25rem; }
+.wd-lightbox__nav--next { right: 1.25rem; }
+
+.wd-lightbox__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.wd-lightbox__content img {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.wd-lightbox__dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.wd-lightbox__dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 0;
+}
+
+.wd-lightbox__dot--active {
+  background: #fff;
 }

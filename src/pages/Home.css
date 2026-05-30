@@ -8,7 +8,7 @@
   flex-direction: row;
   align-items: stretch;
   min-height: 100vh;
-  background: var(--color-cream);
+  background: var(--color-white, #fff);
   overflow: hidden;
 }
 
@@ -56,9 +56,10 @@
 .hero__slideshow {
   flex: 1 1 0;
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
+  max-height: 90vh;
   overflow: hidden;
-  background: var(--color-cream-dark);
+  background: var(--color-blush-light, #FAE8EC);
 }
 
 .hero__slide {
@@ -66,7 +67,7 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   opacity: 0;
   transition: opacity 0.8s ease;
 }
@@ -549,7 +550,7 @@
 
 /* --- Why Us --- */
 .whyus {
-  background: var(--color-cream-dark);
+  background: transparent;
 }
 
 .whyus__grid {
@@ -692,3 +693,4 @@
     align-items: center;
   }
 }
+

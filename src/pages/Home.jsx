@@ -7,13 +7,11 @@ import ChocolateFountainSection from '../components/fountain/ChocolateFountainSe
 import './Home.css'
 
 const heroSlides = [
-  { src: '/images/workshops/friends-at-heart/workshop-12-1.jpeg', alt: 'Kids chocolate workshop' },
-  { src: '/images/workshops/friends-at-heart/workshop-12-2.jpeg', alt: 'Workshop activity' },
-  { src: '/images/gallery/pralines-5.jpg',                        alt: 'Handcrafted pralines gift box' },
-  { src: '/images/gallery/pralines-new-15.jpg',                   alt: 'Handcrafted pralines selection' },
-  { src: '/images/workshops/family-memories/workshop-family-1.jpeg', alt: 'Family chocolate workshop' },
-  { src: '/images/gallery/pralines-1.jpg',                        alt: 'Assorted handcrafted pralines' },
-  { src: '/images/workshops/surprise-egg-teens/sample-1.jpeg',    alt: 'Surprise egg workshop' },
+  { src: '/images/hero/hero-1.jpeg', alt: 'Sweets by Talya' },
+  { src: '/images/hero/hero-2.jpeg', alt: 'Sweets by Talya' },
+  { src: '/images/hero/hero-3.jpeg', alt: 'Sweets by Talya' },
+  { src: '/images/hero/hero-4.jpeg', alt: 'Sweets by Talya' },
+  { src: '/images/hero/hero-5.jpeg', alt: 'Sweets by Talya' },
 ]
 
 function HeroSlideshow() {

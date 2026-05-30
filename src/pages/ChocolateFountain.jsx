@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { getWhatsAppOrderLink } from '../config/social'
+import FountainOrderModal from '../components/fountain/FountainOrderModal'
 import './ChocolateFountain.css'
 
 const items = [
@@ -18,8 +19,7 @@ const occasions = [
 
 export default function ChocolateFountain() {
   const { t } = useTranslation()
-
-  const waLink = getWhatsAppOrderLink(t('fountain.whatsapp_message'))
+  const [showModal, setShowModal] = useState(false)
 
   return (
     <div className="fountain-page">
@@ -29,9 +29,9 @@ export default function ChocolateFountain() {
           <div className="fountain-hero__emoji">🍫</div>
           <h1 className="fountain-hero__title">{t('fountain.page_title')}</h1>
           <p className="fountain-hero__subtitle">{t('fountain.page_subtitle')}</p>
-          <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp btn-lg">
+          <button type="button" className="btn btn-whatsapp btn-lg" onClick={() => setShowModal(true)}>
             💬 {t('fountain.cta')}
-          </a>
+          </button>
         </div>
       </section>
 
@@ -122,11 +122,13 @@ export default function ChocolateFountain() {
         <div className="container fountain-cta-banner__inner">
           <h2 className="fountain-cta-banner__title">{t('cta_banner.title')}</h2>
           <p className="fountain-cta-banner__subtitle">{t('fountain.full_service_note')}</p>
-          <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp btn-lg">
+          <button type="button" className="btn btn-whatsapp btn-lg" onClick={() => setShowModal(true)}>
             💬 {t('fountain.cta')}
-          </a>
+          </button>
         </div>
       </section>
+
+      {showModal && <FountainOrderModal onClose={() => setShowModal(false)} />}
 
     </div>
   )

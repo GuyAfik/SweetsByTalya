@@ -139,7 +139,6 @@ export const workshops = [
     coverPhoto: '/images/workshops/surprise-egg/workshop-cover.jpeg',
     closingKey: 'workshops.w4_activities_closing',
     samplePhotos: [
-      '/images/workshops/surprise-egg/workshop-cover.jpeg',
       '/images/workshops/family-memories/workshop-family-1.jpeg',
       '/images/workshops/family-memories/workshop-family-2.jpeg',
       '/images/workshops/family-memories/workshop-family-3.jpeg',

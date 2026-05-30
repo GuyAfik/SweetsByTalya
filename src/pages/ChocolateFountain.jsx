@@ -3,6 +3,14 @@ import { useTranslation } from 'react-i18next'
 import FountainOrderModal from '../components/fountain/FountainOrderModal'
 import './ChocolateFountain.css'
 
+const COLOR_OPTIONS = [
+  { key: 'pink',   hex: '#F48FB1' },
+  { key: 'red',    hex: '#E53935' },
+  { key: 'green',  hex: '#43A047' },
+  { key: 'blue',   hex: '#1E88E5' },
+  { key: 'yellow', hex: '#FDD835' },
+]
+
 const items = [
   { emoji: '🍓', key: 'item_fruits' },
   { emoji: '🍡', key: 'item_marshmallows' },
@@ -112,6 +120,13 @@ export default function ChocolateFountain() {
             <div className="fountain-details__card">
               <h3 className="fountain-details__card-title">{t('fountain.color_addon_title')}</h3>
               <p className="fountain-details__addon-desc">{t('fountain.color_addon_desc')}</p>
+              <div className="fountain-color-swatches">
+                {COLOR_OPTIONS.map(({ key, hex }) => (
+                  <div key={key} className="fountain-color-swatch" style={{ background: hex }}>
+                    <span className="fountain-color-swatch__label">{t(`fountain.color_${key}`)}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
           </div>

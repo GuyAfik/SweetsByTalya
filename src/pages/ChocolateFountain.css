@@ -184,7 +184,40 @@
   font-size: var(--text-base, 1rem);
   color: var(--color-caramel, #C8860A);
   font-weight: 600;
-  margin: 0;
+  margin: 0 0 var(--space-4, 1rem);
+}
+
+.fountain-color-swatches {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.fountain-color-swatch {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: default;
+}
+
+.fountain-color-swatch__label {
+  position: absolute;
+  bottom: -1.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.65rem;
+  color: var(--color-text-secondary, #5C3317);
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.fountain-color-swatches {
+  padding-bottom: 1.6rem;
 }
 
 /* ── CTA Banner ─────────────────────────────────────────────── */

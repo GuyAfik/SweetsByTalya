@@ -1,0 +1,215 @@
+.wbm-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(59, 31, 14, 0.55);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+@media (min-width: 600px) {
+  .wbm-backdrop {
+    align-items: center;
+    padding: 1.5rem;
+  }
+}
+
+.wbm-sheet {
+  position: relative;
+  background: var(--color-white, #fff);
+  border-radius: 1.5rem 1.5rem 0 0;
+  width: 100%;
+  max-width: 560px;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow: 0 -8px 40px rgba(59, 31, 14, 0.2);
+}
+
+@media (min-width: 600px) {
+  .wbm-sheet {
+    border-radius: 1.5rem;
+    max-height: 88vh;
+  }
+}
+
+.wbm-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  background: rgba(255,255,255,0.7);
+  border: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-chocolate-dark, #3B1F0E);
+  transition: background 0.2s;
+}
+
+[dir='rtl'] .wbm-close {
+  right: auto;
+  left: 1rem;
+}
+
+.wbm-close:hover {
+  background: rgba(255,255,255,0.95);
+}
+
+.wbm-header {
+  padding: 2rem 1.5rem 1.25rem;
+  text-align: center;
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.wbm-header__icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.wbm-header__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  color: var(--color-chocolate-dark, #3B1F0E);
+  margin: 0 0 0.25rem;
+}
+
+.wbm-header__workshop {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-chocolate-dark, #3B1F0E);
+  margin: 0 0 0.15rem;
+}
+
+.wbm-header__ages {
+  display: inline-block;
+  background: rgba(255,255,255,0.6);
+  color: var(--color-chocolate-dark, #3B1F0E);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  margin: 0;
+}
+
+.wbm-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem 1.5rem 2rem;
+}
+
+.wbm-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.wbm-section__title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--color-chocolate-dark, #3B1F0E);
+  margin: 0;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--color-caramel, #C8860A);
+}
+
+.wbm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.wbm-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.wbm-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-chocolate-dark, #3B1F0E);
+}
+
+.wbm-input {
+  padding: 0.6rem 0.75rem;
+  border: 1.5px solid var(--color-cream-dark, #F5E6D0);
+  border-radius: 0.6rem;
+  font-size: 0.95rem;
+  color: var(--color-chocolate-dark, #3B1F0E);
+  background: var(--color-cream, #FDF6EC);
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.wbm-input:focus {
+  outline: none;
+  border-color: var(--color-caramel, #C8860A);
+}
+
+.wbm-textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+.wbm-methods {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.wbm-method-btn {
+  padding: 0.45rem 0.9rem;
+  border: 2px solid var(--color-cream-dark, #F5E6D0);
+  border-radius: 2rem;
+  background: var(--color-cream, #FDF6EC);
+  color: var(--color-chocolate-dark, #3B1F0E);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.wbm-submit {
+  width: 100%;
+  justify-content: center;
+}
+
+.wbm-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.wbm-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.wbm-success__icon {
+  font-size: 3rem;
+}
+
+.wbm-success h2 {
+  font-family: var(--font-heading);
+  color: var(--color-chocolate-dark, #3B1F0E);
+  margin: 0;
+}
+
+.wbm-success p {
+  color: var(--color-text-secondary, #5C3317);
+  margin: 0;
+}

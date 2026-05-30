@@ -1,4 +1,28 @@
 {
+  "workshop_booking": {
+    "modal_title": "הזמנת סדנה",
+    "modal_event_details": "פרטי האירוע",
+    "modal_event_date": "תאריך האירוע",
+    "modal_participants": "מספר משתתפים",
+    "modal_occasion": "אירוע",
+    "modal_occasion_placeholder": "לדוגמה: יום הולדת, בת מצווה, אירוע בית ספר...",
+    "modal_contact_title": "הפרטים שלך",
+    "modal_name": "שם מלא",
+    "modal_name_placeholder": "לדוגמה: שרה כהן",
+    "modal_phone": "מספר טלפון",
+    "modal_email": "אימייל (אופציונלי)",
+    "modal_contact_method": "איך טליה תיצור איתך קשר?",
+    "modal_method_whatsapp": "💬 וואטסאפ",
+    "modal_method_email": "📧 אימייל",
+    "modal_method_both": "שניהם",
+    "modal_notes": "הערות נוספות",
+    "modal_notes_placeholder": "מיקום, בקשות מיוחדות, אלרגיות...",
+    "modal_tbd": "לא נקבע",
+    "modal_submit": "שלחי בקשת הזמנה",
+    "modal_success_title": "ההזמנה נשלחה! 🎉",
+    "modal_success_desc": "טליה תיצור איתך קשר בקרוב לתיאום הסדנה.",
+    "modal_close": "סגור"
+  },
   "home": {
     "offer_title": "מה אנחנו מציעים",
     "offer_subtitle": "חוויות שוקולד עשויות ביד לכל אירוע",

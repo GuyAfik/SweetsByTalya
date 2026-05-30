@@ -1,12 +1,14 @@
+import { useState } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { getWorkshopBySlug } from '../data/workshops'
-import { social } from '../config/social'
+import WorkshopBookingModal from '../components/workshops/WorkshopBookingModal'
 import './WorkshopDetail.css'
 
 export default function WorkshopDetail() {
   const { slug } = useParams()
   const { t } = useTranslation()
+  const [showModal, setShowModal] = useState(false)
   const workshop = getWorkshopBySlug(slug)
 
   if (!workshop) return <Navigate to="/workshops" replace />
@@ -39,15 +41,14 @@ export default function WorkshopDetail() {
             <h1 className="wd-hero__title">{t(titleKey)}</h1>
             <p className="wd-hero__ages">{t(agesKey)}</p>
             <p className="wd-hero__subtitle">{t(subtitleKey)}</p>
-            <a
-              href={social.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
               className="btn btn-lg wd-hero__cta"
               style={{ background: color, color: '#fff' }}
+              onClick={() => setShowModal(true)}
             >
               💬 {t('workshops.book_cta')}
-            </a>
+            </button>
           </div>
 
           {/* Right: photos (up to 2 shown in hero) */}
@@ -238,16 +239,22 @@ export default function WorkshopDetail() {
         <div className="container wd-cta-banner__inner">
           <h2 className="wd-cta-banner__title">{t('workshops.cta_title')}</h2>
           <p className="wd-cta-banner__subtitle">{t('workshops.cta_subtitle')}</p>
-          <a
-            href={social.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
             className="btn btn-lg wd-cta-banner__btn"
+            onClick={() => setShowModal(true)}
           >
             💬 {t('workshops.book_cta')}
-          </a>
+          </button>
         </div>
       </section>
+
+      {showModal && (
+        <WorkshopBookingModal
+          workshop={workshop}
+          onClose={() => setShowModal(false)}
+        />
+      )}
 
     </div>
   )

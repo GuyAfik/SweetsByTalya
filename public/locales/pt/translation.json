@@ -1,4 +1,28 @@
 {
+  "workshop_booking": {
+    "modal_title": "Reservar Workshop",
+    "modal_event_details": "Detalhes do Evento",
+    "modal_event_date": "Data do Evento",
+    "modal_participants": "Número de Participantes",
+    "modal_occasion": "Ocasião",
+    "modal_occasion_placeholder": "ex: Festa de aniversário, Bat Mitzvá, Evento escolar...",
+    "modal_contact_title": "Seus Dados",
+    "modal_name": "Nome Completo",
+    "modal_name_placeholder": "ex: Maria Silva",
+    "modal_phone": "Número de Telefone",
+    "modal_email": "E-mail (opcional)",
+    "modal_contact_method": "Como Talya deve entrar em contato?",
+    "modal_method_whatsapp": "💬 WhatsApp",
+    "modal_method_email": "📧 E-mail",
+    "modal_method_both": "Ambos",
+    "modal_notes": "Observações Adicionais",
+    "modal_notes_placeholder": "Local, pedidos especiais, alergias...",
+    "modal_tbd": "A definir",
+    "modal_submit": "Enviar Solicitação",
+    "modal_success_title": "Reserva Enviada! 🎉",
+    "modal_success_desc": "Talya entrará em contato em breve para organizar seu workshop.",
+    "modal_close": "Fechar"
+  },
   "home": {
     "offer_title": "O Que Oferecemos",
     "offer_subtitle": "Experiências de chocolate artesanal para cada ocasião",

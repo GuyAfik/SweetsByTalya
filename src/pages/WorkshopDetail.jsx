@@ -14,6 +14,7 @@ export default function WorkshopDetail() {
   const { icon, color, bgGradient, titleKey, agesKey, subtitleKey,
           occasions, activities, samplePhotos, pricingTiers,
           pricingType = 'tiered', requirements = [],
+          hidePhotos = false,
           closingKey = 'workshops.activities_closing' } = workshop
 
   return (
@@ -97,7 +98,7 @@ export default function WorkshopDetail() {
              Social proof. Show the real experience after describing it.
              Show remaining photos (beyond the 2 in the hero).
          ══════════════════════════════════════════════════════════════════ */}
-      {samplePhotos.length > 0 && (
+      {!hidePhotos && samplePhotos.length > 0 && (
         <section className="wd-photos" style={{ background: bgGradient }}>
           <div className="container">
             <h2 className="section-title">{t('workshops.photos_title')}</h2>
@@ -113,6 +114,17 @@ export default function WorkshopDetail() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+      )}
+
+      {hidePhotos && (
+        <section className="wd-photos" style={{ background: bgGradient }}>
+          <div className="container">
+            <h2 className="section-title">{t('workshops.photos_title')}</h2>
+            <p className="wd-activities__closing" style={{ fontSize: '1.05rem', maxWidth: '680px', margin: '0 auto' }}>
+              {t(closingKey)}
+            </p>
           </div>
         </section>
       )}

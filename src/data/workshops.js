@@ -52,6 +52,7 @@ export const workshops = [
     agesKey: 'workshops.w5_ages',
     subtitleKey: 'workshops.w5_subtitle',
     available: true,
+    hidePhotos: true,
     samplePhotos: [
       '/images/workshops/chocolate-painting/workshop-1.jpeg',
     ],

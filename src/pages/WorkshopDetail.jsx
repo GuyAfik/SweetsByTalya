@@ -52,10 +52,10 @@ export default function WorkshopDetail() {
             </button>
           </div>
 
-          {/* Right: photos (up to 2 shown in hero, clickable to open lightbox) */}
+          {/* Right: photos (up to 3 shown in hero, clickable to open lightbox) */}
           {samplePhotos.length > 0 && (
             <div className="wd-hero__photos">
-              {samplePhotos.slice(0, 2).map((src, i) => (
+              {samplePhotos.slice(0, 3).map((src, i) => (
                 <button
                   key={i}
                   type="button"

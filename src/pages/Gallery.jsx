@@ -10,7 +10,7 @@ const categories = [
   {
     id: 'pralines',
     labelKey: 'gallery.filter_pralines',
-    cover: '/images/gallery/pralines-new-1.jpg',
+    cover: '/images/gallery/pralines-new-17.jpg',
     photos: [
       { src: '/images/gallery/pralines-new-1.jpg',  caption: '' },
       { src: '/images/gallery/pralines-new-2.jpg',  caption: '' },
@@ -19,6 +19,7 @@ const categories = [
       { src: '/images/gallery/pralines-new-6.jpg',  caption: '' },
       { src: '/images/gallery/pralines-new-8.jpg',  caption: '' },
       { src: '/images/gallery/pralines-new-16.jpg', caption: '' },
+      { src: '/images/gallery/pralines-new-17.jpg', caption: '' },
       { src: '/images/gallery/pralines-1.jpg', caption: '' },
       { src: '/images/gallery/pralines-8.jpg', caption: '' },
     ],

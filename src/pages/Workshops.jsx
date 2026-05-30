@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { workshops } from '../data/workshops'
-import WorkshopBookingModal from '../components/workshops/WorkshopBookingModal'
 import './Workshops.css'
 
 const STRUCTURE = [
@@ -12,7 +11,7 @@ const STRUCTURE = [
     icon: '🎨',
     color: '#e65100',
     bgGradient: 'linear-gradient(135deg, #fff3e0 0%, #ffe0b2 50%, #fff3e0 100%)',
-    workshopSlug: 'chocolate-painting',
+    slugs: ['chocolate-painting'],
   },
   {
     id: 'ages-12-plus',
@@ -27,7 +26,7 @@ const STRUCTURE = [
         icon: '💗',
         color: '#c2185b',
         bgGradient: 'linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #fce4ec 100%)',
-        workshopSlugs: ['friends-at-heart', 'surprise-egg-kids', 'chocolate-painting'],
+        slugs: ['friends-at-heart', 'surprise-egg-kids', 'chocolate-painting'],
       },
       {
         id: 'boys',
@@ -35,21 +34,59 @@ const STRUCTURE = [
         icon: '💙',
         color: '#1565c0',
         bgGradient: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #e3f2fd 100%)',
-        workshopSlugs: ['surprise-egg-kids', 'chocolate-painting'],
+        slugs: ['surprise-egg-kids', 'chocolate-painting'],
       },
     ],
   },
 ]
 
+function WorkshopCard({ workshop }) {
+  const { t } = useTranslation()
+  return (
+    <Link
+      to={`/workshops/${workshop.slug}`}
+      className="ws-workshop-card"
+      style={{
+        '--ws-bg': workshop.bgGradient || 'linear-gradient(135deg, #fce4ec, #f8bbd0)',
+        '--ws-color': workshop.color || '#c2185b',
+      }}
+    >
+      {workshop.samplePhotos?.[0] && (
+        <div className="ws-workshop-card__photo-wrap">
+          <img
+            src={workshop.samplePhotos[0]}
+            alt={t(workshop.titleKey)}
+            className="ws-workshop-card__photo"
+            loading="lazy"
+            onError={(e) => { e.target.parentElement.style.display = 'none' }}
+          />
+        </div>
+      )}
+      <div className="ws-workshop-card__body">
+        <span className="ws-workshop-card__icon">{workshop.icon}</span>
+        <h3 className="ws-workshop-card__title">{t(workshop.titleKey)}</h3>
+        <p className="ws-workshop-card__subtitle">{t(workshop.subtitleKey)}</p>
+        <span className="ws-workshop-card__cta">{t('workshops.view_workshop')} →</span>
+      </div>
+    </Link>
+  )
+}
+
 export default function Workshops() {
   const { t } = useTranslation()
-  const [modal, setModal] = useState(null)
-  const [expanded, setExpanded] = useState(null)
+  const [selectedAge, setSelectedAge] = useState(null)
+  const [selectedGender, setSelectedGender] = useState(null)
 
-  const openModal = (slug) => {
-    const w = workshops.find(x => x.slug === slug)
-    if (w) setModal(w)
+  const selectAge = (id) => {
+    setSelectedAge(id)
+    setSelectedGender(null)
   }
+
+  const activeGroup = STRUCTURE.find(g => g.id === selectedAge)
+  const activeSubGroup = activeGroup?.subGroups?.find(s => s.id === selectedGender)
+
+  const resolvedWorkshops = (slugs) =>
+    slugs.map(s => workshops.find(w => w.slug === s)).filter(Boolean)
 
   return (
     <div className="workshops-page">
@@ -63,82 +100,65 @@ export default function Workshops() {
 
       <section className="section">
         <div className="container">
-          <div className="ws-category-grid">
 
-            {STRUCTURE.map((group) => {
-              if (group.workshopSlug) {
-                const w = workshops.find(x => x.slug === group.workshopSlug)
-                return (
-                  <button
-                    key={group.id}
-                    type="button"
-                    className="ws-cat-btn"
-                    style={{ '--ws-color': group.color, '--ws-bg': group.bgGradient }}
-                    onClick={() => openModal(group.workshopSlug)}
-                  >
-                    <span className="ws-cat-btn__icon">{group.icon}</span>
-                    <span className="ws-cat-btn__age">{t(group.ageGroupKey)}</span>
-                    <span className="ws-cat-btn__name">{w ? t(w.titleKey) : ''}</span>
-                    <span className="ws-cat-btn__cta">💬 {t('workshops.book_cta')}</span>
-                  </button>
-                )
-              }
-
-              return (
-                <div key={group.id} className="ws-cat-group">
-                  <div
-                    className="ws-cat-group__header"
-                    style={{ '--ws-color': group.color, '--ws-bg': group.bgGradient }}
-                  >
-                    <span className="ws-cat-btn__icon">{group.icon}</span>
-                    <span className="ws-cat-btn__age">{t(group.ageGroupKey)}</span>
-                  </div>
-                  <div className="ws-cat-subgrid">
-                    {group.subGroups.map((sub) => (
-                      <div key={sub.id} className="ws-subcat">
-                        <div
-                          className="ws-subcat__header"
-                          style={{ '--ws-color': sub.color }}
-                        >
-                          <span>{sub.icon}</span>
-                          <span>{t(sub.labelKey)}</span>
-                        </div>
-                        <div className="ws-subcat__btns">
-                          {sub.workshopSlugs.map((slug) => {
-                            const w = workshops.find(x => x.slug === slug)
-                            if (!w) return null
-                            return (
-                              <button
-                                key={slug}
-                                type="button"
-                                className="ws-workshop-btn"
-                                style={{ '--ws-color': sub.color, '--ws-bg': sub.bgGradient }}
-                                onClick={() => openModal(slug)}
-                              >
-                                <span className="ws-workshop-btn__icon">{w.icon}</span>
-                                <span className="ws-workshop-btn__name">{t(w.titleKey)}</span>
-                                <span className="ws-workshop-btn__cta">💬 {t('workshops.book_cta')}</span>
-                              </button>
-                            )
-                          })}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )
-            })}
-
+          {/* ── Step 1: Age category buttons ─────────────────────────────── */}
+          <div className="ws-step-label">{t('workshops.step_choose_age')}</div>
+          <div className="ws-age-btns">
+            {STRUCTURE.map((group) => (
+              <button
+                key={group.id}
+                type="button"
+                className={`ws-age-btn${selectedAge === group.id ? ' ws-age-btn--active' : ''}`}
+                style={{ '--ws-color': group.color, '--ws-bg': group.bgGradient }}
+                onClick={() => selectAge(group.id)}
+              >
+                <span className="ws-age-btn__icon">{group.icon}</span>
+                <span className="ws-age-btn__label">{t(group.ageGroupKey)}</span>
+              </button>
+            ))}
           </div>
+
+          {/* ── Step 2a: If 12+, show gender buttons ─────────────────────── */}
+          {activeGroup?.subGroups && (
+            <>
+              <div className="ws-step-label ws-step-label--sub">{t('workshops.step_choose_gender')}</div>
+              <div className="ws-gender-btns">
+                {activeGroup.subGroups.map((sub) => (
+                  <button
+                    key={sub.id}
+                    type="button"
+                    className={`ws-gender-btn${selectedGender === sub.id ? ' ws-gender-btn--active' : ''}`}
+                    style={{ '--ws-color': sub.color, '--ws-bg': sub.bgGradient }}
+                    onClick={() => setSelectedGender(sub.id)}
+                  >
+                    <span className="ws-gender-btn__icon">{sub.icon}</span>
+                    <span className="ws-gender-btn__label">{t(sub.labelKey)}</span>
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* ── Step 2b: If 5–11, show workshops directly ────────────────── */}
+          {activeGroup && !activeGroup.subGroups && (
+            <div className="ws-cards-grid ws-cards-grid--mt">
+              {resolvedWorkshops(activeGroup.slugs).map(w => (
+                <WorkshopCard key={w.slug} workshop={w} />
+              ))}
+            </div>
+          )}
+
+          {/* ── Step 3: Show workshops for selected gender ────────────────── */}
+          {activeSubGroup && (
+            <div className="ws-cards-grid ws-cards-grid--mt">
+              {resolvedWorkshops(activeSubGroup.slugs).map(w => (
+                <WorkshopCard key={w.slug} workshop={w} />
+              ))}
+            </div>
+          )}
+
         </div>
       </section>
-
-      {modal && (
-        <WorkshopBookingModal
-          workshop={modal}
-          onClose={() => setModal(null)}
-        />
-      )}
 
     </div>
   )

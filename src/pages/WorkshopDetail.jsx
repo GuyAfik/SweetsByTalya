@@ -39,7 +39,6 @@ export default function WorkshopDetail() {
           <div className="wd-hero__text">
             <div className="wd-hero__badge">{icon}</div>
             <h1 className="wd-hero__title">{t(titleKey)}</h1>
-            <p className="wd-hero__ages">{t(agesKey)}</p>
             <p className="wd-hero__subtitle">{t(subtitleKey)}</p>
             <button
               type="button"

@@ -145,7 +145,7 @@ function fountainSection() {
 ${t('fountain.offer_desc')}
 Includes: ${includes}.
 Perfect for: ${occasions}.
-Pricing: on request — depends on guest count and event location.
+Pricing: ₪1,000 for 20–30 guests (including kids). Price covers the full event service.
 Full service: Talya handles everything — setup, fresh dipping treats, service during the event, and cleanup. You just enjoy with your guests.
 Where to book: the "Chocolate Fountain" page (Hebrew: "מזרקת שוקולד") or WhatsApp with event date, guest count, and location.`
 }

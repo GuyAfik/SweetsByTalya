@@ -105,7 +105,6 @@ export default function WorkshopBookingModal({ workshop, onClose }) {
           <span className="wbm-header__icon">{workshop.icon}</span>
           <h2 className="wbm-header__title">{t('workshop_booking.modal_title')}</h2>
           <p className="wbm-header__workshop">{workshopTitle}</p>
-          <p className="wbm-header__ages">{workshopAges}</p>
         </div>
 
         <div className="wbm-body">

@@ -286,10 +286,6 @@ export default function Order() {
           {/* Info sidebar */}
           <aside className="order-info">
             <div className="order-info__card">
-              <h3>🍫 Sweets by Talya</h3>
-              <p>{t('footer.tagline')}</p>
-            </div>
-            <div className="order-info__card">
               <h4>💬 WhatsApp</h4>
               <p>+{import.meta.env.VITE_WHATSAPP_PHONE || '972XXXXXXXXX'}</p>
             </div>

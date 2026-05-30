@@ -113,16 +113,7 @@ export default function Workshops() {
                 style={{ '--ws-color': group.color, '--ws-bg': group.bgGradient }}
                 onClick={() => selectAge(group.id)}
               >
-                {group.coverImage ? (
-                  <img
-                    src={group.coverImage}
-                    alt={t(group.ageGroupKey)}
-                    className="ws-age-btn__cover"
-                    loading="lazy"
-                  />
-                ) : (
-                  <span className="ws-age-btn__icon">{group.icon}</span>
-                )}
+                <span className="ws-age-btn__icon">{group.icon}</span>
                 <span className="ws-age-btn__label">{t(group.ageGroupKey)}</span>
               </button>
             ))}

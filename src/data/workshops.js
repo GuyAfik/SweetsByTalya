@@ -92,6 +92,7 @@ export const workshops = [
     agesKey: 'workshops.w1_ages',
     subtitleKey: 'workshops.w1_subtitle',
     available: true,
+    hidePhotos: true,
     samplePhotos: [
       '/images/workshops/friends-at-heart/workshop-cover.jpeg',
       '/images/workshops/friends-at-heart/workshop-12-1.jpeg',

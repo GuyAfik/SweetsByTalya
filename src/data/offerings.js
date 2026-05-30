@@ -94,10 +94,10 @@ Where to order: the "Order Pralines" page (Hebrew: "הזמנת פרלינים") 
 // ── Section: Workshops ───────────────────────────────────────────────────────
 function workshopsSection() {
   const priceTiers = {
-    workshop1_price_tier1: t('workshops.workshop1_price_tier1'),
-    workshop1_price_tier2: t('workshops.workshop1_price_tier2'),
-    workshop1_price_tier3: t('workshops.workshop1_price_tier3'),
-    workshop1_price_tier4: t('workshops.workshop1_price_tier4'),
+    workshop1_price_tier1: '₪200',
+    workshop1_price_tier2: '₪180',
+    workshop1_price_tier3: '₪160',
+    workshop1_price_tier4: '₪150',
   }
 
   const workshopLines = workshops

@@ -19,6 +19,7 @@ const STRUCTURE = [
     icon: '🌟',
     color: '#7b1fa2',
     bgGradient: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #f3e5f5 100%)',
+    coverImage: '/images/workshops/12plus-cover.jpeg',
     subGroups: [
       {
         id: 'girls',
@@ -112,7 +113,16 @@ export default function Workshops() {
                 style={{ '--ws-color': group.color, '--ws-bg': group.bgGradient }}
                 onClick={() => selectAge(group.id)}
               >
-                <span className="ws-age-btn__icon">{group.icon}</span>
+                {group.coverImage ? (
+                  <img
+                    src={group.coverImage}
+                    alt={t(group.ageGroupKey)}
+                    className="ws-age-btn__cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span className="ws-age-btn__icon">{group.icon}</span>
+                )}
                 <span className="ws-age-btn__label">{t(group.ageGroupKey)}</span>
               </button>
             ))}

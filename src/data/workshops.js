@@ -93,6 +93,7 @@ export const workshops = [
     subtitleKey: 'workshops.w1_subtitle',
     available: true,
     samplePhotos: [
+      '/images/workshops/friends-at-heart/workshop-cover.jpeg',
       '/images/workshops/friends-at-heart/workshop-12-1.jpeg',
       '/images/workshops/friends-at-heart/workshop-12-2.jpeg',
       '/images/workshops/friends-at-heart/workshop-12-3.jpeg',
@@ -135,6 +136,7 @@ export const workshops = [
     available: true,
     closingKey: 'workshops.w4_activities_closing',
     samplePhotos: [
+      '/images/workshops/surprise-egg/workshop-cover.jpeg',
       '/images/workshops/family-memories/workshop-family-1.jpeg',
       '/images/workshops/family-memories/workshop-family-2.jpeg',
       '/images/workshops/family-memories/workshop-family-3.jpeg',

@@ -114,6 +114,14 @@
   line-height: 1.2;
 }
 
+.ws-age-btn__cover {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 0.25rem;
+}
+
 /* ── Gender cards ─────────────────────────────────────────────────────────── */
 .ws-gender-btns {
   display: grid;

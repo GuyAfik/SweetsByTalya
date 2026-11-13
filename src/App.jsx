@@ -12,13 +12,12 @@ import { changeLanguage } from './i18n'
 // Lazy-load pages for code splitting
 const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
-const Gallery = lazy(() => import('./pages/Gallery'))
 const Workshops = lazy(() => import('./pages/Workshops'))
 const WorkshopDetail = lazy(() => import('./pages/WorkshopDetail'))
 const Contact = lazy(() => import('./pages/Contact'))
+const Presents = lazy(() => import('./pages/Presents'))
 const PralineBuilder = lazy(() => import('./pages/PralineBuilder'))
 const BulkPralineOrder = lazy(() => import('./pages/BulkPralineOrder'))
-const ChocolateFountain = lazy(() => import('./pages/ChocolateFountain'))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -49,7 +48,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/presents" element={<Presents />} />
             <Route path="/workshops" element={<Workshops />} />
             <Route path="/workshops/:slug" element={<WorkshopDetail />} />
             <Route path="/contact" element={<Contact />} />
@@ -58,9 +57,6 @@ export default function App() {
             )}
             {flags.bulkOrder.enabled && (
               <Route path="/bulk-order" element={<BulkPralineOrder />} />
-            )}
-            {flags.chocolateFountain && (
-              <Route path="/fountain" element={<ChocolateFountain />} />
             )}
             {/* Catch-all → Home */}
             <Route path="*" element={<Home />} />

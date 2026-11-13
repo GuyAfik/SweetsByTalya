@@ -14,7 +14,7 @@ export default function WorkshopDetail() {
 
   if (!workshop) return <Navigate to="/workshops" replace />
 
-  const { icon, color, bgGradient, titleKey, agesKey, subtitleKey,
+  const { icon, color, bgGradient, titleKey, subtitleKey,
           occasions, activities, samplePhotos, pricingTiers,
           pricingType = 'tiered', requirements = [],
           hidePhotos = false,
@@ -117,26 +117,6 @@ export default function WorkshopDetail() {
       )}
 
       {/* ══════════════════════════════════════════════════════════════════
-          4. FOR WHOM — occasions
-             Now that they're interested, confirm it's right for them.
-         ══════════════════════════════════════════════════════════════════ */}
-      {occasions.length > 0 && (
-        <section className="section wd-occasions">
-          <div className="container">
-            <h2 className="section-title">{t('workshops.occasions_title')}</h2>
-            <div className="wd-occasions__grid">
-              {occasions.map(({ icon: oIcon, key }) => (
-                <div key={key} className="wd-occasion-card" style={{ '--ws-color': color }}>
-                  <span className="wd-occasion-card__icon">{oIcon}</span>
-                  <p className="wd-occasion-card__label">{t(`workshops.${key}`)}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ══════════════════════════════════════════════════════════════════
           5. PRICING — clear and prominent
              Transparent pricing builds trust. Show before the final CTA.
          ══════════════════════════════════════════════════════════════════ */}
@@ -209,17 +189,7 @@ export default function WorkshopDetail() {
       )}
 
       {/* ══════════════════════════════════════════════════════════════════
-          7. WHY US — reinforce the decision
-         ══════════════════════════════════════════════════════════════════ */}
-      <section className="section wd-why">
-        <div className="container">
-          <h2 className="section-title">{t('workshops.why_title')}</h2>
-          <p className="wd-why__text">{t('workshops.why_text')}</p>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════════
-          8. FINAL CTA BANNER — strong close
+          7. FINAL CTA BANNER — strong close
          ══════════════════════════════════════════════════════════════════ */}
       <section className="wd-cta-banner" style={{ background: `linear-gradient(135deg, ${color} 0%, ${color}cc 100%)` }}>
         <div className="container wd-cta-banner__inner">

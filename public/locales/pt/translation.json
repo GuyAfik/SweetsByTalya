@@ -44,6 +44,7 @@
   "nav": {
     "home": "Início",
     "about": "Sobre",
+    "presents": "Presentes",
     "gallery": "Galeria",
     "menu": "Cardápio",
     "workshops": "Workshops",
@@ -51,6 +52,10 @@
     "build_box": "Monte sua Caixa",
     "bulk_order": "Pedir \"Joias\" de Chocolate Artesanais para Eventos",
     "order": "Fazer Pedido"
+  },
+  "presents": {
+    "page_title": "Presentes",
+    "page_subtitle": "Presentes de chocolate artesanais feitos com amor — em breve."
   },
   "hero": {
     "tagline": "Bem-vindo à experiência de chocolate artesanal mais divertida — obras de arte em chocolate",
@@ -95,8 +100,8 @@
     "hero_title": "Sobre Sweets by Talya",
     "hero_subtitle": "Uma paixão por chocolate, um amor pelas pessoas.",
     "story_title": "Minha História",
-    "story_p1": "Sweets by Talya nasceu de um profundo amor pelo chocolate e da alegria de fazer as pessoas sorrirem. Talya 🇧🇷 trouxe sua paixão pelo chocolate direto do Brasil, e começou a fazer chocolates na sua cozinha de casa, experimentando sabores e técnicas até que cada peça ficasse perfeita.",
-    "story_p2": "O que começou como um hobby rapidamente se tornou uma vocação. Hoje, cada pralinê e criação de chocolate ainda é feito à mão.",
+    "story_p1": "Todo grande sonho começa com uma pequena decisão.\n\nEm 2023 deixei o Brasil e comecei uma nova vida em Israel. Cheguei com sonhos, expectativas e vontade de construir um futuro diferente para mim. Mas nem sempre a vida avança no caminho que planejamos.\n\nTrabalhei em um café, tentei encontrar meu lugar, enfrentei períodos difíceis — e houve momentos em que precisei parar e repensar meu caminho e o que eu realmente queria fazer com a minha vida.\n\nAté que um dia, após uma oração, decidi dar uma chance a algo que nunca imaginei que se tornaria uma parte tão significativa da minha vida.\n\nComecei a fazer doces.\n\nNão tinha uma cozinha profissional, equipamentos avançados nem todas as ferramentas que precisava. Tinha a pequena cozinha de casa, muita curiosidade e vontade de aprender. Procurei receitas, experimentei, errei, recomeçei — e aos poucos descobri um mundo completamente novo.\n\nO que começou como um pequeno experimento na minha cozinha se tornou algo muito maior.",
+    "story_p2": "Entendi que não era só chocolate, bolos ou biscoitos. É a alegria de criar, a satisfação de fazer algo com as próprias mãos, o momento em que uma criança descobre que pode transformar chocolate em uma pequena obra de arte, uma família compartilhando uma experiência especial, alguém recebendo um presente feito com amor, e uma pessoa descobrindo que é capaz de aprender algo novo.\n\nFoi assim que encontrei meu caminho.\n\nHoje compartilho receitas, ideias e experiências. Ministro workshops de chocolate, biscoitos e confeitaria para crianças, crio atividades para aniversários e preparo presentes especiais — cada um carregando um pouco desse amor pela criação.\n\nMas mais do que tudo, quero criar um lugar onde as pessoas se sintam livres para tentar, criar, aprender e descobrir coisas novas por si mesmas.\n\nAcredito que você não precisa que tudo esteja pronto para começar. Às vezes, tudo que é preciso é uma pequena decisão, um pouco de coragem e disposição para aprender ao longo do caminho.\n\nComecei na minha cozinha de casa, com poucos recursos e muitos sonhos. Hoje, cada receita, cada workshop e cada criação fazem parte de uma história que ainda está sendo escrita.\n\nE talvez você também encontre aqui o início de algo especial.",
     "values_title": "Nossos Valores",
     "value1_title": "Sempre Artesanal",
     "value1_desc": "Sem máquinas, sem atalhos. Cada peça é feita à mão.",
@@ -394,6 +399,9 @@
     "gender_boys": "Meninos 💙",
     "step_choose_age": "Escolha uma faixa etária",
     "step_choose_gender": "Escolha uma categoria",
+    "step_choose_category": "Escolha o tipo de workshop",
+    "category_chocolate": "Workshop de Chocolate 🍫",
+    "category_bakery": "Workshop de Panificação 🥐",
     "age_group_7_family": "Idades 7+ (Família)",
     "age_group_10_13": "Idades 10–13",
     "age_group_14_plus": "Idades 14+",
@@ -484,6 +492,8 @@
     "w5_ages": "Idades 5–11",
     "w5_ages_teens": "Idades 12+",
     "w5_subtitle": "Toda criança é um artista! Neste workshop único, as crianças pintam em uma tela de chocolate real usando cores comestíveis — pincéis, paleta e tudo mais. No final, um mini museu é aberto para os pais admirarem as obras-primas.",
+    "w5_subtitle_teens": "Todo adolescente é um artista! Neste workshop único, os participantes pintam em uma tela de chocolate real usando cores comestíveis — pincéis, paleta e tudo mais. No final, um mini museu é aberto para admirar as obras-primas.",
+    "photos_section_title": "Fotos do Workshop 📸",
     "w5_occasion_school": "Eventos escolares e passeios de turma",
     "w5_activity1_title": "Escolha Sua Moldura",
     "w5_activity1_desc": "Cada participante escolhe uma moldura de chocolate pré-definida — animais, flores, borboletas, corações e muito mais. A moldura se torna sua tela pessoal.",

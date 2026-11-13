@@ -1,93 +1,118 @@
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { workshops } from '../data/workshops'
 import './Workshops.css'
 
-const STRUCTURE = [
+// Each merged card represents one workshop type, showing both age variants
+const MERGED_WORKSHOPS = [
   {
-    id: 'ages-5-11',
-    ageGroupKey: 'workshops.age_group_5_11',
+    id: 'chocolate-painting',
     icon: '🎨',
     color: '#e65100',
     bgGradient: 'linear-gradient(135deg, #fff3e0 0%, #ffe0b2 50%, #fff3e0 100%)',
-    slugs: ['chocolate-painting'],
-  },
-  {
-    id: 'ages-12-plus',
-    ageGroupKey: 'workshops.age_group_12_plus',
-    icon: '🌟',
-    color: '#7b1fa2',
-    bgGradient: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #f3e5f5 100%)',
-    coverImage: '/images/workshops/12plus-cover.jpeg',
-    subGroups: [
+    titleKey: 'workshops.w5_title',
+    subtitleKey: 'workshops.w5_subtitle',
+    variants: [
       {
-        id: 'girls',
-        labelKey: 'workshops.gender_girls',
-        icon: '💗',
-        color: '#c2185b',
-        bgGradient: 'linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #fce4ec 100%)',
-        slugs: ['friends-at-heart', 'surprise-egg-kids', 'chocolate-painting-teens'],
+        labelKey: 'workshops.age_group_5_11',
+        slug: 'chocolate-painting',
+        photo: '/images/workshops/chocolate-painting/workshop-1.jpeg',
       },
       {
-        id: 'boys',
-        labelKey: 'workshops.gender_boys',
-        icon: '💙',
-        color: '#1565c0',
-        bgGradient: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #e3f2fd 100%)',
-        slugs: ['surprise-egg-kids', 'chocolate-painting-teens'],
+        labelKey: 'workshops.age_group_12_plus',
+        slug: 'chocolate-painting-teens',
+        photo: '/images/workshops/chocolate-painting/workshop-12plus.jpeg',
+      },
+    ],
+  },
+  {
+    id: 'friends-at-heart',
+    icon: '💗',
+    color: '#c2185b',
+    bgGradient: 'linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #fce4ec 100%)',
+    titleKey: 'workshops.w1_title',
+    subtitleKey: 'workshops.w1_subtitle',
+    variants: [
+      {
+        labelKey: 'workshops.age_group_10_13',
+        slug: 'friends-at-heart',
+        photo: '/images/workshops/friends-at-heart/workshop-cover.jpeg',
+      },
+      {
+        labelKey: 'workshops.age_group_14_plus',
+        slug: 'friends-at-heart-teens',
+        photo: '/images/workshops/friends-at-heart-teens/workshop-14-1.jpeg',
+      },
+    ],
+  },
+  {
+    id: 'surprise-egg',
+    icon: '🥚',
+    color: '#6a1b9a',
+    bgGradient: 'linear-gradient(135deg, #ede7f6 0%, #d1c4e9 50%, #ede7f6 100%)',
+    titleKey: 'workshops.w4_title',
+    subtitleKey: 'workshops.w4_subtitle',
+    variants: [
+      {
+        labelKey: 'workshops.age_group_10_13',
+        slug: 'surprise-egg-kids',
+        photo: '/images/workshops/surprise-egg/workshop-cover.jpeg',
+      },
+      {
+        labelKey: 'workshops.age_group_14_plus',
+        slug: 'surprise-egg-teens',
+        photo: '/images/workshops/family-memories/workshop-family-1.jpeg',
       },
     ],
   },
 ]
 
-function WorkshopCard({ workshop }) {
+function MergedWorkshopCard({ workshop }) {
   const { t } = useTranslation()
   return (
-    <Link
-      to={`/workshops/${workshop.slug}`}
-      className="ws-workshop-card"
-      style={{
-        '--ws-bg': workshop.bgGradient || 'linear-gradient(135deg, #fce4ec, #f8bbd0)',
-        '--ws-color': workshop.color || '#c2185b',
-      }}
+    <div
+      className="ws-merged-card"
+      style={{ '--ws-color': workshop.color, '--ws-bg': workshop.bgGradient }}
     >
-      {(workshop.listingPhoto || workshop.samplePhotos?.[0]) && (
-        <div className="ws-workshop-card__photo-wrap">
-          <img
-            src={workshop.listingPhoto || workshop.samplePhotos[0]}
-            alt={t(workshop.titleKey)}
-            className="ws-workshop-card__photo"
-            loading="lazy"
-            onError={(e) => { e.target.parentElement.style.display = 'none' }}
-          />
+      {/* Header */}
+      <div className="ws-merged-card__header">
+        <span className="ws-merged-card__icon">{workshop.icon}</span>
+        <div>
+          <h3 className="ws-merged-card__title">{t(workshop.titleKey)}</h3>
+          <p className="ws-merged-card__subtitle">{t(workshop.subtitleKey)}</p>
         </div>
-      )}
-      <div className="ws-workshop-card__body">
-        <span className="ws-workshop-card__icon">{workshop.icon}</span>
-        <h3 className="ws-workshop-card__title">{t(workshop.titleKey)}</h3>
-        <p className="ws-workshop-card__subtitle">{t(workshop.subtitleKey)}</p>
-        <span className="ws-workshop-card__cta">{t('workshops.view_workshop')} →</span>
       </div>
-    </Link>
+
+      {/* Two age-variant panels side by side */}
+      <div className="ws-merged-card__variants">
+        {workshop.variants.map((v) => (
+          <Link
+            key={v.slug}
+            to={`/workshops/${v.slug}`}
+            className="ws-variant-panel"
+          >
+            <div className="ws-variant-panel__photo-wrap">
+              <img
+                src={v.photo}
+                alt={t(v.labelKey)}
+                loading="lazy"
+                className="ws-variant-panel__photo"
+                onError={(e) => { e.target.parentElement.style.background = '#e0c4a0' }}
+              />
+              <div className="ws-variant-panel__overlay" />
+            </div>
+            <div className="ws-variant-panel__label">
+              <span>{t(v.labelKey)}</span>
+              <span className="ws-variant-panel__arrow">→</span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
   )
 }
 
 export default function Workshops() {
   const { t } = useTranslation()
-  const [selectedAge, setSelectedAge] = useState(null)
-  const [selectedGender, setSelectedGender] = useState(null)
-
-  const selectAge = (id) => {
-    setSelectedAge(id)
-    setSelectedGender(null)
-  }
-
-  const activeGroup = STRUCTURE.find(g => g.id === selectedAge)
-  const activeSubGroup = activeGroup?.subGroups?.find(s => s.id === selectedGender)
-
-  const resolvedWorkshops = (slugs) =>
-    slugs.map(s => workshops.find(w => w.slug === s)).filter(Boolean)
 
   return (
     <div className="workshops-page">
@@ -99,65 +124,17 @@ export default function Workshops() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="ws-category-section ws-category-section--chocolate">
         <div className="container">
-
-          {/* ── Step 1: Age category buttons ─────────────────────────────── */}
-          <div className="ws-step-label">{t('workshops.step_choose_age')}</div>
-          <div className="ws-age-btns">
-            {STRUCTURE.map((group) => (
-              <button
-                key={group.id}
-                type="button"
-                className={`ws-age-btn${selectedAge === group.id ? ' ws-age-btn--active' : ''}`}
-                style={{ '--ws-color': group.color, '--ws-bg': group.bgGradient }}
-                onClick={() => selectAge(group.id)}
-              >
-                <span className="ws-age-btn__icon">{group.icon}</span>
-                <span className="ws-age-btn__label">{t(group.ageGroupKey)}</span>
-              </button>
+          <div className="ws-category-header">
+            <span className="ws-category-header__icon">🍫</span>
+            <h2 className="ws-category-header__title">{t('workshops.category_chocolate')}</h2>
+          </div>
+          <div className="ws-merged-grid">
+            {MERGED_WORKSHOPS.map(w => (
+              <MergedWorkshopCard key={w.id} workshop={w} />
             ))}
           </div>
-
-          {/* ── Step 2a: If 12+, show gender buttons ─────────────────────── */}
-          {activeGroup?.subGroups && (
-            <>
-              <div className="ws-step-label ws-step-label--sub">{t('workshops.step_choose_gender')}</div>
-              <div className="ws-gender-btns">
-                {activeGroup.subGroups.map((sub) => (
-                  <button
-                    key={sub.id}
-                    type="button"
-                    className={`ws-gender-btn${selectedGender === sub.id ? ' ws-gender-btn--active' : ''}`}
-                    style={{ '--ws-color': sub.color, '--ws-bg': sub.bgGradient }}
-                    onClick={() => setSelectedGender(sub.id)}
-                  >
-                    <span className="ws-gender-btn__icon">{sub.icon}</span>
-                    <span className="ws-gender-btn__label">{t(sub.labelKey)}</span>
-                  </button>
-                ))}
-              </div>
-            </>
-          )}
-
-          {/* ── Step 2b: If 5–11, show workshops directly ────────────────── */}
-          {activeGroup && !activeGroup.subGroups && (
-            <div className="ws-cards-grid ws-cards-grid--mt">
-              {resolvedWorkshops(activeGroup.slugs).map(w => (
-                <WorkshopCard key={w.slug} workshop={w} />
-              ))}
-            </div>
-          )}
-
-          {/* ── Step 3: Show workshops for selected gender ────────────────── */}
-          {activeSubGroup && (
-            <div className="ws-cards-grid ws-cards-grid--mt">
-              {resolvedWorkshops(activeSubGroup.slugs).map(w => (
-                <WorkshopCard key={w.slug} workshop={w} />
-              ))}
-            </div>
-          )}
-
         </div>
       </section>
 

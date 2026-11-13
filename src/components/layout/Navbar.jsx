@@ -24,9 +24,8 @@ export default function Navbar() {
   const navLinks = [
     { to: '/', label: t('nav.home') },
     { to: '/about', label: t('nav.about') },
-    { to: '/gallery', label: t('nav.gallery') },
+    { to: '/presents', label: t('nav.presents') },
     { to: '/workshops', label: t('nav.workshops') },
-    ...(flags.chocolateFountain ? [{ to: '/fountain', label: t('fountain.nav_label') }] : []),
     { to: '/contact', label: t('nav.contact') },
   ]
 
@@ -63,11 +62,6 @@ export default function Navbar() {
           <>
             <div className="navbar__right">
               <LanguageSwitcher />
-              {flags.bulkOrder.enabled && (
-                <Link to="/bulk-order" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
-                  {t('nav.bulk_order')}
-                </Link>
-              )}
               {flags.pralineBuilder && (
                 <Link to="/build-your-box" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
                   {t('nav.build_box')}
@@ -115,11 +109,6 @@ export default function Navbar() {
             </nav>
             <div className="navbar__right">
               <LanguageSwitcher />
-              {flags.bulkOrder.enabled && (
-                <Link to="/bulk-order" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
-                  {t('nav.bulk_order')}
-                </Link>
-              )}
               {flags.pralineBuilder && (
                 <Link to="/build-your-box" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
                   {t('nav.build_box')}
@@ -158,11 +147,6 @@ export default function Navbar() {
               {label}
             </NavLink>
           ))}
-          {flags.bulkOrder.enabled && (
-            <Link to="/bulk-order" className="btn btn-caramel navbar__mobile-cta" onClick={closeMenu}>
-              {t('nav.bulk_order')}
-            </Link>
-          )}
           {flags.pralineBuilder && (
             <Link to="/build-your-box" className="btn btn-caramel navbar__mobile-cta" onClick={closeMenu}>
               {t('nav.build_box')}

@@ -618,3 +618,56 @@
   background: #fff;
 }
 
+/* ── Workshop photo gallery section ───────────────────────────────────────── */
+.wd-photo-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.wd-photo-gallery__item {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 1 / 1;
+  background: #f0e8e0;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.wd-photo-gallery__item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.wd-photo-gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.wd-photo-gallery__zoom {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  opacity: 0;
+  background: rgba(0,0,0,0.25);
+  transition: opacity 0.2s;
+}
+
+.wd-photo-gallery__item:hover .wd-photo-gallery__zoom {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .wd-photo-gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -81,6 +81,13 @@
   line-height: 1.8;
 }
 
+.about-story__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
 /* Values */
 .about-values {
   background: var(--color-cream-dark);

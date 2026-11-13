@@ -56,12 +56,15 @@ export default function About() {
           <div className="about-story__text">
             <h2>{t('about.story_title')}</h2>
             <div className="divider" style={{ margin: '1rem 0' }} />
-            <p>{t('about.story_p1')}</p>
-            <p style={{ marginTop: '1rem' }}>{t('about.story_p2')}</p>
+            <div className="about-story__body">
+              {t('about.story_p1').split('\n\n').map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+              {t('about.story_p2').split('\n\n').map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
             <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <Link to="/bulk-order" className="btn btn-caramel">
-                🍫 {t('nav.bulk_order')}
-              </Link>
               <Link to="/workshops" className="btn btn-secondary">
                 🎨 {t('nav.workshops')}
               </Link>

@@ -2,6 +2,40 @@
    Home Page
    ============================================================ */
 
+/* ── Presents section (top of page) ──────────────────────────────────────── */
+.presents-section {
+  background: linear-gradient(135deg, #3b1f0e 0%, #5c3317 60%, #3b1f0e 100%);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+.presents-section__inner {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.presents-section__icon {
+  font-size: 2.5rem;
+}
+
+.presents-section__title {
+  font-family: var(--font-heading, serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #fff;
+  margin: 0;
+}
+
+.presents-section__subtitle {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+}
+
 /* --- Hero --- */
 .hero {
   display: flex;
@@ -33,9 +67,9 @@
 
 .hero__title {
   font-family: var(--font-heading);
-  font-size: var(--text-5xl);
+  font-size: clamp(0.95rem, 1.8vw, 1.3rem);
   color: var(--color-chocolate-dark);
-  line-height: 1.15;
+  line-height: 1.4;
   margin-bottom: var(--space-4);
 }
 

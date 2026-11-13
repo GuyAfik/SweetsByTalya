@@ -44,6 +44,7 @@
   "nav": {
     "home": "Home",
     "about": "About",
+    "presents": "Presents",
     "gallery": "Gallery",
     "menu": "Menu",
     "workshops": "Workshops",
@@ -51,6 +52,10 @@
     "build_box": "Build Your Box",
     "bulk_order": "Order Handmade Chocolate \"Jewelleries\" for Events",
     "order": "Order Now"
+  },
+  "presents": {
+    "page_title": "Presents",
+    "page_subtitle": "Beautiful handcrafted chocolate gifts — coming soon."
   },
   "hero": {
     "tagline": "Welcome to the most fun artisan chocolate experience — chocolate works of art",
@@ -95,8 +100,8 @@
     "hero_title": "About Sweets by Talya",
     "hero_subtitle": "A passion for chocolate, a love for people.",
     "story_title": "My Story",
-    "story_p1": "Sweets by Talya was born from a deep love of chocolate and the joy of making people smile. Talya 🇧🇷 brought her passion for chocolate all the way from Brazil, and started crafting chocolates in her home kitchen, experimenting with flavors and techniques until every piece was perfect.",
-    "story_p2": "What began as a hobby quickly became a calling. Today, every praline and chocolate creation is still made by hand.",
+    "story_p1": "Every great dream begins with a small decision.\n\nIn 2023 I left Brazil and started a new life in Israel. I arrived with dreams, expectations, and a desire to build a different future for myself. But life doesn't always move in the direction we plan.\n\nI worked in a café, tried to find my place, faced difficult periods — and there were moments when I had to stop and rethink my path and what I truly wanted to do with my life.\n\nUntil one day, after a prayer, I decided to give a chance to something I never imagined would become such a meaningful part of my life.\n\nI started making sweets.\n\nI didn't have a professional kitchen, advanced equipment, or all the tools I needed. I had the small kitchen at home, a lot of curiosity, and a desire to learn. I searched for recipes, experimented, made mistakes, started again — and slowly discovered a whole new world.\n\nWhat started as a small experiment in my kitchen became something much bigger.",
+    "story_p2": "I understood that it wasn't just about chocolate, cakes, or cookies. It's the joy of creating, the satisfaction of making something with your own hands, the moment a child discovers they can turn chocolate into a small work of art, a family sharing a special experience, someone receiving a gift made with love, and a person discovering they're capable of learning something new.\n\nThat's how I found my path.\n\nToday I share recipes, ideas, and experiences. I run chocolate, cookie, and confectionery workshops for children, create activities for birthdays, and prepare special gifts — each one carrying a little of that love for creation.\n\nBut more than anything, I want to create a place where people feel free to try, create, learn, and discover new things for themselves.\n\nI believe you don't need everything to be ready before you begin. Sometimes all it takes is a small decision, a little courage, and a willingness to learn along the way.\n\nI started in my home kitchen, with few resources and many dreams. Today, every recipe, every workshop, and every creation is part of a story that is still being written.\n\nAnd perhaps you too will find here the beginning of something special.",
     "values_title": "Our Values",
     "value1_title": "Handmade Always",
     "value1_desc": "No machines, no shortcuts. Every piece is made by hand.",
@@ -394,6 +399,9 @@
     "gender_boys": "Boys 💙",
     "step_choose_age": "Choose an age group",
     "step_choose_gender": "Choose a category",
+    "step_choose_category": "Choose a workshop type",
+    "category_chocolate": "Chocolate Workshop 🍫",
+    "category_bakery": "Bakery Workshop 🥐",
     "age_group_7_family": "Ages 7+ (Family)",
     "age_group_10_13": "Ages 10–13",
     "age_group_14_plus": "Ages 14+",
@@ -484,6 +492,8 @@
     "w5_ages": "Ages 5–11",
     "w5_ages_teens": "Ages 12+",
     "w5_subtitle": "Every child is an artist! In this unique workshop, kids paint on a real chocolate canvas using edible colours — brushes, palette and all. At the end, a mini museum opens where parents can admire the masterpieces.",
+    "w5_subtitle_teens": "Every teen is an artist! In this unique workshop, participants paint on a real chocolate canvas using edible colours — brushes, palette and all. At the end, a mini museum opens to admire the masterpieces.",
+    "photos_section_title": "Workshop Photos 📸",
     "w5_occasion_school": "School events & class trips",
     "w5_activity1_title": "Choose Your Frame",
     "w5_activity1_desc": "Each participant picks a predefined chocolate frame — animals, flowers, butterflies, hearts and more. The frame becomes their personal canvas.",

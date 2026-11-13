@@ -2,8 +2,6 @@ import { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { social } from '../config/social'
-import { flags } from '../config/featureFlags'
-import ChocolateFountainSection from '../components/fountain/ChocolateFountainSection'
 import './Home.css'
 
 const heroSlides = [
@@ -52,6 +50,20 @@ function HeroSlideshow() {
   )
 }
 
+function PresentsSection() {
+  return (
+    <section className="presents-section">
+      <div className="container">
+        <div className="presents-section__inner">
+          <span className="presents-section__icon">🎁</span>
+          <h2 className="presents-section__title">Presents</h2>
+          <p className="presents-section__subtitle">Coming soon — beautiful handcrafted chocolate gifts for every occasion.</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function Hero() {
   const { t } = useTranslation()
   return (
@@ -59,12 +71,7 @@ function Hero() {
       <div className="hero__content">
         <h1 className="hero__title">{t('hero.tagline')}</h1>
         <div className="hero__ctas">
-          {flags.bulkOrder.enabled && (
-            <Link to="/bulk-order" className="btn btn-caramel btn-lg">
-              🍫 {t('nav.bulk_order')}
-            </Link>
-          )}
-          <Link to="/workshops" className="btn btn-secondary btn-lg">
+            <Link to="/workshops" className="btn btn-secondary btn-lg">
             🎨 {t('nav.workshops')}
           </Link>
         </div>
@@ -83,33 +90,6 @@ function WhatWeOffer() {
         <p className="section-subtitle">{t('home.offer_subtitle')}</p>
 
         <div className="offer-cards">
-          <div className="offer-card offer-card--pralines">
-            <div className="offer-card__image-wrap">
-              <img
-                src="/images/gallery/pralines-8.jpg"
-                alt="Handcrafted pralines for events"
-                className="offer-card__image"
-                loading="lazy"
-              />
-            </div>
-            <div className="offer-card__body">
-              <div className="offer-card__emoji">🍫</div>
-              <h3 className="offer-card__title">{t('home.pralines_title')}</h3>
-              <p className="offer-card__desc">{t('home.pralines_desc')}</p>
-              <ul className="offer-card__occasions">
-                <li>🎂 {t('home.pralines_occasion_1')}</li>
-                <li>💍 {t('home.pralines_occasion_2')}</li>
-                <li>🏢 {t('home.pralines_occasion_3')}</li>
-                <li>🎁 {t('home.pralines_occasion_4')}</li>
-              </ul>
-              {flags.bulkOrder.enabled && (
-                <Link to="/bulk-order" className="btn btn-caramel offer-card__cta">
-                  {t('home.pralines_cta')}
-                </Link>
-              )}
-            </div>
-          </div>
-
           <div className="offer-card offer-card--workshops">
             <div className="offer-card__image-wrap">
               <img
@@ -134,10 +114,6 @@ function WhatWeOffer() {
               </Link>
             </div>
           </div>
-
-          {flags.chocolateFountain && (
-            <ChocolateFountainSection variant="card" />
-          )}
         </div>
       </div>
     </section>
@@ -164,6 +140,7 @@ function CTABanner() {
 export default function Home() {
   return (
     <>
+      <PresentsSection />
       <Hero />
       <WhatWeOffer />
       <CTABanner />

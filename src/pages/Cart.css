@@ -120,6 +120,15 @@
   margin: 0;
 }
 
+.cart-item__config {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-top: 0.3rem;
+  font-size: 0.78rem;
+  color: var(--color-caramel, #c47c2a);
+}
+
 /* ── Qty controls ─────────────────────────────────────────────────────────── */
 .cart-item__controls {
   display: flex;

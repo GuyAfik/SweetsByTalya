@@ -11,7 +11,16 @@ export default function Cart() {
   const buildWhatsAppMessage = () => {
     const lines = items.map(item => {
       const title = t(`presents.${item.id}.title`)
-      return `• ${title} ×${item.qty} — ₪${item.price * item.qty}`
+      let line = `• ${title} ×${item.qty} — ₪${item.price * item.qty}`
+      if (item.config) {
+        const shellLabel = t(`praline_box_config.shell_${item.config.shell}`)
+        const flavorsLabel = item.config.flavors
+          .map(f => t(`praline_box_config.flavor_${f}`))
+          .join(', ')
+        line += `\n  ${t('praline_box_config.cart_shell_label')}: ${shellLabel}`
+        line += `\n  ${t('praline_box_config.cart_flavors_label')}: ${flavorsLabel}`
+      }
+      return line
     })
     lines.push(`\n${t('cart.total')}: ₪${totalPrice}`)
     return encodeURIComponent(lines.join('\n'))
@@ -55,6 +64,12 @@ export default function Cart() {
                 <div className="cart-item__info">
                   <h3 className="cart-item__title">{t(`presents.${item.id}.title`)}</h3>
                   <p className="cart-item__unit-price">₪{item.price} {t('cart.each')}</p>
+                  {item.config && (
+                    <div className="cart-item__config">
+                      <span>🍫 {t('praline_box_config.cart_shell_label')}: {t(`praline_box_config.shell_${item.config.shell}`)}</span>
+                      <span>✨ {t('praline_box_config.cart_flavors_label')}: {item.config.flavors.map(f => t(`praline_box_config.flavor_${f}`)).join(', ')}</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Qty controls */}

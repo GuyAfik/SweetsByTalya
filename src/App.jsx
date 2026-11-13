@@ -17,6 +17,7 @@ const Workshops = lazy(() => import('./pages/Workshops'))
 const WorkshopDetail = lazy(() => import('./pages/WorkshopDetail'))
 const Contact = lazy(() => import('./pages/Contact'))
 const Presents = lazy(() => import('./pages/Presents'))
+const Recipes = lazy(() => import('./pages/Recipes'))
 const Cart = lazy(() => import('./pages/Cart'))
 const PralineBuilder = lazy(() => import('./pages/PralineBuilder'))
 const BulkPralineOrder = lazy(() => import('./pages/BulkPralineOrder'))
@@ -51,6 +52,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/presents" element={<Presents />} />
+            <Route path="/recipes" element={<Recipes />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/workshops" element={<Workshops />} />
             <Route path="/workshops/:slug" element={<WorkshopDetail />} />

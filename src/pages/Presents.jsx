@@ -212,9 +212,11 @@ export default function Presents() {
 
       <section className="section presents-list">
         <div className="container">
-          {GIFTS.map(gift => (
-            <GiftCard key={gift.id} gift={gift} />
-          ))}
+          <div className="presents-grid">
+            {GIFTS.map(gift => (
+              <GiftCard key={gift.id} gift={gift} />
+            ))}
+          </div>
         </div>
       </section>
     </div>

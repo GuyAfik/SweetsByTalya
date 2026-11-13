@@ -68,6 +68,9 @@ export default function About() {
               <Link to="/workshops" className="btn btn-secondary">
                 🎨 {t('nav.workshops')}
               </Link>
+              <Link to="/presents" className="btn btn-caramel">
+                🎁 {t('nav.presents')}
+              </Link>
             </div>
           </div>
         </div>

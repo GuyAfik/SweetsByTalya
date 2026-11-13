@@ -24,8 +24,19 @@
     "modal_close": "Close"
   },
   "home": {
+    "hero_headline": "Handcrafted Chocolate Experiences",
+    "hero_sub": "Workshops, gifts and sweet creations — made with love in every piece.",
     "offer_title": "What We Offer",
     "offer_subtitle": "Handcrafted chocolate experiences for every occasion",
+    "tile_workshops_title": "Chocolate Workshops",
+    "tile_workshops_desc": "Fun, hands-on chocolate workshops for birthdays, bat mitzvahs, family events and more.",
+    "tile_workshops_cta": "Explore Workshops",
+    "tile_presents_title": "Sweet Gifts",
+    "tile_presents_desc": "Handcrafted chocolate gifts for every occasion — bears, eggs, hearts, pralines and more.",
+    "tile_presents_cta": "Shop Gifts",
+    "tile_contact_title": "Get in Touch",
+    "tile_contact_desc": "Have a question? Want to book a workshop or order a gift? We'd love to hear from you.",
+    "tile_contact_cta": "Contact Us",
     "pralines_title": "Handmade Chocolate \"Jewelleries\" for Events",
     "pralines_desc": "Minimum 100 handcrafted chocolate \"jewelleries\" — perfect for gifting at any special occasion. Choose your flavors and chocolates.",
     "pralines_occasion_1": "Birthday parties & celebrations",
@@ -48,6 +59,7 @@
     "gallery": "Gallery",
     "menu": "Menu",
     "workshops": "Workshops",
+    "recipes": "Recipes",
     "contact": "Contact",
     "build_box": "Build Your Box",
     "bulk_order": "Order Handmade Chocolate \"Jewelleries\" for Events",
@@ -90,6 +102,11 @@
     "total": "Total",
     "checkout_whatsapp": "Order via WhatsApp",
     "clear_cart": "Clear cart"
+  },
+  "recipes": {
+    "page_title": "Recipes 📖",
+    "page_subtitle": "Sweet inspiration from Talya's kitchen",
+    "coming_soon": "Recipes coming soon... 🍫"
   },
   "presents": {
     "page_title": "Presents 🎁",

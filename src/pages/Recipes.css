@@ -1,0 +1,65 @@
+.recipes-page {
+  min-height: 60vh;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────────── */
+.recipes-hero {
+  background: linear-gradient(135deg, #3b1f0e 0%, #5c3317 60%, #3b1f0e 100%);
+  padding: 5rem 1.5rem 4rem;
+  text-align: center;
+  color: #fff;
+}
+
+.recipes-hero__content {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.recipes-hero__icon {
+  font-size: 3.5rem;
+}
+
+.recipes-hero__title {
+  font-family: var(--font-heading, serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #fff;
+  margin: 0;
+}
+
+.recipes-hero__subtitle {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── Empty state ───────────────────────────────────────────────────────────── */
+.recipes-empty {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.recipes-empty__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.recipes-empty__icon {
+  font-size: 4rem;
+  opacity: 0.4;
+}
+
+.recipes-empty__text {
+  font-size: 1.15rem;
+  color: var(--color-text-secondary, #888);
+  max-width: 400px;
+  line-height: 1.6;
+  margin: 0;
+}

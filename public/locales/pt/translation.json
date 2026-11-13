@@ -24,8 +24,19 @@
     "modal_close": "Fechar"
   },
   "home": {
+    "hero_headline": "Experiências de Chocolate Artesanal",
+    "hero_sub": "Workshops, presentes e criações doces — feitos com amor em cada peça.",
     "offer_title": "O Que Oferecemos",
     "offer_subtitle": "Experiências de chocolate artesanal para cada ocasião",
+    "tile_workshops_title": "Workshops de Chocolate",
+    "tile_workshops_desc": "Workshops de chocolate divertidos e práticos para aniversários, bat mitzvahs, eventos familiares e mais.",
+    "tile_workshops_cta": "Ver Workshops",
+    "tile_presents_title": "Presentes Doces",
+    "tile_presents_desc": "Presentes de chocolate artesanais para toda ocasião — ursos, ovos, corações, pralinês e muito mais.",
+    "tile_presents_cta": "Ver Presentes",
+    "tile_contact_title": "Entre em Contato",
+    "tile_contact_desc": "Tem alguma dúvida? Quer reservar um workshop ou encomendar um presente? Adoraríamos ouvir de você.",
+    "tile_contact_cta": "Fale Conosco",
     "pralines_title": "\"Joias\" de Chocolate Artesanais para Eventos",
     "pralines_desc": "Mínimo de 100 \"joias\" de chocolate artesanais — perfeitas para presentear em qualquer ocasião especial. Escolha os seus sabores e chocolates.",
     "pralines_occasion_1": "Festas de aniversário e celebrações",
@@ -48,6 +59,7 @@
     "gallery": "Galeria",
     "menu": "Cardápio",
     "workshops": "Workshops",
+    "recipes": "Receitas",
     "contact": "Contato",
     "build_box": "Monte sua Caixa",
     "bulk_order": "Pedir \"Joias\" de Chocolate Artesanais para Eventos",
@@ -90,6 +102,11 @@
     "total": "Total",
     "checkout_whatsapp": "Pedir via WhatsApp",
     "clear_cart": "Limpar carrinho"
+  },
+  "recipes": {
+    "page_title": "Receitas 📖",
+    "page_subtitle": "Inspiração doce da cozinha da Talya",
+    "coming_soon": "Receitas em breve... 🍫"
   },
   "presents": {
     "page_title": "Presentes 🎁",

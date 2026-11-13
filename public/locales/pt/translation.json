@@ -54,8 +54,103 @@
     "order": "Fazer Pedido"
   },
   "presents": {
-    "page_title": "Presentes",
-    "page_subtitle": "Presentes de chocolate artesanais feitos com amor — em breve."
+    "page_title": "Presentes 🎁",
+    "page_subtitle": "Presentes de chocolate doces e artesanais para toda ocasião.",
+    "cupcake_kit": {
+      "title": "Kit de Cupcakes – Mini Confeiteiros 🧁",
+      "tagline": "Transforme sua casa em um pequeno estúdio de confeitaria!",
+      "includes": [
+        "3 cupcakes de tamanho médio",
+        "3 cores de chantilly firme para decorar",
+        "3 tipos de confeitos à escolha",
+        "Caixa de presente decorada com fita",
+        "Certificado de Mini Confeiteiro"
+      ],
+      "note": "Um presente doce, uma atividade divertida e uma lembrança especial que toda criança vai adorar.",
+      "price": "₪80 por kit"
+    },
+    "cookie_kit": {
+      "title": "Kit de Decoração de Biscoitos 🍪",
+      "tagline": "Um pouco de doçura, muita criatividade e diversão!",
+      "includes": [
+        "3 biscoitos grandes em formatos geométricos",
+        "3 cores de royal icing",
+        "3 tipos de confeitos coloridos",
+        "Caixa de presente linda com fita",
+        "Certificado de Mini Confeiteiro"
+      ],
+      "note": "Perfeito para atividade em casa, aniversários, presente ou lembrança doce.",
+      "price": "₪90 por kit"
+    },
+    "bear_romantic": {
+      "title": "Urso Romântico de Chocolate 🧸🌹",
+      "tagline": "O presente perfeito para alguém que você ama ❤️",
+      "includes": [
+        "Urso de chocolate artesanal, 170g",
+        "Escolha: chocolate branco, ao leite ou amargo",
+        "2 Kinder + 6 mini Kinder por dentro",
+        "2 rosas de chocolate artesanais"
+      ],
+      "note": "",
+      "price": "₪160"
+    },
+    "bear_trio": {
+      "title": "Trio de Ursinhos de Chocolate 🧸🍫",
+      "tagline": "Três ursinhos doces, um presente delicioso!",
+      "includes": [
+        "3 ursinhos de chocolate artesanais, 100g no total",
+        "Escolha: chocolate branco, ao leite ou amargo",
+        "2 pacotes de Oreo",
+        "6 mini Kinder"
+      ],
+      "note": "",
+      "price": "₪100"
+    },
+    "choco_egg": {
+      "title": "Ovo de Chocolate Especial 🍫🥚",
+      "tagline": "Um presente doce e perfeito para quem você ama! ❤️",
+      "includes": [
+        "Ovo de chocolate artesanal, 200g",
+        "Escolha: chocolate branco, ao leite ou amargo",
+        "2 pacotes de Oreo",
+        "6 mini Kinder + 2 Kinder"
+      ],
+      "note": "",
+      "price": "₪160"
+    },
+    "hearts_duo": {
+      "title": "Dupla de Corações de Chocolate ❤️🍫",
+      "tagline": "Um presente doce e especial para alguém que você ama!",
+      "includes": [
+        "2 corações de chocolate artesanais, 75g cada",
+        "Escolha: chocolate branco, ao leite ou amargo",
+        "2 Kinder + 4 mini Kinder"
+      ],
+      "note": "",
+      "price": "₪120"
+    },
+    "remote_choco": {
+      "title": "Controle Remoto de Chocolate 🍫❤️",
+      "tagline": "Um presente original e doce para alguém especial!",
+      "includes": [
+        "Controle remoto de chocolate artesanal, 160g",
+        "Escolha: chocolate branco, ao leite ou amargo",
+        "2 Kinder grandes + 4 mini Kinder"
+      ],
+      "note": "",
+      "price": "₪120"
+    },
+    "praline_box": {
+      "title": "Sua Caixa de Chocolates Personalizada 🍫",
+      "tagline": "Um presente especial para surpreender quem você ama! ❤️",
+      "includes": [
+        "16 pralinês artesanais feitos à mão",
+        "Escolha 4 sabores favoritos: pistache, baunilha, café, frutas vermelhas, ganache de chocolate branco, coco, Nutella, amendoim, chocolate amargo, halva ou manga",
+        "Escolha a casquinha: chocolate branco, ao leite, meio amargo ou mix"
+      ],
+      "note": "Uma caixa, 16 delícias e a sua combinação perfeita!",
+      "price": "₪140 por caixa"
+    }
   },
   "hero": {
     "tagline": "Bem-vindo à experiência de chocolate artesanal mais divertida — obras de arte em chocolate",

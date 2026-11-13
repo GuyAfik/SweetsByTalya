@@ -54,8 +54,103 @@
     "order": "Order Now"
   },
   "presents": {
-    "page_title": "Presents",
-    "page_subtitle": "Beautiful handcrafted chocolate gifts — coming soon."
+    "page_title": "Presents 🎁",
+    "page_subtitle": "Sweet, handcrafted chocolate gifts for every occasion.",
+    "cupcake_kit": {
+      "title": "Cupcake Kit – Mini Pastry Chefs 🧁",
+      "tagline": "Turn your home into a mini pastry studio!",
+      "includes": [
+        "3 medium-sized cupcakes",
+        "3 colours of stable whipped cream for decorating",
+        "3 types of toppings to choose from",
+        "Decorative gift box with ribbon",
+        "Mini Pastry Chef certificate"
+      ],
+      "note": "A sweet gift, a fun activity and a special keepsake every child will love.",
+      "price": "₪80 per kit"
+    },
+    "cookie_kit": {
+      "title": "Cookie Decorating Kit 🍪",
+      "tagline": "A little sweetness, a lot of creativity and fun!",
+      "includes": [
+        "3 large cookies in geometric shapes",
+        "3 colours of royal icing",
+        "3 types of colourful decorations",
+        "Beautiful gift box with ribbon",
+        "Mini Pastry Chef certificate"
+      ],
+      "note": "Perfect for home activity, birthdays, gifting or as a sweet keepsake.",
+      "price": "₪90 per kit"
+    },
+    "bear_romantic": {
+      "title": "Romantic Chocolate Bear 🧸🌹",
+      "tagline": "The perfect gift for someone you love ❤️",
+      "includes": [
+        "Handmade chocolate bear, 170g",
+        "Choice of: white, milk or dark chocolate",
+        "2 Kinder chocolates + 6 mini Kinder inside",
+        "2 handmade chocolate roses"
+      ],
+      "note": "",
+      "price": "₪160"
+    },
+    "bear_trio": {
+      "title": "Trio of Chocolate Bears 🧸🍫",
+      "tagline": "Three sweet bears, one delicious gift!",
+      "includes": [
+        "3 handmade chocolate bears, 100g total",
+        "Choice of: white, milk or dark chocolate",
+        "2 Oreo packs",
+        "6 mini Kinder chocolates"
+      ],
+      "note": "",
+      "price": "₪100"
+    },
+    "choco_egg": {
+      "title": "Indulgent Chocolate Egg 🍫🥚",
+      "tagline": "A sweet and perfect gift for anyone you love! ❤️",
+      "includes": [
+        "Handmade chocolate egg, 200g",
+        "Choice of: white, milk or dark chocolate",
+        "2 Oreo packs",
+        "6 mini Kinder + 2 Kinder chocolates"
+      ],
+      "note": "",
+      "price": "₪160"
+    },
+    "hearts_duo": {
+      "title": "Duo of Chocolate Hearts ❤️🍫",
+      "tagline": "A sweet and special gift for someone you love!",
+      "includes": [
+        "2 handmade chocolate hearts, 75g each",
+        "Choice of: white, milk or dark chocolate",
+        "2 Kinder + 4 mini Kinder chocolates"
+      ],
+      "note": "",
+      "price": "₪120"
+    },
+    "remote_choco": {
+      "title": "Chocolate Remote Control 🍫❤️",
+      "tagline": "An original and sweet gift for someone special!",
+      "includes": [
+        "Handmade chocolate remote control, 160g",
+        "Choice of: white, milk or dark chocolate",
+        "2 large Kinder + 4 mini Kinder chocolates"
+      ],
+      "note": "",
+      "price": "₪120"
+    },
+    "praline_box": {
+      "title": "Your Personalised Chocolate Box 🍫",
+      "tagline": "A special gift to surprise the one you love! ❤️",
+      "includes": [
+        "16 handmade pralines",
+        "Choose 4 favourite flavours: pistachio, vanilla, coffee, red fruits, white chocolate ganache, coconut, Nutella, peanut, dark chocolate, halva or mango",
+        "Choose your shell: white, milk, dark or mixed chocolate"
+      ],
+      "note": "One box, 16 delights and your perfect combination!",
+      "price": "₪140 per box"
+    }
   },
   "hero": {
     "tagline": "Welcome to the most fun artisan chocolate experience — chocolate works of art",

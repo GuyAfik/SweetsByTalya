@@ -8,6 +8,7 @@ import ChatWidget from './components/chatbot/ChatWidget'
 import { useTelemetry } from './hooks/useTelemetry'
 import { flags } from './config/featureFlags'
 import { changeLanguage } from './i18n'
+import { CartProvider } from './context/CartContext'
 
 // Lazy-load pages for code splitting
 const Home = lazy(() => import('./pages/Home'))
@@ -16,6 +17,7 @@ const Workshops = lazy(() => import('./pages/Workshops'))
 const WorkshopDetail = lazy(() => import('./pages/WorkshopDetail'))
 const Contact = lazy(() => import('./pages/Contact'))
 const Presents = lazy(() => import('./pages/Presents'))
+const Cart = lazy(() => import('./pages/Cart'))
 const PralineBuilder = lazy(() => import('./pages/PralineBuilder'))
 const BulkPralineOrder = lazy(() => import('./pages/BulkPralineOrder'))
 
@@ -40,7 +42,7 @@ export default function App() {
   }, [i18n.language])
 
   return (
-    <>
+    <CartProvider>
       <ScrollToTop />
       <Navbar />
       <main className="page-wrapper">
@@ -49,6 +51,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/presents" element={<Presents />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/workshops" element={<Workshops />} />
             <Route path="/workshops/:slug" element={<WorkshopDetail />} />
             <Route path="/contact" element={<Contact />} />
@@ -58,18 +61,13 @@ export default function App() {
             {flags.bulkOrder.enabled && (
               <Route path="/bulk-order" element={<BulkPralineOrder />} />
             )}
-            {/* Catch-all → Home */}
             <Route path="*" element={<Home />} />
           </Routes>
         </Suspense>
       </main>
       <Footer />
-
-      {/* Always-visible WhatsApp floating button */}
       <WhatsAppButton />
-
-      {/* AI Chatbot — feature-flagged */}
       {flags.chatbot && <ChatWidget />}
-    </>
+    </CartProvider>
   )
 }

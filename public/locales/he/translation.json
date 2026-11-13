@@ -53,6 +53,21 @@
     "bulk_order": "הזמנת \"תכשיטי\" שוקולד בעבודת יד לאירועים",
     "order": "הזמן עכשיו"
   },
+  "cart": {
+    "title": "העגלה שלך",
+    "empty_title": "העגלה שלך ריקה",
+    "empty_subtitle": "עיינו במתנות שלנו והוסיפו את המועדפים לעגלה.",
+    "browse_gifts": "לכל המתנות",
+    "add_to_cart": "הוסיפו לעגלה",
+    "added": "נוסף!",
+    "in_cart": "בעגלה: ×{{qty}}",
+    "each": "ליחידה",
+    "remove": "הסירו",
+    "summary_title": "סיכום הזמנה",
+    "total": "סה\"כ",
+    "checkout_whatsapp": "הזמינו דרך WhatsApp",
+    "clear_cart": "נקה עגלה"
+  },
   "presents": {
     "page_title": "מתנות 🎁",
     "page_subtitle": "מתנות שוקולד מתוקות ועשויות ביד לכל אירוע.",

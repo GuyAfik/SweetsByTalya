@@ -4,10 +4,12 @@ import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from '../shared/LanguageSwitcher'
 import { social } from '../../config/social'
 import { flags } from '../../config/featureFlags'
+import { useCart } from '../../context/CartContext'
 import './Navbar.css'
 
 export default function Navbar() {
   const { t, i18n } = useTranslation()
+  const { totalItems } = useCart()
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const isRTL = (i18n.language?.split('-')[0] || localStorage.getItem('sbt_language') || 'he') === 'he'
@@ -62,6 +64,10 @@ export default function Navbar() {
           <>
             <div className="navbar__right">
               <LanguageSwitcher />
+              <Link to="/cart" className="navbar__cart" onClick={closeMenu} aria-label="Cart">
+                🛒
+                {totalItems > 0 && <span className="navbar__cart-badge">{totalItems}</span>}
+              </Link>
               {flags.pralineBuilder && (
                 <Link to="/build-your-box" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
                   {t('nav.build_box')}
@@ -93,6 +99,18 @@ export default function Navbar() {
               <span className="navbar__logo-icon">🍫</span>
               <span className="navbar__logo-text">Sweets by Talya</span>
             </Link>
+            <div className="navbar__right">
+              <LanguageSwitcher />
+              <Link to="/cart" className="navbar__cart" onClick={closeMenu} aria-label="Cart">
+                🛒
+                {totalItems > 0 && <span className="navbar__cart-badge">{totalItems}</span>}
+              </Link>
+              {flags.pralineBuilder && (
+                <Link to="/build-your-box" className="btn btn-caramel btn-sm navbar__cta" onClick={closeMenu}>
+                  {t('nav.build_box')}
+                </Link>
+              )}
+            </div>
             <nav className="navbar__links" aria-label="Main navigation">
               {navLinks.map(({ to, label }) => (
                 <NavLink

@@ -53,6 +53,21 @@
     "bulk_order": "Pedir \"Joias\" de Chocolate Artesanais para Eventos",
     "order": "Fazer Pedido"
   },
+  "cart": {
+    "title": "Seu Carrinho",
+    "empty_title": "Seu carrinho está vazio",
+    "empty_subtitle": "Explore nossos presentes e adicione seus favoritos ao carrinho.",
+    "browse_gifts": "Ver Presentes",
+    "add_to_cart": "Adicionar ao Carrinho",
+    "added": "Adicionado!",
+    "in_cart": "No carrinho: ×{{qty}}",
+    "each": "cada",
+    "remove": "Remover",
+    "summary_title": "Resumo do Pedido",
+    "total": "Total",
+    "checkout_whatsapp": "Pedir via WhatsApp",
+    "clear_cart": "Limpar carrinho"
+  },
   "presents": {
     "page_title": "Presentes 🎁",
     "page_subtitle": "Presentes de chocolate doces e artesanais para toda ocasião.",

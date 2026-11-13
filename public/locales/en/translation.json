@@ -53,6 +53,21 @@
     "bulk_order": "Order Handmade Chocolate \"Jewelleries\" for Events",
     "order": "Order Now"
   },
+  "cart": {
+    "title": "Your Cart",
+    "empty_title": "Your cart is empty",
+    "empty_subtitle": "Browse our gifts and add your favourites to the cart.",
+    "browse_gifts": "Browse Gifts",
+    "add_to_cart": "Add to Cart",
+    "added": "Added!",
+    "in_cart": "In cart: ×{{qty}}",
+    "each": "each",
+    "remove": "Remove",
+    "summary_title": "Order Summary",
+    "total": "Total",
+    "checkout_whatsapp": "Order via WhatsApp",
+    "clear_cart": "Clear cart"
+  },
   "presents": {
     "page_title": "Presents 🎁",
     "page_subtitle": "Sweet, handcrafted chocolate gifts for every occasion.",

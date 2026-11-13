@@ -164,6 +164,14 @@
   font-style: italic;
 }
 
+.gift-card__footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
 .gift-card__price {
   display: inline-block;
   background: linear-gradient(135deg, #3b1f0e, #5c3317);
@@ -173,8 +181,48 @@
   font-weight: 700;
   padding: 0.5rem 1.5rem;
   border-radius: 999px;
-  margin-top: 0.25rem;
-  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+.gift-card__cart-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: flex-start;
+}
+
+.gift-card__add-btn {
+  background: var(--color-caramel, #c47c2a);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.gift-card__add-btn:hover {
+  background: #a3671e;
+  transform: scale(1.03);
+}
+
+.gift-card__add-btn--added {
+  background: #2e7d32;
+}
+
+.gift-card__view-cart {
+  font-size: 0.82rem;
+  color: var(--color-caramel, #c47c2a);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s;
+}
+
+.gift-card__view-cart:hover {
+  color: #a3671e;
+  text-decoration: underline;
 }
 
 /* ── Responsive ───────────────────────────────────────────────────────────── */

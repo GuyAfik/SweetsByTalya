@@ -69,7 +69,7 @@ function Hero() {
   return (
     <section className="hero">
       <div className="hero__content">
-        <h1 className="hero__title">{t('hero.tagline')}</h1>
+        <p className="hero__title">{t('hero.tagline')}</p>
         <div className="hero__ctas">
             <Link to="/workshops" className="btn btn-secondary btn-lg">
             🎨 {t('nav.workshops')}

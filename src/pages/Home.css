@@ -66,11 +66,13 @@
 }
 
 .hero__title {
-  font-family: var(--font-heading);
-  font-size: clamp(0.95rem, 1.8vw, 1.3rem);
+  font-family: var(--font-body, 'Lato', sans-serif);
+  font-size: 0.95rem;
   color: var(--color-chocolate-dark);
-  line-height: 1.4;
+  line-height: 1.5;
   margin-bottom: var(--space-4);
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 .hero__subtitle {
